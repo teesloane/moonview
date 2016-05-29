@@ -1,2 +1,2 @@
 # moonview
-ommwriter inspired ambient text editor
+ommwriter inspired ambient writing application.
