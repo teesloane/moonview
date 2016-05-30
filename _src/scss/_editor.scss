@@ -1,0 +1,17 @@
+#editor {
+    display: flex;
+    align-items: center;
+    padding: 6% 5% 0;
+    // height: 90vh;
+}
+
+textarea {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    resize: none;
+    width: 90%;
+    height: 80vh;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.22);
+}
