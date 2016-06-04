@@ -18,7 +18,7 @@ const template = [
       },
       {
         label: 'Save',
-        accelerator: 'CmdOrCtrl+S', 
+        accelerator: 'CmdOrCtrl+S',
         click() { file.save() },
       },
       {
@@ -109,16 +109,7 @@ const template = [
       },
     ]
   },
-  {
-    label: 'Help',
-    role: 'help',
-    submenu: [
-      {
-        label: 'Learn More',
-        click() { require('electron').shell.openExternal('http://electron.atom.io'); }
-      },
-    ]
-  },
+
 ];
 
 if (process.platform === 'darwin') {

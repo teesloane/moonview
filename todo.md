@@ -1,12 +1,3 @@
-- [ ] Create Menu
-- [ ] abstract prog. gen buttons
-- [ ] 
-- [ ]
-- [ ]
-- [ ]
-- [ ]
-- [ ]
-- [ ]
-- [ ]
-- [ ]
+- [x] reduce Menu
+- [x] abstract prog. gen buttons
 - [ ]
