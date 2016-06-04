@@ -1,7 +1,7 @@
 body {
   display: flex;
   flex-direction: column;
-  background: rgb(226, 226, 226);
+  background: $mv-bg;
   height: 98vh;
   overflow-y: hidden;
   font-family: arial, sans-serif;

@@ -1,7 +1,7 @@
 body {
   display: flex;
   flex-direction: column;
-  background: #e2e2e2;
+  background: #f2f2f2;
   height: 98vh;
   overflow-y: hidden;
   font-family: arial, sans-serif; }
@@ -270,7 +270,7 @@ body {
   display: flex;
   align-items: center;
   padding: 6% 5% 0;
-  flex: 1; }
+  background-color: #f2f2f2; }
 
 textarea {
   display: flex;
@@ -278,5 +278,7 @@ textarea {
   padding: 0;
   outline: none;
   resize: none;
-  width: 90%;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22); }
+  width: 70%;
+  margin: 0 auto;
+  border: 0;
+  font-size: 12px; }
