@@ -1,4 +1,4 @@
-const fs = require('fs')
+  const fs = require('fs')
 
 const helpers = {
   // gets a flat array of a dir; calls an action on each file.

@@ -64,26 +64,33 @@ const file = {
 
   newFile () {
     let editor = document.getElementById('editor')
-
-    // if there is text in the editor
+    
     if (editor.value !== '') {
 
-      // TODO: if check on editor.value against actual file to see if things have changed / the file should be saved first.
-      // I wonder if a diff on a large file would be costly...
+      // read the file to check diffs.
+      fs.readFile(currentFile, 'utf-8', function (err, data) {
 
-      dialog.showMessageBox({
-        type: 'warning',
-        buttons: ['Cancel', 'New File'],
-        title: 'Unsaved Text',
-        message: 'You still have some unsaved work kickin\' around. You sure you want to make a new file?'
-      }, function(rdata) {
-          if (rdata === 1) {
-            document.getElementById('editor').value = '';
-            currentFile = null;
-          }
+        if (err) throw err
+
+        if (editor.value !== data) {
+          dialog.showMessageBox({
+            type: 'warning',
+            buttons: ['Cancel', 'New File'],
+            title: 'Unsaved Text',
+            message: 'You still have some unsaved work kickin\' around. You sure you want to make a new file?'
+          }, function(rdata) {
+              if (rdata === 1) {
+                document.getElementById('editor').value = '';
+                currentFile = null;
+              }
+          })
+
+        } else {
+          document.getElementById('editor').value = '';
+          currentFile = null;
+        }
+
       })
-    } else {
-      return
     }
   }
 
