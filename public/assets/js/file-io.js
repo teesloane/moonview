@@ -9,7 +9,6 @@ const {dialog} = require('electron').remote
 let currentFile;
 
 const file = {
-
   open () {
     dialog.showOpenDialog({
       // dialog options

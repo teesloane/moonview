@@ -2,9 +2,17 @@ body {
   display: flex;
   flex-direction: column;
   background: rgb(226, 226, 226);
-  height: 100vh;
+  height: 98vh;
   overflow-y: hidden;
 }
-aside {
-  padding-top: 25px;
+
+#page {
+	display: flex;
+	flex-grow: 1;
+}
+
+#editor-controls {
+	padding: 2%;
+	display: flex;
+	justify-content: space-around;
 }
