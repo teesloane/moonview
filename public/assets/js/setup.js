@@ -9,10 +9,13 @@
 
 const helpers = require('./helpers')
 const tree = require('./tree')
+const createMenu = require('./menu')
 let loopButtons = document.getElementById('loop-buttons')
 
 
 const setup = function () {
+	// create menu:
+	createMenu();
 
 	// create audio buttons.
 	helpers.walk(tree.audio, (list, i, output, maxFiles) => {
@@ -34,7 +37,7 @@ const setup = function () {
 				})(i)
 			}
 		}
-		
+
 	})
 
 

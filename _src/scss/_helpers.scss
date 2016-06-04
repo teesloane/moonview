@@ -1,0 +1,170 @@
+/* ====================== Border Helpers ====================== */
+
+._border {
+    &.top {
+        border-top: solid;
+    }
+    &.right {
+        border-right: solid;
+    }
+    &.bottom {
+        border-bottom: solid;
+    }
+    &.left {
+        border-left: solid;
+    }
+
+    &.thin {
+        border-width: 1px;
+    }
+
+    &.thick {
+        border-width: 3px;
+    }
+}
+
+/* ====================== Padding Helpers ====================== */
+.p-none { padding: 0}
+
+// all around padding
+.p-two { padding: $padding-base * 2;}
+.p-one { padding: $padding-base;}
+.p-half { padding: $padding-base / 2;}
+.p-quarter { padding: $padding-base / 4;}
+
+// padding top and bottom
+.ptb-two { padding-top: $padding-base * 2; padding-bottom: $padding-base * 2}
+.ptb-one { padding-top: $padding-base; padding-bottom: $padding-base;}
+.ptb-half { padding-top: $padding-base / 2; padding-bottom: $padding-base / 2}
+.ptb-quarter { padding-top: $padding-base / 4; padding-bottom: $padding-base / 4}
+
+// padding left and ride
+.plr-two { padding-left: $padding-base * 2; padding-right: $padding-base * 2}
+.plr-one { padding-left: $padding-base; padding-right: $padding-base;}
+.plr-half { padding-left: $padding-base / 2; padding-right: $padding-base / 2}
+.plr-quarter { padding-left: $padding-base / 4; padding-right: $padding-base / 4}
+
+// padding top
+.pt-two { padding-top: $padding-base * 2;}
+.pt-one { padding-top: $padding-base;}
+.pt-half { padding-top: $padding-base / 2;}
+.pt-quarter { padding-top: $padding-base / 4;}
+
+// padding right
+.pr-two { padding-right: $padding-base * 2;}
+.pr-one { padding-right: $padding-base;}
+.pr-half { padding-right: $padding-base / 2;}
+.pr-quarter { padding-right: $padding-base / 4;}
+
+// padding bottom
+.pb-two { padding-bottom: $padding-base * 2;}
+.pb-one { padding-bottom: $padding-base;}
+.pb-half { padding-bottom: $padding-base / 2;}
+.pb-quarter { padding-bottom: $padding-base / 4;}
+
+// padding left
+.pl-two { padding-left: $padding-base * 2;}
+.pl-one { padding-left: $padding-base;}
+.pl-half { padding-left: $padding-base / 2;}
+.pl-quarter { padding-left: $padding-base / 4;}
+
+/* ====================== Margin Helpers ====================== */
+
+.m-none {margin: 0;}
+
+// all around margin
+.m-two { margin: $margin-base * 2;}
+.m-one { margin: $margin-base;}
+.m-half { margin: $margin-base / 2;}
+.m-quarter { margin: $margin-base / 4;}
+
+// margin top and bottom
+.mtb-two { margin-top: $margin-base * 2; margin-bottom: $margin-base * 2}
+.mtb-one { margin-top: $margin-base; margin-bottom: $margin-base;}
+.mtb-half { margin-top: $margin-base / 2; margin-bottom: $margin-base / 2}
+.mtb-quarter { margin-top: $margin-base / 4; margin-bottom: $margin-base / 4}
+
+// margin left and right
+.mlr-two { margin-left: $margin-base * 2; margin-right: $margin-base * 2}
+.mlr-one { margin-left: $margin-base; margin-right: $margin-base;}
+.mlr-half { margin-left: $margin-base / 2; margin-right: $margin-base / 2}
+.mlr-quarter { margin-left: $margin-base / 4; margin-right: $margin-base / 4}
+
+// margin top
+.mt-two { margin-top: $margin-base * 2;}
+.mt-one { margin-top: $margin-base;}
+.mt-half { margin-top: $margin-base / 2;}
+.mt-quarter { margin-top: $margin-base / 4;}
+
+// margin right
+.mr-two { margin-right: $margin-base * 2;}
+.mr-one { margin-right: $margin-base;}
+.mr-half { margin-right: $margin-base / 2;}
+.mr-quarter { margin-right: $margin-base / 4;}
+
+// margin bottom
+.mb-two { margin-bottom: $margin-base * 2;}
+.mb-one { margin-bottom: $margin-base;}
+.mb-half { margin-bottom: $margin-base / 2;}
+.mb-quarter { margin-bottom: $margin-base / 4;}
+
+// margin left
+.ml-two { margin-left: $margin-base * 2;}
+.ml-one { margin-left: $margin-base;}
+.ml-half { margin-left: $margin-base / 2;}
+.ml-quarter { margin-left: $margin-base / 4;}
+
+
+/* ========= align it  ====== */
+
+.center {
+    text-align: center;
+    margin: 0 auto;
+}
+
+/*============= DOM HELPERS =============== */
+
+.hide {
+    display: none;
+}
+
+.no-bullet {
+    list-style-type: none;
+}
+
+
+/*============= Typography =============== */
+
+._text {
+
+  &.bold {
+      font-weight: 800;
+  }
+
+&.small {
+		font-size: 14px;
+	}
+	&.medium {
+		font-size: 16px;
+	}
+	&.large {
+		font-size: 18px;
+	}
+	&.large-2x {
+		font-size: 22px;
+	}
+
+	&.caps {
+		text-transform: uppercase;
+	}
+
+	&.centered {
+		text-align: center;
+	}
+	&.italic {
+		font-style: italic;
+	}
+	&.underline {
+		text-decoration: underline;
+	}
+}

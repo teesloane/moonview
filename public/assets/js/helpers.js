@@ -4,7 +4,7 @@ const helpers = {
   walk(dir, action, maxFiles, output) {
 
     if (typeof action !== 'function') {
-      // if 2nd param is not a cb fn, make it so.
+      // if 2nd param is not a fn, make it so.
       action = function(error, file) { };
     }
 
