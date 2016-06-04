@@ -21,11 +21,6 @@ let els = {
   saveAs: document.getElementById('saveas-file'),
   save: document.getElementById('save-file'),
 
-  //ambiance (TODO: refactor to separate object.)
-  audio1: document.getElementById('audio-1'),
-  key1: document.getElementById('key-1'),
-  font1: document.getElementById('font-1'),
-  bg1: document.getElementById('bg-1')
 }
 
 /* event listeners */
@@ -45,12 +40,4 @@ els.saveAs.addEventListener('click', () => {
 
 els.save.addEventListener('click', () => {
   file.save()
-})
-
-// Ambiance Ops //
-
-//TODO: forEach audio file, create a button, link it to that file.
-
-els.audio1.addEventListener('click', () => {
-  helpers.walk(tree.audio, null, 1)
 })

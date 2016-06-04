@@ -1,7 +1,7 @@
 const fs = require('fs')
 
 const helpers = {
-  walk(dir, action, maxFiles) {
+  walk(dir, action, maxFiles, output) {
 
     if (typeof action !== 'function') {
       // if 2nd param is not a cb fn, make it so.
@@ -10,22 +10,25 @@ const helpers = {
 
     fs.readdir(dir, function (err, list) {
       if (err) throw err
+      if (!maxFiles) maxFiles = list.length;
 
-      if (!maxFiles) {
-        maxFiles = list.length;
-      }
+      // create a new array with file's formatted to proper paths.
+      pathList = list.map((path) => { return dir + '/' + path })
 
+      // run the callback (action) on each file.
       for (i = 0; i < maxFiles; i++) {
-        var path = dir + '/' + list[i]
-        action(null, path)
-        console.log('callback: ' + action + ' run on ' + list[i]);
+        action(pathList, i, output, maxFiles)
       }
-
-
 
     })
 
   },
+
+  playAudio(file) {
+    let audio = new Audio(file)
+    audio.currentTime = 0;
+    audio.play();
+  }
 
 }
 
