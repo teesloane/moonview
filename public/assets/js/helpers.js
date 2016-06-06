@@ -1,4 +1,9 @@
-  const fs = require('fs')
+const fs = require('fs')
+let state = require('./state')
+
+let cA = state.currentAudio
+let sA = state.selectedAudio
+
 
 const helpers = {
   // gets a flat array of a dir; calls an action on each file.
@@ -24,10 +29,22 @@ const helpers = {
 
   },
 
-  playAudio(file) {
+
+
+
+  toggleAudio(file) {
     let audio = new Audio(file)
-    audio.currentTime = 0;
-    audio.play();
+
+    if (state.selectedAudio.currentTime > 0) { // if file is playing
+      state.selectedAudio.pause() // pause the file.
+    }
+
+    state.selectedAudio = audio // asign new file
+    state.selectedAudio.play()  // play new file.
+
+    /*TODO: change this to a few if /elses that:
+      - on clicking already playing file: pause / resume
+    */
   },
 
   createButtons(assetList, timesCalled, mount, text, action) {
@@ -54,6 +71,8 @@ const helpers = {
             })
           })(i)
       }
+
+      // TODO: make a "stop" button (ie. stops playing audio files, removed backgrounds.)
 
     }
   }

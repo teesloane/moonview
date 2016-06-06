@@ -7,7 +7,7 @@ const helpers = require('./helpers')
 const tree = require('./tree')
 
 
-var init = function () {
+const init = function () {
   setup()
 }
 

@@ -8,6 +8,7 @@
 const helpers = require('./helpers')
 const tree = require('./tree')
 const createMenu = require('./menu')
+let state = require('./state.js')
 
 // mounting points for buttons for audio, sounds, bgs etc.
 let loopButtons = document.getElementById('loop-buttons')
@@ -18,7 +19,7 @@ const setup = function () {
 
 	// create audio buttons
 	helpers.walk(tree.audio, (assetList, count) => {
-		helpers.createButtons(assetList, count, loopButtons, i+1, helpers.playAudio)
+		helpers.createButtons(assetList, count, loopButtons, i+1, helpers.toggleAudio)
 	})
 
 }
