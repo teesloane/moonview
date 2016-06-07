@@ -12,6 +12,7 @@ let state = require('./state.js')
 
 // mounting points for buttons for audio, sounds, bgs etc.
 let loopButtons = document.getElementById('loop-buttons')
+let backgroundButtons = document.getElementById('background-buttons')
 
 const setup = function () {
 	// create menu:
@@ -22,6 +23,10 @@ const setup = function () {
 		helpers.createButtons(assetList, count, loopButtons, i+1, helpers.toggleAudio)
 	})
 
+	helpers.walk(tree.background, (assetList, count) => {
+		helpers.createButtons(assetList, count, backgroundButtons, i+1, helpers.toggleBackground) 
+
+	})
 }
 
 module.exports = setup

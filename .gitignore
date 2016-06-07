@@ -36,3 +36,5 @@ testfile.txt
 .atomignore
 
 private/ambiance
+
+jsconfig.json

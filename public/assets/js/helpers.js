@@ -6,7 +6,7 @@ let state = require('./state')
 const helpers = {
   // gets a flat array of a dir; calls an action on each file.
   walk(dir, action, maxFiles) {
-
+    console.log(dir)
     if (typeof action !== 'function') {
       // if 2nd param is not a fn, make it so.
       action = function(error, file) { };
@@ -34,7 +34,10 @@ const helpers = {
 
   },
 
-
+  toggleBackground(file) {
+    console.log(file)
+    console.log('toggle bg clicked')
+  },
 
 
   toggleAudio(file) {
@@ -47,6 +50,7 @@ const helpers = {
     state.selectedAudio = audio // asign new file
     state.selectedAudio.play()  // play new file.
 
+    console.log(audio)
     /*TODO: change this to a few if /elses that:
       - on clicking already playing file: pause / resume
     */
@@ -72,7 +76,7 @@ const helpers = {
       for(i=0; i < arr.length; i++) {
           (function(index) { // closure for unique event listeners.
             arr[index].addEventListener('click', () => {
-              action(assetList[index-1])
+              action(assetList[index])
             })
           })(i)
       }
