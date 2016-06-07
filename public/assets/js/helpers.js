@@ -1,8 +1,6 @@
 const fs = require('fs')
+const path = require('path')
 let state = require('./state')
-
-let cA = state.currentAudio
-let sA = state.selectedAudio
 
 
 const helpers = {
@@ -19,7 +17,14 @@ const helpers = {
       if (!maxFiles) maxFiles = list.length;
 
       // create a new array with file's formatted to proper paths.
-      assetList = list.map((path) => { return dir + '/' + path })
+      let assetList = list
+        .filter((file) => {
+          return path.extname(file) === '.wav' || path.extname(file) === '.mp3'
+        })
+
+        .map((file) => {
+          return dir + '/' + file
+        })
 
       // run the callback (action) on each file.
       for (i = 0; i < maxFiles; i++) {
