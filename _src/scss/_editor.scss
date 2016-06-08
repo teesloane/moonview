@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     padding: 6% 5% 0;
-    background-color: $mv-bg;
+    background: rgba(255, 255, 255, 0.0);
 }
 
 textarea {
@@ -15,5 +15,4 @@ textarea {
     margin: 0 auto;
     border: 0;
     font-size: 12px;
-    // box-shadow: 0 1px 3px rgba(0,0,0,0.22);
 }

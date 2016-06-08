@@ -5,7 +5,7 @@ let state = require('./state')
 
 const helpers = {
   // gets a flat array of a dir; calls an action on each file.
-  walk(dir, action, maxFiles) {
+  walk(dir, fileTypes, action, maxFiles) {
     console.log(dir)
     if (typeof action !== 'function') {
       // if 2nd param is not a fn, make it so.
@@ -16,15 +16,21 @@ const helpers = {
       if (err) throw err
       if (!maxFiles) maxFiles = list.length;
 
-      // create a new array with file's formatted to proper paths.
-      let assetList = list
-        .filter((file) => {
-          return path.extname(file) === '.wav' || path.extname(file) === '.mp3'
-        })
 
-        .map((file) => {
-          return dir + '/' + file
+      let assetList = []
+
+      // loop through each file, and check if extension name is of the right type.
+      // push these to a new array.
+      list.forEach((file) => {
+        fileTypes.forEach((type) => {
+          if (path.extname(file) === type) assetList.push(file)
         })
+      })
+
+      // loop over the assetList and turn the files into string'd paths.
+      assetList = assetList.map((file) => {
+          return dir + '/' + file
+      })
 
       // run the callback (action) on each file.
       for (i = 0; i < maxFiles; i++) {
@@ -35,8 +41,8 @@ const helpers = {
   },
 
   toggleBackground(file) {
-    console.log(file)
-    console.log('toggle bg clicked')
+    //TODO: Background image transitions on resize, etc.
+    document.body.style.backgroundImage = `url(${file})`
   },
 
 
@@ -56,9 +62,9 @@ const helpers = {
     */
   },
 
-  createButtons(assetList, timesCalled, mount, text, action) {
+  createButtons(assetList, timesCalled, mount, text, type, action) {
     // callback block; runs for every file in `assetList`
-    mount.innerHTML += `<button id="loop-${text}"> ${text} </button>`
+    mount.innerHTML += `<button id="${type}-${text}"> ${text} </button>`
 
     // once all buttons are made, create an array of them.
     if (timesCalled+1 === assetList.length) {

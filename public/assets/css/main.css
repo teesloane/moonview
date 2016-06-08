@@ -4,7 +4,8 @@ body {
   background: #f2f2f2;
   height: 98vh;
   overflow-y: hidden;
-  font-family: arial, sans-serif; }
+  font-family: arial, sans-serif;
+  background-size: cover; }
 
 #page {
   display: flex;
@@ -270,7 +271,7 @@ body {
   display: flex;
   align-items: center;
   padding: 6% 5% 0;
-  background-color: #f2f2f2; }
+  background: rgba(255, 255, 255, 0); }
 
 textarea {
   display: flex;

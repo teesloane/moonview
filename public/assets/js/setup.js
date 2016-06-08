@@ -19,12 +19,12 @@ const setup = function () {
 	createMenu();
 
 	// create audio buttons
-	helpers.walk(tree.audio, (assetList, count) => {
-		helpers.createButtons(assetList, count, loopButtons, i+1, helpers.toggleAudio)
+	helpers.walk(tree.audio, ['.wav', '.mp3'], (assetList, count) => {
+		helpers.createButtons(assetList, count, loopButtons, i+1, 'loop', helpers.toggleAudio)
 	})
 
-	helpers.walk(tree.background, (assetList, count) => {
-		helpers.createButtons(assetList, count, backgroundButtons, i+1, helpers.toggleBackground) 
+	helpers.walk(tree.bg, ['.jpeg', '.png'], (assetList, count) => {
+		helpers.createButtons(assetList, count, backgroundButtons, i+1, 'bg', helpers.toggleBackground)
 
 	})
 }
