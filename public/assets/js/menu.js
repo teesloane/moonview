@@ -1,7 +1,6 @@
 const {remote} = require('electron');
 const {Menu, MenuItem} = remote;
 const file = require('./file-io')
-
 const template = [
   {
     label: 'File',
@@ -9,21 +8,21 @@ const template = [
       {
         label: 'New',
         accelerator: 'CmdOrCtrl+N',
-        click() { file.newFile() },
+        click () { file.newFile() },
       },
       {
         label: 'Open',
         accelerator: 'CmdOrCtrl+O',
-        click() { file.open() },
+        click () { file.open() },
       },
       {
         label: 'Save',
         accelerator: 'CmdOrCtrl+S',
-        click() { file.save() },
+        click () { file.save() },
       },
       {
         label: 'Save As',
-        click() {file.saveAs()}
+        click () { file.saveAs() }
       }
     ]
   },
@@ -72,15 +71,14 @@ const template = [
         label: 'Reload',
         accelerator: 'CmdOrCtrl+R',
         click(item, focusedWindow) {
-          if (focusedWindow) focusedWindow.reload();
+          if (focusedWindow) focusedWindow.reload()
         }
       },
       {
         label: 'Toggle Full Screen',
         accelerator: process.platform === 'darwin' ? 'Ctrl+Command+F' : 'F11',
-        click(item, focusedWindow) {
-          if (focusedWindow)
-            focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
+        click (item, focusedWindow) {
+          if (focusedWindow) focusedWindow.setFullScreen(!focusedWindow.isFullScreen())
         }
       },
       {
@@ -88,7 +86,7 @@ const template = [
         accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
         click(item, focusedWindow) {
           if (focusedWindow)
-            focusedWindow.webContents.toggleDevTools();
+            focusedWindow.webContents.toggleDevTools()
         }
       },
     ]
@@ -110,10 +108,10 @@ const template = [
     ]
   },
 
-];
+]
 
 if (process.platform === 'darwin') {
-  const name = require('electron').remote.app.getName();
+  const name = require('electron').remote.app.getName()
   template.unshift({
     label: name,
     submenu: [
@@ -152,10 +150,10 @@ if (process.platform === 'darwin') {
       {
         label: 'Quit',
         accelerator: 'Command+Q',
-        click() { app.quit(); }
+        click() { app.quit() }
       },
     ]
-  });
+  })
   // Window menu.
   template[3].submenu.push(
     {
@@ -165,7 +163,7 @@ if (process.platform === 'darwin') {
       label: 'Bring All to Front',
       role: 'front'
     }
-  );
+  )
 }
 
 module.exports = function createMenu() {
