@@ -1,6 +1,5 @@
 const fs = require('fs')
 const path = require('path')
-let state = require('./state')
 let tree = require('./tree')
 
 
@@ -65,12 +64,12 @@ const helpers = {
     toggleAudio(file) {
         let audio = new Audio(file)
 
-        if (state.selectedAudio.currentTime > 0) { // if file is playing
-            state.selectedAudio.pause() // pause the file.
+        if (tree.selectedAudio.currentTime > 0) { // if file is playing
+            tree.selectedAudio.pause() // pause the file.
         }
 
-        state.selectedAudio = audio // asign new file
-        state.selectedAudio.play() // play new file.
+        tree.selectedAudio = audio // asign new file
+        tree.selectedAudio.play() // play new file.
 
         /*TODO: change this to a few if /elses that:
           - on clicking already playing file: pause / resume
