@@ -84,6 +84,13 @@ const helpers = {
     */
   },
 
+  fireKeySound (file) {
+    let audio = new Audio(file)
+    document.onkeydown = function () {
+      audio.play()
+    }
+  },
+
   createButtons (assetList, timesCalled, mount, text, type, action) {
     // callback block; runs for every file in `assetList`
     mount.innerHTML += `<button id="${type}-${text}"> ${text} </button>`
