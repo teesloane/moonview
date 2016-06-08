@@ -5,20 +5,21 @@ let tree = require('./tree')
 
 const helpers = {
   // gets a flat array of a dir; calls an action on each file.
-  walk(dir, fileTypes, action, maxFiles) {
+  walk (dir, fileTypes, action, maxFiles) {
     if (typeof action !== 'function') {
       // if 2nd param is not a fn, make it so.
       action = function (error, file) {
         if (error) throw error
       }
     }
+
     let assetList = []
 
     if (dir.constructor === Array) { // test if dir is an array
       assetList = dir
       // run the callback (action) on each file.
       // TODO: sort out error with i=0 breaking it if assigned to var / let
-      for (i = 0; i < assetList.length; i++) {
+      for (let i = 0; i < assetList.length; i++) {
         action(assetList, i)
       }
     } else {
@@ -40,7 +41,7 @@ const helpers = {
         })
 
         // run the callback (action) on each file.
-        for (i = 0; i < maxFiles; i++) {
+        for (let i = 0; i < maxFiles; i++) {
           action(assetList, i)
         }
       })

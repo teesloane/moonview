@@ -9,21 +9,21 @@ let fontButtons = document.getElementById('font-buttons')
 
 const setup = function () {
   // create menu:
-  createMenu();
+  createMenu()
   // create font buttons
 
   // create audio buttons
   helpers.walk(tree.fonts, null, (assetList, count) => {
-    helpers.createButtons(assetList, count, fontButtons, i + 1, 'font', helpers.toggleFonts)
+    helpers.createButtons(assetList, count, fontButtons, count + 1, 'font', helpers.toggleFonts)
   })
 
   // create audio buttons
   helpers.walk(tree.audio, ['.wav', '.mp3'], (assetList, count) => {
-    helpers.createButtons(assetList, count, loopButtons, i + 1, 'loop', helpers.toggleAudio)
+    helpers.createButtons(assetList, count, loopButtons, count + 1, 'loop', helpers.toggleAudio)
   })
 
   helpers.walk(tree.bg, ['.jpeg', '.png'], (assetList, count) => {
-    helpers.createButtons(assetList, count, backgroundButtons, i + 1, 'bg', helpers.toggleBackground)
+    helpers.createButtons(assetList, count, backgroundButtons, count + 1, 'bg', helpers.toggleBackground)
   })
 }
 
