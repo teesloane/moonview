@@ -6,6 +6,8 @@ body {
   overflow-y: hidden;
   font-family: arial, sans-serif;
   background-size: cover;
+
+  transition: background-image 1s ease-in-out;
 }
 
 #page {

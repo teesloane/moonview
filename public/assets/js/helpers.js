@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const sizeOf = require('image-size')
 let tree = require('./tree')
 
 
@@ -56,7 +57,18 @@ const helpers = {
     },
 
     toggleBackground(image) {
-        //TODO: Background image transitions on resize, etc.
+        // default background properties/
+        document.body.style.backgroundSize = "cover"
+        document.body.style.backgroundRepeat = 'no-repeat'
+
+        let tiled = sizeOf(image)
+        console.log(tiled.width);
+
+        if (tiled.width < 1000) {
+            document.body.style.backgroundSize = 'auto'
+            document.body.style.backgroundRepeat = 'repeat'
+        }
+
         document.body.style.backgroundImage = `url(${image})`
     },
 
