@@ -3,6 +3,7 @@
     align-items: center;
     padding: 6% 5% 0;
     background: rgba(255, 255, 255, 0.0);
+    letter-spacing: 1px;
 }
 
 textarea {
@@ -14,5 +15,5 @@ textarea {
     width: 70%; // TODO: programmatically change this
     margin: 0 auto;
     border: 0;
-    font-size: 12px;
+    font-size: 14px;
 }

@@ -271,7 +271,8 @@ body {
   display: flex;
   align-items: center;
   padding: 6% 5% 0;
-  background: rgba(255, 255, 255, 0); }
+  background: rgba(255, 255, 255, 0);
+  letter-spacing: 1px; }
 
 textarea {
   display: flex;
@@ -282,4 +283,4 @@ textarea {
   width: 70%;
   margin: 0 auto;
   border: 0;
-  font-size: 12px; }
+  font-size: 14px; }
