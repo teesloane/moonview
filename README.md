@@ -2,7 +2,8 @@
 >[ommwriter](http://www.ommwriter.com/) inspired ambient writing application.
 
 ![](https://cloud.githubusercontent.com/assets/12987958/15901372/077f4d14-2d71-11e6-8722-2181562fdf73.gif)
-^ please excuse the horrible gif rendering!
+
+<sub>^ please excuse the horrible gif rendering!</sub>
 
 MoonView is a minimalist text application built with electron. All current activity is happening on the development branch. 
 
