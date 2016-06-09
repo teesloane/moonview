@@ -17,8 +17,8 @@ const helpers = {
 
     if (dir.constructor === Array) { // test if dir is an array
       assetList = dir
-      // run the callback (action) on each file.
-      // TODO: sort out error with i=0 breaking it if assigned to var / let
+        // run the callback (action) on each file.
+        // TODO: sort out error with i=0 breaking it if assigned to var / let
       for (let i = 0; i < assetList.length; i++) {
         action(assetList, i)
       }
@@ -86,8 +86,6 @@ const helpers = {
 
   fireKeySound (file) {
     // enable key sounds
-
-
     // Create an array of audio objects for triggering
     let j = 0
     let audioBuffer = []
@@ -95,19 +93,19 @@ const helpers = {
 
     // on fire, count up j, if it hits the buffer , reset j.
 
-      document.onkeydown = function () {
-        j++
-        if (j === audioBuffer.length) j = 0
+    document.onkeydown = function () {
+      j++
+      if (j === audioBuffer.length) j = 0
 
-        // cut off the note in favor of the new note? not sure if I should keep this in.
-        // audioBuffer[j].pause()
-        // audioBuffer[j].curentTime = 0
+      // cut off the note in favor of the new note? not sure if I should keep this in.
+      // audioBuffer[j].pause()
+      // audioBuffer[j].curentTime = 0
 
-        audioBuffer[j].playbackRate = 1 + Math.random() * 1
+      audioBuffer[j].playbackRate = 1 + Math.random() * 1
 
-        audioBuffer[j].play()
-        console.log(audioBuffer[j].playbackRate)
-      }
+      audioBuffer[j].play()
+      console.log(audioBuffer[j].playbackRate)
+    }
 
   },
 

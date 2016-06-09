@@ -22,9 +22,10 @@ const setup = function() {
     help.createButtons(assetList, count, loopButtons, count + 1, 'loop', help.toggleAudio)
   })
 
-  help.createCancelButton(loopCancel, 'loop', function() {
-    if (tree.selectedAudio !== '')
-    tree.selectedAudio.pause()
+  help.createCancelButton(loopCancel, 'loop', function () {
+    if (tree.selectedAudio !== '') {
+      tree.selectedAudio.pause()
+    }
     tree.selectedAudio = ''
   })
 
