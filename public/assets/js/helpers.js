@@ -85,24 +85,30 @@ const helpers = {
   },
 
   fireKeySound (file) {
+    // enable key sounds
+
+
     // Create an array of audio objects for triggering
     let j = 0
     let audioBuffer = []
     for (let i = 0; i < 50; i++) audioBuffer.push(new Audio(file))
 
     // on fire, count up j, if it hits the buffer , reset j.
-    document.onkeydown = function () {
-      j++
-      if (j === audioBuffer.length) j = 0
 
-      audioBuffer[j].pause()
-      audioBuffer[j].curentTime = 0
+      document.onkeydown = function () {
+        j++
+        if (j === audioBuffer.length) j = 0
 
-      audioBuffer[j].playbackRate = 1 + Math.random() * 1
+        // cut off the note in favor of the new note? not sure if I should keep this in.
+        // audioBuffer[j].pause()
+        // audioBuffer[j].curentTime = 0
 
-      audioBuffer[j].play()
-      console.log(audioBuffer[j].playbackRate)
-    }
+        audioBuffer[j].playbackRate = 1 + Math.random() * 1
+
+        audioBuffer[j].play()
+        console.log(audioBuffer[j].playbackRate)
+      }
+
   },
 
   createButtons (assetList, timesCalled, mount, text, type, action) {
@@ -121,6 +127,8 @@ const helpers = {
         }
       })
 
+      console.log(arr);
+
       // add an event listener to each item in `list`
       for (let i = 0; i < arr.length; i++) {
         (function (index) { // closure for unique event listeners.
@@ -129,9 +137,12 @@ const helpers = {
           })
         })(i)
       }
-
-      // TODO: make a "stop" button (ie. stops playing audio files, removed backgrounds.)
     }
+  },
+
+  createCancelButton (mount, type, action) {
+    mount.innerHTML += `<button id="cancel-${type}">x</button>`
+    mount.addEventListener('click', action)
   }
 }
 

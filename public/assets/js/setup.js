@@ -1,4 +1,4 @@
-const helpers = require('./helpers')
+const help = require('./helpers')
 const tree = require('./tree')
 const createMenu = require('./menu')
 
@@ -8,27 +8,47 @@ let backgroundButtons = document.getElementById('background-buttons')
 let fontButtons = document.getElementById('font-buttons')
 let keySoundButtons = document.getElementById('keySound-buttons')
 
-const setup = function () {
+let loopCancel = document.getElementById('loop-cancel')
+let backgroundCancel = document.getElementById('background-cancel')
+// let fontCancel = document.getElementById('font-cancel')
+let keySoundCancel = document.getElementById('keySound-cancel')
+
+const setup = function() {
   // create menu:
   createMenu()
 
-  // Create typing sound buttons:
-  helpers.walk(tree.keySounds, ['.wav', '.mp3'], (assetList, count) => {
-    helpers.createButtons(assetList, count, keySoundButtons, count + 1, 'keySound', helpers.fireKeySound)
+  // create audio buttons
+  help.walk(tree.audio, ['.wav', '.mp3'], (assetList, count) => {
+    help.createButtons(assetList, count, loopButtons, count + 1, 'loop', help.toggleAudio)
+  })
+
+  help.createCancelButton(loopCancel, 'loop', function() {
+    if (tree.selectedAudio !== '')
+    tree.selectedAudio.pause()
+    tree.selectedAudio = ''
+  })
+
+  // create background buttons
+  help.walk(tree.bg, ['.jpeg', '.png'], (assetList, count) => {
+    help.createButtons(assetList, count, backgroundButtons, count + 1, 'bg', help.toggleBackground)
+  })
+
+  help.createCancelButton(backgroundCancel, 'background', function () {
+    document.body.style.background = tree.defaultBackground
   })
 
   // create font buttons
-  helpers.walk(tree.fonts, null, (assetList, count) => {
-    helpers.createButtons(assetList, count, fontButtons, count + 1, 'font', helpers.toggleFonts)
+  help.walk(tree.fonts, null, (assetList, count) => {
+    help.createButtons(assetList, count, fontButtons, count + 1, 'font', help.toggleFonts)
   })
 
-  // create audio buttons
-  helpers.walk(tree.audio, ['.wav', '.mp3'], (assetList, count) => {
-    helpers.createButtons(assetList, count, loopButtons, count + 1, 'loop', helpers.toggleAudio)
+  // Create typing sound buttons:
+  help.walk(tree.keySounds, ['.wav', '.mp3'], (assetList, count) => {
+    help.createButtons(assetList, count, keySoundButtons, count + 1, 'keySound', help.fireKeySound)
   })
 
-  helpers.walk(tree.bg, ['.jpeg', '.png'], (assetList, count) => {
-    helpers.createButtons(assetList, count, backgroundButtons, count + 1, 'bg', helpers.toggleBackground)
+  help.createCancelButton(keySoundCancel, 'keySound', function () {
+    document.onkeydown = '' // turn off key sounds.
   })
 }
 
