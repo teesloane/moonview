@@ -35,6 +35,5 @@ node_modules
 testfile.txt
 .atomignore
 
-private/ambiance
 
 jsconfig.json

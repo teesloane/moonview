@@ -85,9 +85,23 @@ const helpers = {
   },
 
   fireKeySound (file) {
-    let audio = new Audio(file)
+    // Create an array of audio objects for triggering
+    let j = 0
+    let audioBuffer = []
+    for (let i = 0; i < 50; i++) audioBuffer.push(new Audio(file))
+
+    // on fire, count up j, if it hits the buffer , reset j.
     document.onkeydown = function () {
-      audio.play()
+      j++
+      if (j === audioBuffer.length) j = 0
+
+      audioBuffer[j].pause()
+      audioBuffer[j].curentTime = 0
+
+      audioBuffer[j].playbackRate = 1 + Math.random() * 1
+
+      audioBuffer[j].play()
+      console.log(audioBuffer[j].playbackRate)
     }
   },
 
