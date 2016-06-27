@@ -57,23 +57,30 @@ const helpers = {
     console.log(font)
   },
 
-  toggleBackground (image) {
+  toggleBackground (backgroundImage) {
     // default background properties/
     document.body.style.backgroundSize = 'cover'
     document.body.style.backgroundRepeat = 'no-repeat'
 
-    let tiled = sizeOf(image)
+    let tiled = sizeOf(backgroundImage)
 
     if (tiled.width < 1000) {
       document.body.style.backgroundSize = 'auto'
       document.body.style.backgroundRepeat = 'repeat'
     }
 
-    document.body.style.backgroundImage = `url(${image})`
+    // Change the image only when loaded.
+    let img = new Image()
+
+    img.onload = function(){
+      document.body.style.backgroundImage = `url(${backgroundImage})`
+    }
+
+    img.src = backgroundImage
+
   },
 
   toggleAudio (file) {
-    console.log('hi audio file.');
     let audio = new Audio(file)
 
     if (tree.selectedAudio.currentTime > 0) { // if file is playing
@@ -108,7 +115,6 @@ const helpers = {
       audioBuffer[j].playbackRate = 1 + Math.random() * 1
 
       audioBuffer[j].play()
-      console.log(audioBuffer[j].playbackRate)
     }
 
   },
@@ -134,7 +140,6 @@ const helpers = {
       for (let i = 0; i < arr.length; i++) {
         (function (index) { // closure for unique event listeners.
           arr[index].addEventListener('click', () => {
-            console.log('hi from button');
             action(assetList[index])
           })
         })(i)

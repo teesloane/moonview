@@ -6,8 +6,7 @@ body {
   overflow-y: hidden;
   font-family: arial, sans-serif;
   background-size: cover;
-  background-color: #f0f0f0;
-  transition: background-image 1s ease-in-out; }
+  background-color: #f0f0f0; }
 
 #page {
   display: flex;
