@@ -5,27 +5,29 @@ let tree = require('./tree')
 
 const helpers = {
   // gets a flat array of a dir; calls an action on each file.
-  walk (dir, fileTypes, action, maxFiles) {
+  walk (dir, fileTypes, action) {
+
+    // if `action` a fn, make it so.
     if (typeof action !== 'function') {
-      // if 2nd param is not a fn, make it so.
       action = function (error, file) {
         if (error) throw error
       }
     }
 
+    // create a list of the assets in the directory
     let assetList = []
 
-    if (dir.constructor === Array) { // test if dir is an array
+    /* Sometimes this helper fn will be used on an an array instead of a directory - just to follow the same patterns as how it's used elsewhere.
+    See tree.fonts */
+    if (dir.constructor === Array) {
       assetList = dir
-        // run the callback (action) on each file.
-        // TODO: sort out error with i=0 breaking it if assigned to var / let
+      // run the callback (action) on each file.
       for (let i = 0; i < assetList.length; i++) {
         action(assetList, i)
       }
     } else {
       fs.readdir(dir, function (err, list) {
         if (err) throw err
-        if (!maxFiles) maxFiles = list.length
 
         // loop through each file, and check if extension name is of the right type.
         // push these to a new array.
@@ -35,13 +37,14 @@ const helpers = {
           })
         })
 
+
         // loop over the assetList and turn the files into string'd paths.
         assetList = assetList.map((file) => {
           return dir + '/' + file
         })
 
         // run the callback (action) on each file.
-        for (let i = 0; i < maxFiles; i++) {
+        for (let i = 0; i < assetList.length; i++) {
           action(assetList, i)
         }
       })
@@ -70,6 +73,7 @@ const helpers = {
   },
 
   toggleAudio (file) {
+    console.log('hi audio file.');
     let audio = new Audio(file)
 
     if (tree.selectedAudio.currentTime > 0) { // if file is playing
@@ -109,6 +113,7 @@ const helpers = {
 
   },
 
+
   createButtons (assetList, timesCalled, mount, text, type, action) {
     // callback block; runs for every file in `assetList`
     mount.innerHTML += `<button id="${type}-${text}"> ${text} </button>`
@@ -125,12 +130,11 @@ const helpers = {
         }
       })
 
-      console.log(arr);
-
       // add an event listener to each item in `list`
       for (let i = 0; i < arr.length; i++) {
         (function (index) { // closure for unique event listeners.
           arr[index].addEventListener('click', () => {
+            console.log('hi from button');
             action(assetList[index])
           })
         })(i)
