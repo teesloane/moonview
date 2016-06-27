@@ -30,7 +30,7 @@ const setup = function() {
   })
 
   // create background buttons
-  help.walk(tree.bg, ['.jpeg', '.png'], (assetList, count) => {
+  help.walk(tree.bg, ['.jpeg', '.jpg', '.png'], (assetList, count) => {
     help.createButtons(assetList, count, backgroundButtons, count + 1, 'bg', help.toggleBackground)
   })
 
