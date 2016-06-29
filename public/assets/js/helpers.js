@@ -122,7 +122,7 @@ const helpers = {
 
   createButtons (assetList, timesCalled, mount, text, type, action) {
     // callback block; runs for every file in `assetList`
-    mount.innerHTML += `<button id="${type}-${text}"> ${text} </button>`
+    mount.innerHTML += `<button id="${type}-${text}" class="btn zen"> ${text} </button>`
 
     // once all buttons are made, create an array of them.
     if (timesCalled + 1 === assetList.length) {
@@ -148,7 +148,7 @@ const helpers = {
   },
 
   createCancelButton (mount, type, action) {
-    mount.innerHTML += `<button id="cancel-${type}">x</button>`
+    mount.innerHTML += `<button id="cancel-${type}" class="btn zen">x</button>`
     mount.addEventListener('click', action)
   }
 }

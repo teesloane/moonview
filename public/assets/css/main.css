@@ -10,6 +10,25 @@ body {
   margin: 0;
   padding: 0; }
 
+button {
+  background: none;
+  border: 0;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  outline: none; }
+
+.btn.zen {
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  background: #d9d9d9;
+  margin: 5px; }
+  .btn.zen:hover {
+    background: #c8c8c8; }
+  .btn.zen:active {
+    background: #b4b4b4; }
+
 #page {
   display: flex;
   flex-grow: 1; }
@@ -43,7 +62,17 @@ body {
 
 .control-section {
   display: flex;
-  flex-direction: column; }
+  flex-direction: row; }
+
+.button-header {
+  display: flex !important;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  color: #bbbbbb;
+  background: #4b4b4b; }
 
 .button-row {
   display: flex;

@@ -11,6 +11,33 @@ body {
   padding: 0;
 }
 
+button {
+    background: none;
+    border: 0;
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    outline: none;
+
+}
+
+.btn {
+
+  &.zen {
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    background: rgb(217, 217, 217);
+    margin: 5px;
+    &:hover {
+      background: rgb(200, 200, 200);
+    }
+    &:active {
+      background: rgb(180, 180, 180);
+    }
+  }
+}
+
 #page {
 	display: flex;
 	flex-grow: 1;
@@ -48,7 +75,18 @@ body {
 
 .control-section {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+}
+
+.button-header {
+  display: flex !important;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  color: rgb(187, 187, 187);
+  background: rgb(75, 75, 75);
 }
 
 .button-row {
