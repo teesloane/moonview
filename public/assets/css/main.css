@@ -2,23 +2,52 @@ body {
   display: flex;
   flex-direction: column;
   background: #f2f2f2;
-  height: 98vh;
+  height: 100vh;
   overflow-y: hidden;
   font-family: arial, sans-serif;
   background-size: cover;
-  background-color: #f0f0f0; }
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0; }
 
 #page {
   display: flex;
   flex-grow: 1; }
 
+#sidebar-open {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  margin: 5px;
+  padding: 5px; }
+
+#sidebar-close {
+  position: fixed;
+  right: 0;
+  top: 0;
+  margin: 5px;
+  padding: 5px; }
+
 #editor-controls {
-  padding: 2%;
+  position: fixed;
   display: flex;
-  justify-content: space-around; }
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 2%;
+  justify-content: space-around;
+  visibility: hidden; }
 
 .control-section {
-  display: flex; }
+  display: flex;
+  flex-direction: column; }
+
+.button-row {
+  display: flex;
+  flex-direction: row; }
 
 /* ====================== Border Helpers ====================== */
 ._border.top {

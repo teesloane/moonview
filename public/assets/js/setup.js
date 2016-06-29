@@ -13,10 +13,32 @@ let backgroundCancel = document.getElementById('background-cancel')
 // let fontCancel = document.getElementById('font-cancel')
 let keySoundCancel = document.getElementById('keySound-cancel')
 
+// sidebar controls / toggles etc
+let sidebar = document.getElementById('editor-controls')
+let openSidebar = document.getElementById('sidebar-open')
+let closeSidebar = document.getElementById('sidebar-close')
+
 const setup = function() {
   // create menu:
   createMenu()
 
+  // create sidebar buttons
+  createButtons()
+
+  // toggle sidebar button
+  openSidebar.addEventListener('click', () => {
+    sidebar.style.visibility = 'visible'
+    openSidebar.style.visibility= 'hidden'
+  })
+
+  closeSidebar.addEventListener('click', () => {
+    sidebar.style.visibility = 'hidden'
+    openSidebar.style.visibility= 'visible'
+  })
+}
+
+
+function createButtons() {
   // create audio buttons
   help.walk(tree.audio, ['.wav', '.mp3'], (assetList, count) => {
     help.createButtons(assetList, count, loopButtons, count + 1, 'loop', help.toggleAudio)
