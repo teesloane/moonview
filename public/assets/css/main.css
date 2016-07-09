@@ -38,14 +38,14 @@ button {
   left: 0;
   bottom: 0;
   margin: 5px;
-  padding: 5px; }
+  padding: 10px; }
 
 #sidebar-close {
   position: fixed;
   right: 0;
   top: 0;
   margin: 5px;
-  padding: 5px; }
+  padding: 10px; }
 
 #editor-controls {
   position: fixed;
@@ -69,6 +69,7 @@ button {
   justify-content: center;
   align-self: center;
   align-items: center;
+  margin-right: 10px;
   width: 40px;
   height: 40px;
   color: #bbbbbb;
@@ -328,6 +329,18 @@ button {
 
 ._text.underline {
   text-decoration: underline; }
+
+._icon.small {
+  font-size: 24px; }
+
+._icon.medium {
+  font-size: 36px; }
+
+._icon.large {
+  font-size: 48px; }
+
+._icon.white {
+  color: #ececec; }
 
 #editor {
   display: flex;

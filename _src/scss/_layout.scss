@@ -48,7 +48,7 @@ button {
   left: 0;
   bottom: 0;
   margin: 5px;
-  padding: 5px;
+  padding: 10px;
 }
 
 #sidebar-close {
@@ -56,7 +56,7 @@ button {
   right: 0;
   top: 0;
   margin: 5px;
-  padding: 5px;
+  padding: 10px;
 }
 
 #editor-controls {
@@ -83,6 +83,7 @@ button {
   justify-content: center;
   align-self: center;
   align-items: center;
+  margin-right: 10px;
   width: 40px;
   height: 40px;
   color: rgb(187, 187, 187);
