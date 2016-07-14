@@ -1,0 +1,14 @@
+{
+	"general": {
+		"font-size": 14,
+		"last-file": ""
+	},
+
+	"control-panel": {
+		"audio-sound": false,
+		"key-sounds": false,
+		"audio-tracks" : [],
+		"key-tracks": [],
+		"backgrounds": []
+	}
+}
