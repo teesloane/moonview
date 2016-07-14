@@ -9,4 +9,4 @@ MoonView is a minimalist text application built with electron. All current activ
 
 The goal of MoonView is to create a "ambient" writing atmosphere, originally inspired by Ommwriter. The application aims to provide a space to write, with controlled options for listening to audio tracks (music, muzak, field recordings), font selection, and writing background. 
 
-Please head over to the issues to look at road map. 
+Please head over to the issues to get a general idea of the roadmap.
