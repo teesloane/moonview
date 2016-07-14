@@ -23,13 +23,16 @@ button {
 
 .btn {
 
-  &.zen {
-
+  &.gourd {
     padding-top: 5px;
     width: 40px;
     height: 40px;
     background: rgb(217, 217, 217);
     margin: 5px;
+    border-bottom: 2px solid transparent;
+
+
+
     &:hover {
       background: rgb(200, 200, 200);
     }
@@ -39,7 +42,8 @@ button {
 
     &.on {
       background: rgb(180, 180, 180);
-      border-bottom: 2px solid red;
+      border-bottom: 2px solid #FF8C69;
+
     }
 
   }
@@ -74,7 +78,7 @@ button {
   left: 0;
   height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
 	padding: 2%;
 	justify-content: space-around;
   visibility: hidden;

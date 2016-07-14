@@ -49,6 +49,10 @@ function createButtons() {
       tree.selectedAudio.pause()
     }
     tree.selectedAudio = ''
+
+    loopButtons.childNodes.forEach(function(child) {
+      child.classList.remove('on')
+    })
   })
 
   // create background buttons
@@ -58,6 +62,10 @@ function createButtons() {
 
   help.createCancelButton(backgroundCancel, 'background', function () {
     document.body.style.background = tree.defaultBackground
+
+    backgroundButtons.childNodes.forEach(function(child) {
+      child.classList.remove('on')
+    })
   })
 
   // create font buttons
@@ -72,6 +80,13 @@ function createButtons() {
 
   help.createCancelButton(keySoundCancel, 'keySound', function () {
     document.onkeydown = '' // turn off key sounds.
+      // var buttonRow = keySoundCancel.parentNode;
+      // console.log(buttonRow.childNodes);
+      keySoundButtons.childNodes.forEach(function(child) {
+        child.classList.remove('on')
+      })
+
+
   })
 }
 

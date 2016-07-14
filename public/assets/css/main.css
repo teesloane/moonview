@@ -1,7 +1,7 @@
 body {
   display: flex;
   flex-direction: column;
-  background: #f2f2f2;
+  background: #e8e8e8;
   height: 100vh;
   overflow-y: hidden;
   font-family: arial, sans-serif;
@@ -18,19 +18,20 @@ button {
   overflow: visible;
   outline: none; }
 
-.btn.zen {
+.btn.gourd {
   padding-top: 5px;
   width: 40px;
   height: 40px;
   background: #d9d9d9;
-  margin: 5px; }
-  .btn.zen:hover {
+  margin: 5px;
+  border-bottom: 2px solid transparent; }
+  .btn.gourd:hover {
     background: #c8c8c8; }
-  .btn.zen:active {
+  .btn.gourd:active {
     background: #b4b4b4; }
-  .btn.zen.on {
+  .btn.gourd.on {
     background: #b4b4b4;
-    border-bottom: 2px solid red; }
+    border-bottom: 2px solid #FF8C69; }
 
 #page {
   display: flex;
@@ -58,7 +59,7 @@ button {
   left: 0;
   height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   padding: 2%;
   justify-content: space-around;
   visibility: hidden; }
