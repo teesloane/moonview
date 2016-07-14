@@ -140,7 +140,17 @@ const helpers = {
       for (let i = 0; i < arr.length; i++) {
         (function (index) { // closure for unique event listeners.
           arr[index].addEventListener('click', () => {
+
             action(assetList[index])
+
+            // add an indicator to show which button is selected
+            arr.forEach(function(button) {
+              if (button.classList.contains('on')) {
+                button.classList.remove('on');
+              }
+
+              arr[index].classList.add('on')
+            })
           })
         })(i)
       }
@@ -148,7 +158,7 @@ const helpers = {
   },
 
   createCancelButton (mount, type, action) {
-    mount.innerHTML += `<button id="cancel-${type}" class="btn zen">x</button>`
+    mount.innerHTML += `<button id="cancel-${type}" class="btn zen cancel"><i class="ion-android-close _icon x-small"></button>`
     mount.addEventListener('click', action)
   }
 }

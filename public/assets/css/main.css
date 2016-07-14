@@ -19,7 +19,7 @@ button {
   outline: none; }
 
 .btn.zen {
-  padding: 10px;
+  padding-top: 5px;
   width: 40px;
   height: 40px;
   background: #d9d9d9;
@@ -28,6 +28,9 @@ button {
     background: #c8c8c8; }
   .btn.zen:active {
     background: #b4b4b4; }
+  .btn.zen.on {
+    background: #b4b4b4;
+    border-bottom: 2px solid red; }
 
 #page {
   display: flex;
@@ -329,6 +332,9 @@ button {
 
 ._text.underline {
   text-decoration: underline; }
+
+._icon.x-small {
+  font-size: 20px; }
 
 ._icon.small {
   font-size: 24px; }

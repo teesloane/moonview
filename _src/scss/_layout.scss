@@ -24,7 +24,8 @@ button {
 .btn {
 
   &.zen {
-    padding: 10px;
+
+    padding-top: 5px;
     width: 40px;
     height: 40px;
     background: rgb(217, 217, 217);
@@ -35,6 +36,12 @@ button {
     &:active {
       background: rgb(180, 180, 180);
     }
+
+    &.on {
+      background: rgb(180, 180, 180);
+      border-bottom: 2px solid red;
+    }
+
   }
 }
 

@@ -269,6 +269,9 @@
 }
 
 ._icon {
+  &.x-small {
+    font-size: 20px;
+  }
   &.small {
     font-size: 24px;
   }
