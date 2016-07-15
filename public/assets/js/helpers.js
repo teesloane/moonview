@@ -6,7 +6,6 @@ let tree = require('./tree')
 const helpers = {
   // gets a flat array of a dir; calls an action on each file.
   walk (dir, fileTypes, action) {
-
     // if `action` a fn, make it so.
     if (typeof action !== 'function') {
       action = function (error, file) {
@@ -36,7 +35,6 @@ const helpers = {
             if (path.extname(file) === type) assetList.push(file)
           })
         })
-
 
         // loop over the assetList and turn the files into string'd paths.
         assetList = assetList.map((file) => {
@@ -72,12 +70,11 @@ const helpers = {
     // Change the image only when loaded.
     let img = new Image()
 
-    img.onload = function(){
+    img.onload = function () {
       document.body.style.backgroundImage = `url(${backgroundImage})`
     }
 
     img.src = backgroundImage
-
   },
 
   toggleAudio (file) {
@@ -116,9 +113,7 @@ const helpers = {
 
       audioBuffer[j].play()
     }
-
   },
-
 
   createButtons (assetList, timesCalled, mount, text, type, action) {
     // callback block; runs for every file in `assetList`
@@ -140,13 +135,12 @@ const helpers = {
       for (let i = 0; i < arr.length; i++) {
         (function (index) { // closure for unique event listeners.
           arr[index].addEventListener('click', () => {
-
             action(assetList[index])
 
             // add an indicator to show which button is selected
-            arr.forEach(function(button) {
+            arr.forEach(function (button) {
               if (button.classList.contains('on')) {
-                button.classList.remove('on');
+                button.classList.remove('on')
               }
 
               arr[index].classList.add('on')

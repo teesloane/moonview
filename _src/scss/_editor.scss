@@ -1,24 +1,21 @@
 #editor {
-    display: flex;
-    align-items: center;
-    padding: 6% 5% 0;
-    background: rgba(255, 255, 255, 0.0);
-    letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  padding: 6% 5% 0;
+  background: rgba(255, 255, 255, 0.0);
+  letter-spacing: 1px;
 }
-
 textarea {
-    display: flex;
-    margin: 0;
-    padding: 0;
-    outline: none;
-    resize: none;
-    width: 70%; // TODO: programmatically change this
-    margin: 0 auto;
-    border: 0;
-    font-size: 14px;
-
-    @media(min-width: 1000px) {
-      width: 50%;
-    }
-
+  display: flex;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  resize: none;
+  width: 70%; // TODO: programmatically change this
+  margin: 0 auto;
+  border: 0;
+  font-size: 14px;
+  @media(min-width: 1000px) {
+    width: 50%;
+  }
 }

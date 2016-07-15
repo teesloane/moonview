@@ -1,5 +1,5 @@
-const {remote} = require('electron');
-const {Menu, MenuItem} = remote;
+const {remote} = require('electron')
+const {Menu, MenuItem} = remote
 const file = require('./file-io')
 const template = [
   {
@@ -8,17 +8,17 @@ const template = [
       {
         label: 'New',
         accelerator: 'CmdOrCtrl+N',
-        click () { file.newFile() },
+        click () { file.newFile() }
       },
       {
         label: 'Open',
         accelerator: 'CmdOrCtrl+O',
-        click () { file.open() },
+        click () { file.open() }
       },
       {
         label: 'Save',
         accelerator: 'CmdOrCtrl+S',
-        click () { file.save() },
+        click () { file.save() }
       },
       {
         label: 'Save As',
@@ -61,7 +61,7 @@ const template = [
         label: 'Select All',
         accelerator: 'CmdOrCtrl+A',
         role: 'selectall'
-      },
+      }
     ]
   },
   {
@@ -70,7 +70,7 @@ const template = [
       {
         label: 'Reload',
         accelerator: 'CmdOrCtrl+R',
-        click(item, focusedWindow) {
+        click (item, focusedWindow) {
           if (focusedWindow) focusedWindow.reload()
         }
       },
@@ -84,11 +84,12 @@ const template = [
       {
         label: 'Toggle Developer Tools',
         accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-        click(item, focusedWindow) {
-          if (focusedWindow)
+        click (item, focusedWindow) {
+          if (focusedWindow) {
             focusedWindow.webContents.toggleDevTools()
+          }
         }
-      },
+      }
     ]
   },
   {
@@ -104,9 +105,9 @@ const template = [
         label: 'Close',
         accelerator: 'CmdOrCtrl+W',
         role: 'close'
-      },
+      }
     ]
-  },
+  }
 
 ]
 
@@ -150,8 +151,8 @@ if (process.platform === 'darwin') {
       {
         label: 'Quit',
         accelerator: 'Command+Q',
-        click() { app.quit() }
-      },
+        click () { app.quit() }
+      }
     ]
   })
   // Window menu.
@@ -166,6 +167,6 @@ if (process.platform === 'darwin') {
   )
 }
 
-module.exports = function createMenu() {
+module.exports = function createMenu () {
   Menu.setApplicationMenu(Menu.buildFromTemplate(template))
 }

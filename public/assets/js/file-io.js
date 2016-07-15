@@ -69,8 +69,22 @@ const file = {
   newFile () {
     let editor = document.getElementById('editor')
 
-    if (editor.value !== '') {
-      // read the file to check diffs.
+    // check for text in editor that is not from an opened file.
+    if (currentFile === undefined && editor.value !== '') {
+      dialog.showMessageBox({
+        type: 'warning',
+        buttons: ['Cancel', 'New File'],
+        title: 'Unsaved Text',
+        message: 'You still have some unsaved work kickin\' around. You sure you want to make a new file?'
+      }, function (rdata) {
+        if (rdata === 1) {
+          document.getElementById('editor').value = ''
+          currentFile = undefined
+        }
+      })
+    // check if the current file is defined and needs to be diffed from the HDD file.
+    } else if (currentFile !== undefined) {
+    // If there is a current file, compare it with what's in the eidtor
       fs.readFile(currentFile, 'utf-8', function (err, data) {
         if (err) throw err
         if (editor.value !== data) {
@@ -80,16 +94,21 @@ const file = {
             title: 'Unsaved Text',
             message: 'You still have some unsaved work kickin\' around. You sure you want to make a new file?'
           }, function (rdata) {
+            // if user selects "new file" as decided by returned array of choices.
             if (rdata === 1) {
               document.getElementById('editor').value = ''
-              currentFile = null
+              currentFile = undefined
             }
           })
+        // if the diff between the editor / hdd instance are the same; create a new file with no prompt.
         } else {
           document.getElementById('editor').value = ''
-          currentFile = null
+          currentFile = undefined
         }
       })
+    } else {
+      document.getElementById('editor').value = ''
+      currentFile = undefined
     }
   }
 

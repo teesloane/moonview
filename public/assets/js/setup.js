@@ -18,7 +18,7 @@ let sidebar = document.getElementById('editor-controls')
 let openSidebar = document.getElementById('sidebar-open')
 let closeSidebar = document.getElementById('sidebar-close')
 
-const setup = function() {
+const setup = function () {
   // create menu:
   createMenu()
 
@@ -28,17 +28,16 @@ const setup = function() {
   // toggle sidebar button
   openSidebar.addEventListener('click', () => {
     sidebar.style.visibility = 'visible'
-    openSidebar.style.visibility= 'hidden'
+    openSidebar.style.visibility = 'hidden'
   })
 
   closeSidebar.addEventListener('click', () => {
     sidebar.style.visibility = 'hidden'
-    openSidebar.style.visibility= 'visible'
+    openSidebar.style.visibility = 'visible'
   })
 }
 
-
-function createButtons() {
+function createButtons () {
   // create audio buttons
   help.walk(tree.audio, ['.wav', '.mp3'], (assetList, count) => {
     help.createButtons(assetList, count, loopButtons, count + 1, 'loop', help.toggleAudio)
@@ -50,7 +49,7 @@ function createButtons() {
     }
     tree.selectedAudio = ''
 
-    loopButtons.childNodes.forEach(function(child) {
+    loopButtons.childNodes.forEach(function (child) {
       child.classList.remove('on')
     })
   })
@@ -63,7 +62,7 @@ function createButtons() {
   help.createCancelButton(backgroundCancel, 'background', function () {
     document.body.style.background = tree.defaultBackground
 
-    backgroundButtons.childNodes.forEach(function(child) {
+    backgroundButtons.childNodes.forEach(function (child) {
       child.classList.remove('on')
     })
   })
@@ -82,11 +81,9 @@ function createButtons() {
     document.onkeydown = '' // turn off key sounds.
       // var buttonRow = keySoundCancel.parentNode;
       // console.log(buttonRow.childNodes);
-      keySoundButtons.childNodes.forEach(function(child) {
-        child.classList.remove('on')
-      })
-
-
+    keySoundButtons.childNodes.forEach(function (child) {
+      child.classList.remove('on')
+    })
   })
 }
 
