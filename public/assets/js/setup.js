@@ -13,9 +13,9 @@ let backgroundCancel = document.getElementById('background-cancel')
 let keySoundCancel = document.getElementById('keySound-cancel')
 
 // sidebar controls / toggles etc
-let sidebar = document.getElementById('button-drawer')
-let openSidebar = document.getElementById('sidebar-open')
-let closeSidebar = document.getElementById('sidebar-close')
+let menubar = document.getElementById('button-drawer')
+let openMenubar = document.getElementById('sidebar-open')
+let closeMenubar = document.getElementById('sidebar-close')
 
 // Drawer toggles
 let openMuzak = document.getElementById('open-muzak')
@@ -30,7 +30,7 @@ let typefaceAssets = document.getElementById('typeface-assets')
 let openKeySound = document.getElementById('open-keysounds')
 let keySoundsAssets = document.getElementById('keysounds-assets')
 
-let assetDrawer = document.getElementById('asset-drawer')
+// let assetDrawer = document.getElementById('asset-drawer')
 let allAssetButtons = [muzakAssets, wallpaperAssets, typefaceAssets, keySoundsAssets]
 
 const setup = function () {
@@ -95,14 +95,14 @@ function createButtons () {
 }
 
 function drawerListeners () {
-  openSidebar.addEventListener('click', () => {
-    sidebar.classList.toggle('invisible')
-    openSidebar.classList.toggle('display-none')
-    closeSidebar.classList.toggle('display-none')
+  openMenubar.addEventListener('click', () => {
+    menubar.classList.toggle('open')
+    openMenubar.classList.toggle('display-none')
+    closeMenubar.classList.toggle('display-none')
   })
 
-  closeSidebar.addEventListener('click', () => {
-    sidebar.classList.toggle('invisible')
+  closeMenubar.addEventListener('click', () => {
+    menubar.classList.toggle('open')
 
     // hide the asset drawer if it's open
     allAssetButtons.forEach((row) => {
@@ -110,8 +110,8 @@ function drawerListeners () {
     })
 
     // swap open/close for sidebar buttons
-    openSidebar.classList.toggle('display-none')
-    closeSidebar.classList.toggle('display-none')
+    openMenubar.classList.toggle('display-none')
+    closeMenubar.classList.toggle('display-none')
   })
 
   openMuzak.addEventListener('click', () => {

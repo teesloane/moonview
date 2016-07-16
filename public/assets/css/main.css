@@ -1,13 +1,13 @@
 body {
+  background-color: #f0f0f0;
+  background-size: cover;
+  background: #e8e8e8;
   display: flex;
   flex-direction: column;
-  background: #e8e8e8;
-  height: 100vh;
-  overflow-y: hidden;
   font-family: arial, sans-serif;
-  background-size: cover;
-  background-color: #f0f0f0;
+  height: 100vh;
   margin: 0;
+  overflow-y: hidden;
   padding: 0; }
 
 button {
@@ -15,16 +15,16 @@ button {
   border: 0;
   font: inherit;
   line-height: normal;
-  overflow: visible;
-  outline: none; }
+  outline: none;
+  overflow: visible; }
 
 .btn.gourd {
-  padding-top: 5px;
-  width: 40px;
-  height: 40px;
   background: #d9d9d9;
+  border-bottom: 2px solid transparent;
+  height: 40px;
   margin: 5px;
-  border-bottom: 2px solid transparent; }
+  padding-top: 5px;
+  width: 40px; }
   .btn.gourd:hover {
     background: #c8c8c8; }
   .btn.gourd:active {
@@ -47,35 +47,45 @@ button {
   position: fixed;
   left: 0;
   bottom: 0;
-  margin: 5px; }
+  margin: 5px;
+  z-index: 999; }
 
 #editor-controls {
   display: flex;
   flex-direction: column;
   width: 100%; }
 
-#button-drawer {
+.button-drawer {
+  background: rgba(0, 0, 0, 0.3);
+  bottom: -50px;
   display: flex;
   flex-direction: row;
-  width: 100%;
-  margin: 0 auto;
   height: 40px;
   justify-content: space-around;
+  left: 0;
+  margin-bottom: 40px;
+  margin: 0 auto;
   padding-bottom: 2px;
-  background: rgba(0, 0, 0, 0.3); }
+  position: fixed;
+  width: 100%;
+  transition-property: all;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1); }
+  .button-drawer.open {
+    bottom: 0px; }
 
 .button-drawer-style {
   color: #e7e7e7;
-  font-weight: 300;
   font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 2px; }
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase; }
 
 #asset-drawer {
+  background: rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.3);
   width: 100%; }
 
 .asset-row {
@@ -83,15 +93,15 @@ button {
   flex-direction: row; }
 
 .button-header {
-  display: flex !important;
-  justify-content: center;
-  align-self: center;
   align-items: center;
-  margin-right: 10px;
-  width: 40px;
-  height: 40px;
+  align-self: center;
+  background: #4b4b4b;
   color: #bbbbbb;
-  background: #4b4b4b; }
+  display: flex !important;
+  height: 40px;
+  justify-content: center;
+  margin-right: 10px;
+  width: 40px; }
 
 /* ====================== Border Helpers ====================== */
 ._border.top {

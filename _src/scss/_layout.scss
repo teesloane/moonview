@@ -1,13 +1,13 @@
 body {
+  background-color: #f0f0f0;
+  background-size: cover;
+  background: $mv-bg;
   display: flex;
   flex-direction: column;
-  background: $mv-bg;
-  height: 100vh;
-  overflow-y: hidden;
   font-family: arial, sans-serif;
-  background-size: cover;
-  background-color: #f0f0f0;
+  height: 100vh;
   margin: 0;
+  overflow-y: hidden;
   padding: 0;
 }
 button {
@@ -15,17 +15,18 @@ button {
   border: 0;
   font: inherit;
   line-height: normal;
-  overflow: visible;
   outline: none;
+  overflow: visible;
 }
 .btn {
   &.gourd {
+    background: rgb(217, 217, 217);
+    border-bottom: 2px solid transparent;
+    height: 40px;
+    margin: 5px;
     padding-top: 5px;
     width: 40px;
-    height: 40px;
-    background: rgb(217, 217, 217);
-    margin: 5px;
-    border-bottom: 2px solid transparent;
+
     &:hover {
       background: rgb(200, 200, 200);
     }
@@ -53,34 +54,48 @@ button {
   left: 0;
   bottom: 0;
   margin: 5px;
+  z-index: 999;
 }
 #editor-controls {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
-#button-drawer {
+.button-drawer {
+  background: rgba(0, 0, 0, 0.3);
+  bottom: -50px;
   display: flex;
   flex-direction: row;
-  width: 100%;
-  margin: 0 auto;
   height: 40px;
   justify-content: space-around;
+  left: 0;
+  margin-bottom: 40px;
+  margin: 0 auto;
   padding-bottom: 2px;
-  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  width: 100%;
+
+  transition-property: all;
+	transition-duration: .5s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+  &.open {
+    bottom: 0px;
+  }
 }
+
 .button-drawer-style {
   color: rgb(231, 231, 231);
-  font-weight: 300;
   font-size: 12px;
-  text-transform: uppercase;
+  font-weight: 300;
   letter-spacing: 2px;
+  text-transform: uppercase;
 }
 #asset-drawer {
+  background: rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.3);
   width: 100%;
 }
 .asset-row {
@@ -88,13 +103,13 @@ button {
   flex-direction: row;
 }
 .button-header {
-  display: flex !important;
-  justify-content: center;
-  align-self: center;
   align-items: center;
+  align-self: center;
+  background: rgb(75, 75, 75);
+  color: rgb(187, 187, 187);
+  display: flex !important;
+  height: 40px;
+  justify-content: center;
   margin-right: 10px;
   width: 40px;
-  height: 40px;
-  color: rgb(187, 187, 187);
-  background: rgb(75, 75, 75);
 }
