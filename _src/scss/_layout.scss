@@ -57,22 +57,50 @@ button {
   padding: 10px;
 }
 #editor-controls {
-  position: fixed;
   display: flex;
+  // position: fixed;
   flex-direction: column;
-  top: 0;
-  left: 0;
-  height: 100%;
+  // bottom: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 2%;
-  justify-content: space-around;
-  visibility: hidden;
+  background: blue;
+
+  // position: fixed;
+  // display: flex;
+  // flex-direction: row;
+  // bottom: 0;
+  // left: 0;
+  // height: 40px;
+  // width: 100%;
+  // background: rgba(0, 0, 0, 0.05);
+  // padding: 2%;
+  // justify-content: space-around;
+  // visibility: hidden;
 }
-.control-section {
+.button-drawer {
+
   display: flex;
   flex-direction: row;
+
+  width: 100%;
+  // background: rgba(0, 0, 0, 0.05);
+  background: yellow;
+  padding: 2%;
+  justify-content: space-around;
+  // visibility: hidden;
 }
+
+#asset-drawer {
+  // position: fixed;
+  display: flex;
+  flex-direction: row;
+  // left:0;
+  // bottom: 80px;
+  background: red;
+  // background: rgba(0, 0, 0, 0.05);
+  background: red;
+  width: 100%;
+}
+
 .button-header {
   display: flex !important;
   justify-content: center;

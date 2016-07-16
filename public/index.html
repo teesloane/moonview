@@ -1,64 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>MoonView</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/ionicons.css">
-  </head>
-  <body>
 
-    <main id="page">
-      <textarea autofocus id="editor" name="editor" rows="8" cols="40"></textarea>
-    </main>
+<head>
+  <meta charset="UTF-8">
+  <title>MoonView</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/ionicons.css">
+</head>
 
-    <button id="sidebar-open"><i class="ion-android-menu _icon small"></i></button>
+<body>
 
-    <aside id="editor-controls">
+  <main id="page">
+    <textarea autofocus id="editor" name="editor" rows="8" cols="40"></textarea>
+  </main>
 
-      <button id="sidebar-close"><i class="ion-android-close _icon white small"></i></button>
 
-      <section class="control-section">
+  <aside id="editor-controls">
 
-        <!-- temp music icon -->
-        <i class="ion-headphone _icon white small button-header" aria-hidden="true"></i>
+    <div id="asset-drawer">
 
-        <!-- Music buttons -->
-          <div id="loop-buttons"></div>
-          <div id="loop-cancel"></div>
-      </section>
+      <!-- Muzak -->
+      <div class="button-row">
+        <div id="loop-buttons"></div>
+        <div id="loop-cancel"></div>
+      </div>
 
-      <section class="control-section">
-        <i class="ion-android-color-palette _icon white small button-header" aria-hidden="true"></i>
+      <!-- Wallpapers -->
+      <div class="button-row">
+        <div id="background-buttons"></div>
+        <div id="background-cancel"></div>
+      </div>
 
-        <div class="button-row">
-          <div id="background-buttons"></div>
-          <div id="background-cancel"></div>
-        </div>
-      </section>
-
-      <section class="control-section">
-        <i class="ion-edit _icon white small button-header" aria-hidden="true"></i>
+      <!-- Typeface -->
+      <div class="button-row">
         <div id="font-buttons"></div>
         <div id="font-cancel"></div>
-      </section>
+      </div>
 
-      <section class="control-section">
-        <i class="ion-load-b _icon white small button-header" aria-hidden="true"></i>
+      <!-- Keysounds -->
+      <div class="button-row">
+        <div id="keySound-buttons"></div>
+        <div id="keySound-cancel"></div>
+      </div>
+    </div>
 
-        <div class="button-row">
-          <div id="keySound-buttons"></div>
-          <div id="keySound-cancel"></div>
-        </div>
-      </section>
+    <div class="button-drawer">
+        <button>muzak</button>
+        <button>wallpaper</button>
+        <button>type</button>
+        <button>key sounds</button>
+    </div>
 
-    </aside>
+  </aside>
 
-  </body>
+</body>
 
-  <script>
-    // You can also require other files to run in this process
-    require('../renderer.js')
-    require('./assets/js/app.js')
-  </script>
+<script>
+  // You can also require other files to run in this process
+  require('../renderer.js')
+  require('./assets/js/app.js')
+</script>
+
 </html>

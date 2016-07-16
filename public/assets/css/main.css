@@ -52,21 +52,25 @@ button {
   padding: 10px; }
 
 #editor-controls {
-  position: fixed;
   display: flex;
   flex-direction: column;
-  top: 0;
-  left: 0;
-  height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 2%;
-  justify-content: space-around;
-  visibility: hidden; }
+  background: blue; }
 
-.control-section {
+.button-drawer {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  width: 100%;
+  background: yellow;
+  padding: 2%;
+  justify-content: space-around; }
+
+#asset-drawer {
+  display: flex;
+  flex-direction: row;
+  background: red;
+  background: red;
+  width: 100%; }
 
 .button-header {
   display: flex !important;
