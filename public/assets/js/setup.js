@@ -113,7 +113,7 @@ function drawerListeners () {
     // swap open/close for sidebar buttons
     openMenubar.classList.toggle('display-none')
     closeMenubar.classList.toggle('display-none')
-    assetDrawer.classList.toggle('display-none')
+    assetDrawer.classList.add('display-none')
   })
 
   openMuzak.addEventListener('click', () => {

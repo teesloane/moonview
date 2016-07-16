@@ -14,12 +14,15 @@
     <textarea autofocus id="editor" name="editor" rows="8" cols="40"></textarea>
   </main>
 
-
+  <!-- Menu Toggles -->
   <button id="sidebar-open"><i class="ion-android-menu _icon small gray"></i></button>
   <button id="sidebar-close" class="display-none"><i class="ion-android-close _icon small white"></i></button>
 
+  <!-- Menu -->
   <aside id="editor-controls">
     <!-- TODO: change the selector from id to a query for class -->
+
+    <!-- Second Drawer -->
     <div id="asset-drawer" class="asset-drawer display-none">
 
       <!-- Muzak -->
@@ -47,11 +50,12 @@
       </div>
     </div>
 
+    <!-- Menu Buttons -->
     <div id="button-drawer" class="button-drawer">
-          <button class="button-drawer-style" id="open-muzak">muzak</button>
-          <button class="button-drawer-style" id="open-keysounds">sounds</button>
-          <button class="button-drawer-style" id="open-wallpaper">wallpaper</button>
-          <button class="button-drawer-style" id="open-typeface">type</button>
+      <button class="button-drawer-style" id="open-muzak">muzak</button>
+      <button class="button-drawer-style" id="open-keysounds">sounds</button>
+      <button class="button-drawer-style" id="open-wallpaper">wallpaper</button>
+      <button class="button-drawer-style" id="open-typeface">type</button>
     </div>
 
   </aside>
@@ -59,7 +63,6 @@
 </body>
 
 <script>
-  // You can also require other files to run in this process
   require('../renderer.js')
   require('./assets/js/app.js')
 </script>
