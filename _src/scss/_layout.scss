@@ -1,13 +1,13 @@
 body {
+  background-color: #f0f0f0;
+  background-size: cover;
+  background: $mv-bg;
   display: flex;
   flex-direction: column;
-  background: $mv-bg;
-  height: 100vh;
-  overflow-y: hidden;
   font-family: arial, sans-serif;
-  background-size: cover;
-  background-color: #f0f0f0;
+  height: 100vh;
   margin: 0;
+  overflow-y: hidden;
   padding: 0;
 }
 button {
@@ -15,26 +15,32 @@ button {
   border: 0;
   font: inherit;
   line-height: normal;
-  overflow: visible;
   outline: none;
+  overflow: visible;
 }
 .btn {
   &.gourd {
-    padding-top: 5px;
-    width: 40px;
-    height: 40px;
     background: rgb(217, 217, 217);
-    margin: 5px;
     border-bottom: 2px solid transparent;
+    height: 25px;
+    margin: 5px;
+    margin: 0 20px;
+    padding-top: 5px;
+    width: 25px;
+    border-radius: 50%;
+    font-size: 10px;
+
     &:hover {
       background: rgb(200, 200, 200);
+
     }
     &:active {
       background: rgb(180, 180, 180);
     }
     &.on {
-      background: rgb(180, 180, 180);
-      border-bottom: 2px solid #FF8C69;
+      background: rgb(219, 219, 219);
+      box-shadow: 0px 0px 5px rgba(235, 235, 235, 1);
+      // border-bottom: 2px solid #FF8C69;
     }
   }
 }
@@ -47,44 +53,73 @@ button {
   left: 0;
   bottom: 0;
   margin: 5px;
-  padding: 10px;
 }
 #sidebar-close {
   position: fixed;
-  right: 0;
-  top: 0;
+  left: 0;
+  bottom: 0;
   margin: 5px;
-  padding: 10px;
+  z-index: 999;
 }
 #editor-controls {
-  position: fixed;
   display: flex;
   flex-direction: column;
-  top: 0;
-  left: 0;
-  height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 2%;
-  justify-content: space-around;
-  visibility: hidden;
 }
-.control-section {
+.button-drawer {
+  background: rgba(0, 0, 0, 0.6);
+  bottom: -50px;
+  display: flex;
+  flex-direction: row;
+  height: 45px;
+  justify-content: space-around;
+  left: 0;
+  margin: 0 auto;
+  position: fixed;
+  width: 100%;
+  transition-property: all;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  &.open {
+    bottom: 0;
+  }
+}
+.button-drawer-style {
+  color: rgb(231, 231, 231);
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+}
+.asset-drawer {
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  bottom: 45px;
+
+  height: 40px;
+  padding: 5px;
+  transition-property: all;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+.asset-row {
   display: flex;
   flex-direction: row;
 }
 .button-header {
-  display: flex !important;
-  justify-content: center;
-  align-self: center;
   align-items: center;
+  align-self: center;
+  background: rgb(75, 75, 75);
+  color: rgb(187, 187, 187);
+  display: flex !important;
+  height: 40px;
+  justify-content: center;
   margin-right: 10px;
   width: 40px;
-  height: 40px;
-  color: rgb(187, 187, 187);
-  background: rgb(75, 75, 75);
-}
-.button-row {
-  display: flex;
-  flex-direction: row;
 }

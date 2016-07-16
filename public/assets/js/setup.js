@@ -10,31 +10,39 @@ let keySoundButtons = document.getElementById('keySound-buttons')
 
 let loopCancel = document.getElementById('loop-cancel')
 let backgroundCancel = document.getElementById('background-cancel')
-// let fontCancel = document.getElementById('font-cancel')
 let keySoundCancel = document.getElementById('keySound-cancel')
 
 // sidebar controls / toggles etc
-let sidebar = document.getElementById('editor-controls')
-let openSidebar = document.getElementById('sidebar-open')
-let closeSidebar = document.getElementById('sidebar-close')
+let menubar = document.getElementById('button-drawer')
+let openMenubar = document.getElementById('sidebar-open')
+let closeMenubar = document.getElementById('sidebar-close')
+let assetDrawer = document.getElementById('asset-drawer')
+
+// Drawer toggles
+let openMuzak = document.getElementById('open-muzak')
+let muzakAssets = document.getElementById('muzak-assets')
+
+let openWallpaper = document.getElementById('open-wallpaper')
+let wallpaperAssets = document.getElementById('wallpaper-assets')
+
+let openTypeface = document.getElementById('open-typeface')
+let typefaceAssets = document.getElementById('typeface-assets')
+
+let openKeySound = document.getElementById('open-keysounds')
+let keySoundsAssets = document.getElementById('keysounds-assets')
+
+// let assetDrawer = document.getElementById('asset-drawer')
+let allAssetButtons = [muzakAssets, wallpaperAssets, typefaceAssets, keySoundsAssets]
 
 const setup = function () {
   // create menu:
   createMenu()
 
+  // create event listenersfor menu drawer buttons (ie. Muzak, Type etc.)
+  drawerListeners()
+
   // create sidebar buttons
   createButtons()
-
-  // toggle sidebar button
-  openSidebar.addEventListener('click', () => {
-    sidebar.style.visibility = 'visible'
-    openSidebar.style.visibility = 'hidden'
-  })
-
-  closeSidebar.addEventListener('click', () => {
-    sidebar.style.visibility = 'hidden'
-    openSidebar.style.visibility = 'visible'
-  })
 }
 
 function createButtons () {
@@ -79,11 +87,61 @@ function createButtons () {
 
   help.createCancelButton(keySoundCancel, 'keySound', function () {
     document.onkeydown = '' // turn off key sounds.
-      // var buttonRow = keySoundCancel.parentNode;
-      // console.log(buttonRow.childNodes);
+
     keySoundButtons.childNodes.forEach(function (child) {
       child.classList.remove('on')
     })
+  })
+}
+
+function drawerListeners () {
+  openMenubar.addEventListener('click', () => {
+    menubar.classList.toggle('open')
+    openMenubar.classList.toggle('display-none')
+    closeMenubar.classList.toggle('display-none')
+  })
+
+  closeMenubar.addEventListener('click', () => {
+    menubar.classList.toggle('open')
+    menubar.classList.remove('extend')
+
+    // hide the asset drawer if it's open
+    allAssetButtons.forEach((row) => {
+      row.classList.add('display-none')
+    })
+
+    // swap open/close for sidebar buttons
+    openMenubar.classList.toggle('display-none')
+    closeMenubar.classList.toggle('display-none')
+    assetDrawer.classList.add('display-none')
+  })
+
+  openMuzak.addEventListener('click', () => {
+    swapButtons(allAssetButtons, muzakAssets)
+  })
+
+  openWallpaper.addEventListener('click', () => {
+    swapButtons(allAssetButtons, wallpaperAssets)
+  })
+
+  openTypeface.addEventListener('click', () => {
+    swapButtons(allAssetButtons, typefaceAssets)
+  })
+
+  openKeySound.addEventListener('click', () => {
+    swapButtons(allAssetButtons, keySoundsAssets)
+  })
+}
+
+function swapButtons (buttonRow, exception) {
+  assetDrawer.classList.remove('display-none')
+  menubar.classList.add('extend')
+  buttonRow.forEach((row) => {
+    if (row === exception) {
+      row.classList.remove('display-none')
+    } else {
+      row.classList.add('display-none')
+    }
   })
 }
 

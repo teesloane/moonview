@@ -1,64 +1,70 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>MoonView</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/ionicons.css">
-  </head>
-  <body>
 
-    <main id="page">
-      <textarea autofocus id="editor" name="editor" rows="8" cols="40"></textarea>
-    </main>
+<head>
+  <meta charset="UTF-8">
+  <title>MoonView</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/ionicons.css">
+</head>
 
-    <button id="sidebar-open"><i class="ion-android-menu _icon small"></i></button>
+<body>
 
-    <aside id="editor-controls">
+  <main id="page">
+    <textarea autofocus id="editor" name="editor" rows="8" cols="40"></textarea>
+  </main>
 
-      <button id="sidebar-close"><i class="ion-android-close _icon white small"></i></button>
+  <!-- Menu Toggles -->
+  <button id="sidebar-open"><i class="ion-android-menu _icon small gray"></i></button>
+  <button id="sidebar-close" class="display-none"><i class="ion-android-close _icon small white"></i></button>
 
-      <section class="control-section">
+  <!-- Menu -->
+  <aside id="editor-controls">
+    <!-- TODO: change the selector from id to a query for class -->
 
-        <!-- temp music icon -->
-        <i class="ion-headphone _icon white small button-header" aria-hidden="true"></i>
+    <!-- Second Drawer -->
+    <div id="asset-drawer" class="asset-drawer display-none">
 
-        <!-- Music buttons -->
-          <div id="loop-buttons"></div>
-          <div id="loop-cancel"></div>
-      </section>
+      <!-- Muzak -->
+      <div id="muzak-assets" class="asset-row display-none">
+        <div id="loop-buttons"></div>
+        <div id="loop-cancel"></div>
+      </div>
 
-      <section class="control-section">
-        <i class="ion-android-color-palette _icon white small button-header" aria-hidden="true"></i>
+      <!-- Wallpapers -->
+      <div id="wallpaper-assets" class="asset-row display-none">
+        <div id="background-buttons"></div>
+        <div id="background-cancel"></div>
+      </div>
 
-        <div class="button-row">
-          <div id="background-buttons"></div>
-          <div id="background-cancel"></div>
-        </div>
-      </section>
-
-      <section class="control-section">
-        <i class="ion-edit _icon white small button-header" aria-hidden="true"></i>
+      <!-- Typeface -->
+      <div id="typeface-assets" class="asset-row display-none">
         <div id="font-buttons"></div>
         <div id="font-cancel"></div>
-      </section>
+      </div>
 
-      <section class="control-section">
-        <i class="ion-load-b _icon white small button-header" aria-hidden="true"></i>
+      <!-- Keysounds -->
+      <div id="keysounds-assets" class="asset-row display-none">
+        <div id="keySound-buttons"></div>
+        <div id="keySound-cancel"></div>
+      </div>
+    </div>
 
-        <div class="button-row">
-          <div id="keySound-buttons"></div>
-          <div id="keySound-cancel"></div>
-        </div>
-      </section>
+    <!-- Menu Buttons -->
+    <div id="button-drawer" class="button-drawer">
+      <button class="button-drawer-style" id="open-muzak">muzak</button>
+      <button class="button-drawer-style" id="open-keysounds">sounds</button>
+      <button class="button-drawer-style" id="open-wallpaper">wallpaper</button>
+      <button class="button-drawer-style" id="open-typeface">type</button>
+    </div>
 
-    </aside>
+  </aside>
 
-  </body>
+</body>
 
-  <script>
-    // You can also require other files to run in this process
-    require('../renderer.js')
-    require('./assets/js/app.js')
-  </script>
+<script>
+  require('../renderer.js')
+  require('./assets/js/app.js')
+</script>
+
 </html>

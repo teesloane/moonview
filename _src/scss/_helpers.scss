@@ -269,7 +269,7 @@
 }
 ._icon {
   &.x-small {
-    font-size: 20px;
+    font-size: 14px;
   }
   &.small {
     font-size: 24px;
@@ -283,4 +283,15 @@
   &.white {
     color: rgb(236, 236, 236);
   }
+  &.gray {
+    color: rgb(181, 181, 181);
+  }
+}
+
+.display-none {
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden;
 }
