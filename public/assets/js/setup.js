@@ -16,6 +16,7 @@ let keySoundCancel = document.getElementById('keySound-cancel')
 let menubar = document.getElementById('button-drawer')
 let openMenubar = document.getElementById('sidebar-open')
 let closeMenubar = document.getElementById('sidebar-close')
+let assetDrawer = document.getElementById('asset-drawer')
 
 // Drawer toggles
 let openMuzak = document.getElementById('open-muzak')
@@ -86,8 +87,7 @@ function createButtons () {
 
   help.createCancelButton(keySoundCancel, 'keySound', function () {
     document.onkeydown = '' // turn off key sounds.
-      // var buttonRow = keySoundCancel.parentNode;
-      // console.log(buttonRow.childNodes);
+
     keySoundButtons.childNodes.forEach(function (child) {
       child.classList.remove('on')
     })
@@ -103,6 +103,7 @@ function drawerListeners () {
 
   closeMenubar.addEventListener('click', () => {
     menubar.classList.toggle('open')
+    menubar.classList.remove('extend')
 
     // hide the asset drawer if it's open
     allAssetButtons.forEach((row) => {
@@ -112,6 +113,7 @@ function drawerListeners () {
     // swap open/close for sidebar buttons
     openMenubar.classList.toggle('display-none')
     closeMenubar.classList.toggle('display-none')
+    assetDrawer.classList.toggle('display-none')
   })
 
   openMuzak.addEventListener('click', () => {
@@ -131,12 +133,12 @@ function drawerListeners () {
   })
 }
 
-// TODO: find a better name plz
 function swapButtons (buttonRow, exception) {
+  assetDrawer.classList.remove('display-none')
+  menubar.classList.add('extend')
   buttonRow.forEach((row) => {
-    // if (!row.classList.contains('display-none') && !exception) {
     if (row === exception) {
-      row.classList.toggle('display-none')
+      row.classList.remove('display-none')
     } else {
       row.classList.add('display-none')
     }
