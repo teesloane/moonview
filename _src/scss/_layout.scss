@@ -11,12 +11,12 @@ body {
   padding: 0;
 }
 button {
-  background: none;
-  border: 0;
-  font: inherit;
-  line-height: normal;
-  overflow: visible;
-  outline: none;
+  // background: none;
+  // border: 0;
+  // font: inherit;
+  // line-height: normal;
+  // overflow: visible;
+  // outline: none;
 }
 .btn {
   &.gourd {
@@ -95,9 +95,9 @@ button {
   flex-direction: row;
   // left:0;
   // bottom: 80px;
-  background: red;
-  // background: rgba(0, 0, 0, 0.05);
-  background: red;
+
+  background: rgba(0, 0, 0, 0.05);
+
   width: 100%;
 }
 

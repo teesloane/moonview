@@ -14,27 +14,34 @@ let backgroundCancel = document.getElementById('background-cancel')
 let keySoundCancel = document.getElementById('keySound-cancel')
 
 // sidebar controls / toggles etc
-let sidebar = document.getElementById('editor-controls')
-let openSidebar = document.getElementById('sidebar-open')
-let closeSidebar = document.getElementById('sidebar-close')
+// let sidebar = document.getElementById('editor-controls')
+// let openSidebar = document.getElementById('sidebar-open')
+// let closeSidebar = document.getElementById('sidebar-close')
+
+// Drawer toggles
+let openMuzak = document.getElementById('open-muzak')
+let muzakAssets = document.getElementById('muzak-assets')
+
+let openWallpaper = document.getElementById('open-wallpaper')
+let wallpaperAssets = document.getElementById('wallpaper-assets')
+
+let openTypeface = document.getElementById('open-typeface')
+let typefaceAssets = document.getElementById('typeface-assets')
+
+let openKeySound = document.getElementById('open-keysounds')
+let keySoundsAssets = document.getElementById('keysounds-assets')
+
+let allAssetButtons = [muzakAssets, wallpaperAssets, typefaceAssets, keySoundsAssets]
 
 const setup = function () {
   // create menu:
   createMenu()
 
+  // create event listenersfor menu drawer buttons (ie. Muzak, Type etc.)
+  drawerListeners()
+
   // create sidebar buttons
   createButtons()
-
-  // toggle sidebar button
-  openSidebar.addEventListener('click', () => {
-    sidebar.style.visibility = 'visible'
-    openSidebar.style.visibility = 'hidden'
-  })
-
-  closeSidebar.addEventListener('click', () => {
-    sidebar.style.visibility = 'hidden'
-    openSidebar.style.visibility = 'visible'
-  })
 }
 
 function createButtons () {
@@ -84,6 +91,47 @@ function createButtons () {
     keySoundButtons.childNodes.forEach(function (child) {
       child.classList.remove('on')
     })
+  })
+}
+
+function drawerListeners () {
+  // TODO: open drawer / close drawer
+  // openSidebar.addEventListener('click', () => {
+  //   sidebar.style.visibility = 'visible'
+  //   openSidebar.style.visibility = 'hidden'
+  // })
+  //
+  // closeSidebar.addEventListener('click', () => {
+  //   sidebar.style.visibility = 'hidden'
+  //   openSidebar.style.visibility = 'visible'
+  // })
+
+  openMuzak.addEventListener('click', () => {
+    swapButtons(allAssetButtons, muzakAssets)
+  })
+
+  openWallpaper.addEventListener('click', () => {
+    swapButtons(allAssetButtons, wallpaperAssets)
+  })
+
+  openTypeface.addEventListener('click', () => {
+    swapButtons(allAssetButtons, typefaceAssets)
+  })
+
+  openKeySound.addEventListener('click', () => {
+    swapButtons(allAssetButtons, keySoundsAssets)
+  })
+}
+
+// TODO: find a better name plz
+function swapButtons (buttonRow, exception) {
+  buttonRow.forEach((row) => {
+    // if (!row.classList.contains('display-none') && !exception) {
+    if (row === exception) {
+      row.classList.toggle('display-none')
+    } else {
+      row.classList.add('display-none')
+    }
   })
 }
 

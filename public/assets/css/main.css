@@ -10,14 +10,6 @@ body {
   margin: 0;
   padding: 0; }
 
-button {
-  background: none;
-  border: 0;
-  font: inherit;
-  line-height: normal;
-  overflow: visible;
-  outline: none; }
-
 .btn.gourd {
   padding-top: 5px;
   width: 40px;
@@ -68,8 +60,7 @@ button {
 #asset-drawer {
   display: flex;
   flex-direction: row;
-  background: red;
-  background: red;
+  background: rgba(0, 0, 0, 0.05);
   width: 100%; }
 
 .button-header {
@@ -352,6 +343,9 @@ button {
 
 ._icon.white {
   color: #ececec; }
+
+.display-none {
+  display: none; }
 
 #editor {
   display: flex;
