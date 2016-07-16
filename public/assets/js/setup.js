@@ -10,13 +10,12 @@ let keySoundButtons = document.getElementById('keySound-buttons')
 
 let loopCancel = document.getElementById('loop-cancel')
 let backgroundCancel = document.getElementById('background-cancel')
-// let fontCancel = document.getElementById('font-cancel')
 let keySoundCancel = document.getElementById('keySound-cancel')
 
 // sidebar controls / toggles etc
-// let sidebar = document.getElementById('editor-controls')
-// let openSidebar = document.getElementById('sidebar-open')
-// let closeSidebar = document.getElementById('sidebar-close')
+let sidebar = document.getElementById('button-drawer')
+let openSidebar = document.getElementById('sidebar-open')
+let closeSidebar = document.getElementById('sidebar-close')
 
 // Drawer toggles
 let openMuzak = document.getElementById('open-muzak')
@@ -31,6 +30,7 @@ let typefaceAssets = document.getElementById('typeface-assets')
 let openKeySound = document.getElementById('open-keysounds')
 let keySoundsAssets = document.getElementById('keysounds-assets')
 
+let assetDrawer = document.getElementById('asset-drawer')
 let allAssetButtons = [muzakAssets, wallpaperAssets, typefaceAssets, keySoundsAssets]
 
 const setup = function () {
@@ -95,16 +95,24 @@ function createButtons () {
 }
 
 function drawerListeners () {
-  // TODO: open drawer / close drawer
-  // openSidebar.addEventListener('click', () => {
-  //   sidebar.style.visibility = 'visible'
-  //   openSidebar.style.visibility = 'hidden'
-  // })
-  //
-  // closeSidebar.addEventListener('click', () => {
-  //   sidebar.style.visibility = 'hidden'
-  //   openSidebar.style.visibility = 'visible'
-  // })
+  openSidebar.addEventListener('click', () => {
+    sidebar.classList.toggle('invisible')
+    openSidebar.classList.toggle('display-none')
+    closeSidebar.classList.toggle('display-none')
+  })
+
+  closeSidebar.addEventListener('click', () => {
+    sidebar.classList.toggle('invisible')
+
+    // hide the asset drawer if it's open
+    allAssetButtons.forEach((row) => {
+      row.classList.add('display-none')
+    })
+
+    // swap open/close for sidebar buttons
+    openSidebar.classList.toggle('display-none')
+    closeSidebar.classList.toggle('display-none')
+  })
 
   openMuzak.addEventListener('click', () => {
     swapButtons(allAssetButtons, muzakAssets)
@@ -125,6 +133,7 @@ function drawerListeners () {
 
 // TODO: find a better name plz
 function swapButtons (buttonRow, exception) {
+  console.log(buttonRow, exception);
   buttonRow.forEach((row) => {
     // if (!row.classList.contains('display-none') && !exception) {
     if (row === exception) {

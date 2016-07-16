@@ -38,18 +38,17 @@ body {
 
 #sidebar-close {
   position: fixed;
-  right: 0;
-  top: 0;
+  left: 0;
+  bottom: 0;
   margin: 5px;
   padding: 10px; }
 
 #editor-controls {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  background: blue; }
+  width: 100%; }
 
-.button-drawer {
+#button-drawer {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -345,7 +344,10 @@ body {
   color: #ececec; }
 
 .display-none {
-  display: none; }
+  display: none !important; }
+
+.invisible {
+  visibility: hidden; }
 
 #editor {
   display: flex;

@@ -286,5 +286,9 @@
 }
 
 .display-none {
-  display: none;
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden;
 }

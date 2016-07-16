@@ -51,36 +51,19 @@ button {
 }
 #sidebar-close {
   position: fixed;
-  right: 0;
-  top: 0;
+  left: 0;
+  bottom: 0;
   margin: 5px;
   padding: 10px;
 }
 #editor-controls {
   display: flex;
-  // position: fixed;
   flex-direction: column;
-  // bottom: 0;
   width: 100%;
-  background: blue;
-
-  // position: fixed;
-  // display: flex;
-  // flex-direction: row;
-  // bottom: 0;
-  // left: 0;
-  // height: 40px;
-  // width: 100%;
-  // background: rgba(0, 0, 0, 0.05);
-  // padding: 2%;
-  // justify-content: space-around;
-  // visibility: hidden;
 }
-.button-drawer {
-
+#button-drawer {
   display: flex;
   flex-direction: row;
-
   width: 100%;
   // background: rgba(0, 0, 0, 0.05);
   background: yellow;
@@ -90,14 +73,9 @@ button {
 }
 
 #asset-drawer {
-  // position: fixed;
   display: flex;
   flex-direction: row;
-  // left:0;
-  // bottom: 80px;
-
   background: rgba(0, 0, 0, 0.05);
-
   width: 100%;
 }
 
