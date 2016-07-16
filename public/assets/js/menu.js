@@ -1,6 +1,7 @@
 const {remote} = require('electron')
 const {Menu, MenuItem} = remote
 const file = require('./file-io')
+
 const template = [
   {
     label: 'File',
@@ -151,7 +152,9 @@ if (process.platform === 'darwin') {
       {
         label: 'Quit',
         accelerator: 'Command+Q',
-        click () { app.quit() }
+        click () {
+          require('electron').remote.app.quit();
+        }
       }
     ]
   })
