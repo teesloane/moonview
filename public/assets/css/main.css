@@ -10,6 +10,14 @@ body {
   margin: 0;
   padding: 0; }
 
+button {
+  background: none;
+  border: 0;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  outline: none; }
+
 .btn.gourd {
   padding-top: 5px;
   width: 40px;
@@ -33,15 +41,13 @@ body {
   position: fixed;
   left: 0;
   bottom: 0;
-  margin: 5px;
-  padding: 10px; }
+  margin: 5px; }
 
 #sidebar-close {
   position: fixed;
   left: 0;
   bottom: 0;
-  margin: 5px;
-  padding: 10px; }
+  margin: 5px; }
 
 #editor-controls {
   display: flex;
@@ -52,15 +58,29 @@ body {
   display: flex;
   flex-direction: row;
   width: 100%;
-  background: yellow;
-  padding: 2%;
-  justify-content: space-around; }
+  margin: 0 auto;
+  height: 40px;
+  justify-content: space-around;
+  padding-bottom: 2px;
+  background: rgba(0, 0, 0, 0.3); }
+
+.button-drawer-style {
+  color: #e7e7e7;
+  font-weight: 300;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px; }
 
 #asset-drawer {
   display: flex;
   flex-direction: row;
-  background: rgba(0, 0, 0, 0.05);
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
   width: 100%; }
+
+.asset-row {
+  display: flex;
+  flex-direction: row; }
 
 .button-header {
   display: flex !important;
@@ -72,10 +92,6 @@ body {
   height: 40px;
   color: #bbbbbb;
   background: #4b4b4b; }
-
-.button-row {
-  display: flex;
-  flex-direction: row; }
 
 /* ====================== Border Helpers ====================== */
 ._border.top {
@@ -342,6 +358,9 @@ body {
 
 ._icon.white {
   color: #ececec; }
+
+._icon.gray {
+  color: #b5b5b5; }
 
 .display-none {
   display: none !important; }

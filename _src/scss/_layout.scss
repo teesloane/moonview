@@ -11,12 +11,12 @@ body {
   padding: 0;
 }
 button {
-  // background: none;
-  // border: 0;
-  // font: inherit;
-  // line-height: normal;
-  // overflow: visible;
-  // outline: none;
+  background: none;
+  border: 0;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  outline: none;
 }
 .btn {
   &.gourd {
@@ -47,14 +47,12 @@ button {
   left: 0;
   bottom: 0;
   margin: 5px;
-  padding: 10px;
 }
 #sidebar-close {
   position: fixed;
   left: 0;
   bottom: 0;
   margin: 5px;
-  padding: 10px;
 }
 #editor-controls {
   display: flex;
@@ -65,20 +63,30 @@ button {
   display: flex;
   flex-direction: row;
   width: 100%;
-  // background: rgba(0, 0, 0, 0.05);
-  background: yellow;
-  padding: 2%;
+  margin: 0 auto;
+  height: 40px;
   justify-content: space-around;
-  // visibility: hidden;
+  padding-bottom: 2px;
+  background: rgba(0, 0, 0, 0.3);
 }
-
+.button-drawer-style {
+  color: rgb(231, 231, 231);
+  font-weight: 300;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
 #asset-drawer {
   display: flex;
   flex-direction: row;
-  background: rgba(0, 0, 0, 0.05);
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
   width: 100%;
 }
-
+.asset-row {
+  display: flex;
+  flex-direction: row;
+}
 .button-header {
   display: flex !important;
   justify-content: center;
@@ -89,8 +97,4 @@ button {
   height: 40px;
   color: rgb(187, 187, 187);
   background: rgb(75, 75, 75);
-}
-.button-row {
-  display: flex;
-  flex-direction: row;
 }

@@ -133,7 +133,6 @@ function drawerListeners () {
 
 // TODO: find a better name plz
 function swapButtons (buttonRow, exception) {
-  console.log(buttonRow, exception);
   buttonRow.forEach((row) => {
     // if (!row.classList.contains('display-none') && !exception) {
     if (row === exception) {

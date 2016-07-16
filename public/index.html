@@ -15,44 +15,43 @@
   </main>
 
 
-  <button id="sidebar-open">open</button>
-  <button id="sidebar-close" class="display-none">close</button>
+  <button id="sidebar-open"><i class="ion-android-menu _icon small gray"></i></button>
+  <button id="sidebar-close" class="display-none"><i class="ion-android-close _icon small white"></i></button>
 
   <aside id="editor-controls">
-
 
     <div id="asset-drawer">
 
       <!-- Muzak -->
-      <div id="muzak-assets" class="button-row display-none">
+      <div id="muzak-assets" class="asset-row display-none">
         <div id="loop-buttons"></div>
         <div id="loop-cancel"></div>
       </div>
 
       <!-- Wallpapers -->
-      <div id="wallpaper-assets" class="button-row display-none">
+      <div id="wallpaper-assets" class="asset-row display-none">
         <div id="background-buttons"></div>
         <div id="background-cancel"></div>
       </div>
 
       <!-- Typeface -->
-      <div id="typeface-assets" class="button-row display-none">
+      <div id="typeface-assets" class="asset-row display-none">
         <div id="font-buttons"></div>
         <div id="font-cancel"></div>
       </div>
 
       <!-- Keysounds -->
-      <div id="keysounds-assets" class="button-row display-none">
+      <div id="keysounds-assets" class="asset-row display-none">
         <div id="keySound-buttons"></div>
         <div id="keySound-cancel"></div>
       </div>
     </div>
 
     <div id="button-drawer" class="invisible">
-        <button id="open-muzak">muzak</button>
-        <button id="open-wallpaper">wallpaper</button>
-        <button id="open-typeface">type</button>
-        <button id="open-keysounds">key sounds</button>
+          <button class="button-drawer-style" id="open-muzak">muzak</button>
+          <button class="button-drawer-style" id="open-keysounds">sounds</button>
+          <button class="button-drawer-style" id="open-wallpaper">wallpaper</button>
+          <button class="button-drawer-style" id="open-typeface">type</button>
     </div>
 
   </aside>
