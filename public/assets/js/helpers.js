@@ -87,32 +87,19 @@ const helpers = {
     tree.selectedAudio = audio // asign new file
     tree.selectedAudio.play() // play new file.
 
-    /* TODO: change this to a few if /elses that:
-      - on clicking already playing file: pause / resume
-    */
   },
 
-  fireKeySound (file) {
-    // enable key sounds
-    // Create an array of audio objects for triggering
-    let j = 0
-    let audioBuffer = []
-    for (let i = 0; i < 50; i++) audioBuffer.push(new Audio(file))
+  toggleFieldRecording (file) {
+    let audio = new Audio(file)
 
-    // on fire, count up j, if it hits the buffer , reset j.
-
-    document.onkeydown = function () {
-      j++
-      if (j === audioBuffer.length) j = 0
-
-      // cut off the note in favor of the new note? not sure if I should keep this in.
-      // audioBuffer[j].pause()
-      // audioBuffer[j].curentTime = 0
-
-      audioBuffer[j].playbackRate = 1 + Math.random() * 1
-
-      audioBuffer[j].play()
+    if (tree.selectedFieldRecording.currentTime > 0) {
+      tree.selectedFieldRecording.pause()
     }
+
+    tree.selectedFieldRecording = audio
+    tree.selectedFieldRecording.loop = true
+    tree.selectedFieldRecording.play()
+
   },
 
   createButtons (assetList, timesCalled, mount, text, type, action) {

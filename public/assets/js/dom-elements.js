@@ -6,11 +6,11 @@ const el = {
   loopButtons: document.getElementById('loop-buttons'),
   backgroundButtons: document.getElementById('background-buttons'),
   fontButtons: document.getElementById('font-buttons'),
-  keySoundButtons: document.getElementById('keySound-buttons'),
+  fieldRecordingButtons: document.getElementById('fieldrecording-buttons'),
 
   loopCancel: document.getElementById('loop-cancel'),
   backgroundCancel: document.getElementById('background-cancel'),
-  keySoundCancel: document.getElementById('keySound-cancel'),
+  fieldRecordingCancel: document.getElementById('fieldrecording-cancel'),
 
   // sidebar controls / toggles etc
   menubar: document.getElementById('button-drawer'),
@@ -28,15 +28,15 @@ const el = {
   openTypeface: document.getElementById('open-typeface'),
   typefaceAssets: document.getElementById('typeface-assets'),
 
-  openKeySound: document.getElementById('open-keysounds'),
-  keySoundsAssets: document.getElementById('keysounds-assets'),
+  openFieldRecording: document.getElementById('open-fieldrecording'),
+  fieldRecordingAssets: document.getElementById('fieldrecording-assets'),
 
   get allAssetButtons () {
-    return [this.muzakAssets, this.wallpaperAssets, this.typefaceAssets, this.keySoundsAssets]
+    return [this.muzakAssets, this.wallpaperAssets, this.typefaceAssets, this.fieldRecordingAssets]
   },
 
   get allMenuButtons () {
-    return [this.openMuzak, this.openWallpaper, this.openTypeface, this.openKeySound]
+    return [this.openMuzak, this.openWallpaper, this.openTypeface, this.openFieldRecording]
   }
 
 }
