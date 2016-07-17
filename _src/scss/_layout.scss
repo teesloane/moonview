@@ -91,10 +91,14 @@ button {
   text-transform: uppercase;
   transition-duration: 0.75s;
   transition-property: all;
+  border-bottom: 1.5px solid transparent;
+  // margin-bottom: -2px;
+  align-self: center;
 
   &.on {
     color: #fff;
     text-shadow: -1px 1px 3px rgba(208, 208, 208, 0.2), 1px -1px 3px rgba(252, 252, 252, 0.2);
+    border-bottom: 2px solid white;
   }
 
   &.dim {
