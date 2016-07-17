@@ -1,7 +1,7 @@
 # moonview
 >[ommwriter](http://www.ommwriter.com/) inspired ambient writing application.
 
-![](https://cloud.githubusercontent.com/assets/12987958/16826221/829e75ee-4949-11e6-9170-4d4c9d7eff8d.gif)
+![](https://cloud.githubusercontent.com/assets/12987958/16901911/9c873950-4c1e-11e6-8060-687ecb794b32.gif)
 
 <sub>^ please excuse the horrible gif rendering!</sub>
 
