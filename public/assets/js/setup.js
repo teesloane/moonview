@@ -2,6 +2,8 @@ const help = require('./helpers')
 const tree = require('./tree')
 const createMenu = require('./menu')
 
+let editor = document.getElementById('editor')
+
 // mounting points for buttons for audio, sounds, bgs etc.
 let loopButtons = document.getElementById('loop-buttons')
 let backgroundButtons = document.getElementById('background-buttons')
@@ -33,6 +35,7 @@ let keySoundsAssets = document.getElementById('keysounds-assets')
 
 // let assetDrawer = document.getElementById('asset-drawer')
 let allAssetButtons = [muzakAssets, wallpaperAssets, typefaceAssets, keySoundsAssets]
+let allMenuButtons = [openMuzak, openWallpaper, openTypeface, openKeySound]
 
 const setup = function () {
   // create menu:
@@ -105,6 +108,8 @@ function drawerListeners () {
     menubar.classList.toggle('open')
     menubar.classList.remove('extend')
 
+    editor.focus()
+
     // hide the asset drawer if it's open
     allAssetButtons.forEach((row) => {
       row.classList.add('display-none')
@@ -116,24 +121,37 @@ function drawerListeners () {
     assetDrawer.classList.add('display-none')
   })
 
+  // event listeners for toggling asset buttons in the second drawer
   openMuzak.addEventListener('click', () => {
-    swapButtons(allAssetButtons, muzakAssets)
+    // allMenuButtons.forEach((button) => { button.classList.remove('on') })
+    // openMuzak.classList.add('on')
+    swapButtons(allMenuButtons, openMuzak)
+    swapAssets(allAssetButtons, muzakAssets)
   })
 
   openWallpaper.addEventListener('click', () => {
-    swapButtons(allAssetButtons, wallpaperAssets)
+    // allMenuButtons.forEach((button) => { button.classList.remove('on') })
+    // openWallpaper.classList.add('on')
+    swapButtons(allMenuButtons, openWallpaper)
+    swapAssets(allAssetButtons, wallpaperAssets)
   })
 
   openTypeface.addEventListener('click', () => {
-    swapButtons(allAssetButtons, typefaceAssets)
+    // allMenuButtons.forEach((button) => { button.classList.remove('on') })
+    // openTypeface.classList.add('on')
+    swapButtons(allMenuButtons, openTypeface)
+    swapAssets(allAssetButtons, typefaceAssets)
   })
 
   openKeySound.addEventListener('click', () => {
-    swapButtons(allAssetButtons, keySoundsAssets)
+    // allMenuButtons.forEach((button) => { button.classList.remove('on') })
+    // openKeySound.classList.add('on')/
+    swapButtons(allMenuButtons, openKeySound)
+    swapAssets(allAssetButtons, keySoundsAssets)
   })
 }
 
-function swapButtons (buttonRow, exception) {
+function swapAssets (buttonRow, exception) {
   assetDrawer.classList.remove('display-none')
   menubar.classList.add('extend')
   buttonRow.forEach((row) => {
@@ -141,6 +159,19 @@ function swapButtons (buttonRow, exception) {
       row.classList.remove('display-none')
     } else {
       row.classList.add('display-none')
+    }
+  })
+}
+
+function swapButtons (buttonRow, exception) {
+  // buttonRow.forEach((button) => { button.classList.remove('on') })
+  buttonRow.forEach((button) => {
+    if (button === exception) {
+      button.classList.add('on')
+      button.classList.remove('dim')
+    } else {
+      button.classList.remove('on')
+      button.classList.add('dim')
     }
   })
 }

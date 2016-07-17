@@ -40,7 +40,6 @@ button {
     &.on {
       background: rgb(219, 219, 219);
       box-shadow: 0px 0px 5px rgba(235, 235, 235, 1);
-      // border-bottom: 2px solid #FF8C69;
     }
   }
 }
@@ -78,7 +77,7 @@ button {
   position: fixed;
   width: 100%;
   transition-property: all;
-  transition-duration: 0.5s;
+  transition-duration: 0.75s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
   &.open {
     bottom: 0;
@@ -90,6 +89,17 @@ button {
   font-weight: 300;
   letter-spacing: 2px;
   text-transform: uppercase;
+  transition-duration: 0.75s;
+  transition-property: all;
+
+  &.on {
+    color: #fff;
+    text-shadow: -1px 1px 3px rgba(208, 208, 208, 0.2), 1px -1px 3px rgba(252, 252, 252, 0.2);
+  }
+
+  &.dim {
+    color: rgba(255, 255, 255, 0.50)
+  }
 
 }
 .asset-drawer {
@@ -105,7 +115,7 @@ button {
   height: 40px;
   padding: 5px;
   transition-property: all;
-  transition-duration: 0.5s;
+  transition-duration: 0.75s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 .asset-row {
