@@ -49,15 +49,18 @@ function createButtons () {
     help.createButtons(assetList, count, el.fontButtons, count + 1, 'font', help.toggleFonts)
   })
 
-  // Create typing sound buttons:
-  help.walk(tree.keySounds, ['.wav', '.mp3'], (assetList, count) => {
-    help.createButtons(assetList, count, el.keySoundButtons, count + 1, 'keySound', help.fireKeySound)
+  // Create field recording buttons:
+  help.walk(tree.fieldRecordings, ['.wav', '.mp3'], (assetList, count) => {
+    help.createButtons(assetList, count, el.fieldRecordingButtons, count + 1, 'fieldRecording', help.toggleFieldRecording)
   })
 
-  help.createCancelButton(el.keySoundCancel, 'keySound', function () {
-    document.onkeydown = '' // turn off key sounds.
+  help.createCancelButton(el.fieldRecordingCancel, 'fieldRecording', function () {
+    if (tree.selectedFieldRecording !== '') {
+      tree.selectedFieldRecording.pause()
+    }
+    tree.selectedFieldRecording = ''
 
-    el.keySoundButtons.childNodes.forEach(function (child) {
+    el.fieldRecordingButtons.childNodes.forEach(function (child) {
       child.classList.remove('on')
     })
   })
@@ -103,9 +106,9 @@ function drawerListeners () {
     swapAssets(el.allAssetButtons, el.typefaceAssets)
   })
 
-  el.openKeySound.addEventListener('click', () => {
-    swapButtons(el.allMenuButtons, el.openKeySound)
-    swapAssets(el.allAssetButtons, el.keySoundsAssets)
+  el.openFieldRecording.addEventListener('click', () => {
+    swapButtons(el.allMenuButtons, el.openFieldRecording)
+    swapAssets(el.allAssetButtons, el.fieldRecordingAssets)
   })
 }
 
