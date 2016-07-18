@@ -376,19 +376,27 @@ textarea {
   display: flex;
   flex-direction: row; }
 
-#audio-menu-open {
+#mixer-open {
   position: fixed;
   right: 0;
   bottom: 0;
   margin: 5px;
   z-index: 999; }
 
-#audio-menu {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  width: 33%;
-  background: rgba(0, 0, 0, 0.65); }
+.slider-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+
+.slider-text {
+  color: #e7e7e7;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding-right: 25px;
+  margin-left: -25px; }
 
 button {
   background: none;
