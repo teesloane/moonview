@@ -40,13 +40,13 @@ button {
   display: flex;
   flex-grow: 1; }
 
-#sidebar-open {
+#menu-open {
   position: fixed;
   left: 0;
   bottom: 0;
   margin: 5px; }
 
-#sidebar-close {
+#menu-close {
   position: fixed;
   left: 0;
   bottom: 0;

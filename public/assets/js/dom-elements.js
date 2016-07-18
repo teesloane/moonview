@@ -14,8 +14,8 @@ const el = {
 
   // sidebar controls / toggles etc
   menubar: document.getElementById('button-drawer'),
-  openMenubar: document.getElementById('sidebar-open'),
-  closeMenubar: document.getElementById('sidebar-close'),
+  openMenubar: document.getElementById('menu-open'),
+  closeMenubar: document.getElementById('menu-close'),
   assetDrawer: document.getElementById('asset-drawer'),
 
   // Drawer toggles
