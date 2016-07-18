@@ -86,7 +86,6 @@ const helpers = {
 
     tree.selectedAudio = audio // asign new file
     tree.selectedAudio.play() // play new file.
-
   },
 
   toggleFieldRecording (file) {
@@ -99,7 +98,6 @@ const helpers = {
     tree.selectedFieldRecording = audio
     tree.selectedFieldRecording.loop = true
     tree.selectedFieldRecording.play()
-
   },
 
   createButtons (assetList, timesCalled, mount, text, type, action) {

@@ -15,10 +15,12 @@
   </main>
 
   <!-- Menu Toggles -->
-  <button id="sidebar-open"><i class="ion-android-menu _icon small gray"></i></button>
-  <button id="sidebar-close" class="display-none"><i class="ion-android-close _icon small white"></i></button>
+  <button id="menu-open"><i class="ion-android-menu _icon small gray"></i></button>
+  <button id="menu-close" class="display-none"><i class="ion-android-close _icon small white"></i></button>
 
-  <!-- Menu -->
+  <button id="audio-menu-open"><i class="ion-android-volume-down _icon small gray"></i></button>
+
+  <!--Editor Menu -->
   <aside id="editor-controls">
     <!-- TODO: change the selector from id to a query for class -->
 
@@ -60,11 +62,16 @@
 
   </aside>
 
+  <!-- Audio Menu -->
+  <aside id="audio-menu" class="display-none">
+
+  </aside>
+
 </body>
 
 <script>
   require('../renderer.js')
-  require('./assets/js/app.js')
+  require('./assets/js/setup.js')
 </script>
 
 </html>
