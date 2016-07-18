@@ -150,7 +150,7 @@ if (process.platform === 'darwin') {
         type: 'separator'
       },
       {
-        label: 'Quit',
+        label: 'Quitter',
         accelerator: 'Command+Q',
         click () {
           require('electron').remote.app.quit();
@@ -170,6 +170,6 @@ if (process.platform === 'darwin') {
   )
 }
 
-module.exports = function createMenu () {
+module.exports = function createAppMenu () {
   Menu.setApplicationMenu(Menu.buildFromTemplate(template))
 }
