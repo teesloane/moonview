@@ -6,6 +6,21 @@ const tree = require('./tree')
 function createAmbientMenu () {
   createButtons()
   createListeners()
+
+  // click anywhere in the editor to disable an open menu
+  el.editor.addEventListener('click', () => {
+    if (el.menubar.classList.contains('open')) { // if the ambient menu is open
+      el.menubar.classList.remove('open') // close it
+      el.openMenubar.classList.remove('display-none') // show the open menu button
+      el.mixerOpen.classList.remove('display-none') // show the mixer open btn
+      el.closeMenubar.classList.add('display-none') // hide the close menu btn.
+    } else if (el.mixer.classList.contains('open')) {
+      el.mixer.classList.remove('open') // hide mixer
+      el.openMenubar.classList.remove('display-none') // show the open menu button
+      el.mixerOpen.classList.remove('display-none') // show the open for mixer
+      el.mixerClose.classList.add('display-none') // hide the close
+    }
+  })
 }
 
 function createButtons () {
@@ -65,11 +80,13 @@ function createListeners () {
     el.menubar.classList.toggle('open')
     el.openMenubar.classList.toggle('display-none')
     el.closeMenubar.classList.toggle('display-none')
+    el.mixerOpen.classList.add('display-none')
   })
 
   el.closeMenubar.addEventListener('click', () => {
     el.menubar.classList.toggle('open')
     el.menubar.classList.remove('extend')
+    el.mixerOpen.classList.remove('display-none')
 
     el.editor.focus()
 

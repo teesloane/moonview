@@ -18,7 +18,8 @@
   <button id="menu-open"><i class="ion-android-menu _icon small gray"></i></button>
   <button id="menu-close" class="display-none"><i class="ion-android-close _icon small white"></i></button>
 
-  <button id="audio-menu-open"><i class="ion-android-volume-down _icon small gray"></i></button>
+  <button id="mixer-open"><i class="ion-android-volume-down _icon small gray"></i></button>
+  <button id="mixer-close" class="display-none"><i class="ion-android-close _icon small gray"></i></button>
 
   <!--Editor Menu -->
   <aside id="editor-controls">
@@ -45,7 +46,7 @@
         <div id="font-cancel"></div>
       </div>
 
-      <!-- Keysounds -->
+      <!-- Field Recordings -->
       <div id="fieldrecording-assets" class="asset-row display-none">
         <div id="fieldrecording-buttons"></div>
         <div id="fieldrecording-cancel"></div>
@@ -63,7 +64,16 @@
   </aside>
 
   <!-- Audio Menu -->
-  <aside id="audio-menu" class="display-none">
+  <aside id="mixer" class="button-drawer">
+    <div class="slider-container">
+      <span class="slider-text">Muzak</span>
+      <input id="muzak-slider" class="volume-slider" type="range" min="0" max="100" />
+    </div>
+
+    <div class="slider-container">
+      <span class="slider-text">Sounds</span>
+      <input id="fieldrecording-slider" class="volume-slider" type="range" min="0" max="100" />
+    </div>
 
   </aside>
 

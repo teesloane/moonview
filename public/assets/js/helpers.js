@@ -85,7 +85,13 @@ const helpers = {
     }
 
     tree.selectedAudio = audio // asign new file
+    tree.selectedAudio.volume = 0.7
     tree.selectedAudio.play() // play new file.
+
+    let audioVolume = document.getElementById('muzak-slider')
+    audioVolume.addEventListener('change', () => {
+      tree.selectedAudio.volume = audioVolume.value / 100
+    })
   },
 
   toggleFieldRecording (file) {
@@ -98,6 +104,11 @@ const helpers = {
     tree.selectedFieldRecording = audio
     tree.selectedFieldRecording.loop = true
     tree.selectedFieldRecording.play()
+
+    let fieldVolume = document.getElementById('fieldrecording-slider')
+    fieldVolume.addEventListener('change', () => {
+      tree.selectedFieldRecording.volume = fieldVolume.value / 100
+    })
   },
 
   createButtons (assetList, timesCalled, mount, text, type, action) {

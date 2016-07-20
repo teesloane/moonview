@@ -39,8 +39,10 @@ const el = {
     return [this.openMuzak, this.openWallpaper, this.openTypeface, this.openFieldRecording]
   },
 
-  openAudioMenu: document.getElementById('audio-menu-open'),
-  audioMenu: document.getElementById('audio-menu')
+  // mixer Menu //
+  mixerOpen: document.getElementById('mixer-open'),
+  mixerClose: document.getElementById('mixer-close'),
+  mixer: document.getElementById('mixer')
 
 }
 
