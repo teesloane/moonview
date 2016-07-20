@@ -38,6 +38,10 @@ button {
     background: #ddd;
     border: none;
     border-radius: 10px;
+
+    @media(max-width: 500px) {
+    width: 75px;
+    }
   }
   input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -53,10 +57,9 @@ button {
       box-shadow: 0 0px 0px rgba(0,0,0,0.0);
     }
   }
+
   input[type=range]:focus {
     outline: none;
   }
-  // input[type=range]:focus::-webkit-slider-runnable-track {
-  //   background: #ccc;
-  // }
+
 }

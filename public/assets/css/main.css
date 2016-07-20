@@ -395,8 +395,8 @@ textarea {
   font-weight: 300;
   letter-spacing: 2px;
   text-transform: uppercase;
-  padding-right: 25px;
-  margin-left: -25px; }
+  padding-right: 15px;
+  margin-left: -15px; }
 
 button {
   background: none;
@@ -432,6 +432,9 @@ button {
   background: #ddd;
   border: none;
   border-radius: 10px; }
+  @media (max-width: 500px) {
+    #mixer input[type=range] {
+      width: 75px; } }
 
 #mixer input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
