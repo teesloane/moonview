@@ -410,7 +410,6 @@ button {
   background: #d9d9d9;
   border-bottom: 2px solid transparent;
   height: 25px;
-  margin: 5px;
   margin: 0 20px;
   padding-top: 5px;
   width: 25px;
@@ -422,4 +421,28 @@ button {
     background: #b4b4b4; }
   .btn.gourd.on {
     background: #dbdbdb;
-    box-shadow: 0px 0px 5px #ebebeb; }
+    box-shadow: 0 0 5px #ebebeb; }
+
+#mixer input[type=range] {
+  -webkit-appearance: none; }
+
+#mixer input[type=range] {
+  width: 150px;
+  height: 5px;
+  background: #ddd;
+  border: none;
+  border-radius: 10px; }
+
+#mixer input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: goldenrod;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.22); }
+  #mixer input[type=range]::-webkit-slider-thumb:active {
+    box-shadow: 0 0px 0px transparent; }
+
+#mixer input[type=range]:focus {
+  outline: none; }
