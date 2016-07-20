@@ -41,6 +41,7 @@ const el = {
 
   // mixer Menu //
   mixerOpen: document.getElementById('mixer-open'),
+  mixerClose: document.getElementById('mixer-close'),
   mixer: document.getElementById('mixer')
 
 }

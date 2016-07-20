@@ -5,6 +5,13 @@
   margin: 5px;
   z-index: 999;
 }
+#mixer-close {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 5px;
+  z-index: 999;
+}
 
 .slider-container {
   display: flex;

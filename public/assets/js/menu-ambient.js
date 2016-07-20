@@ -65,11 +65,13 @@ function createListeners () {
     el.menubar.classList.toggle('open')
     el.openMenubar.classList.toggle('display-none')
     el.closeMenubar.classList.toggle('display-none')
+    el.mixerOpen.classList.toggle('display-none')
   })
 
   el.closeMenubar.addEventListener('click', () => {
     el.menubar.classList.toggle('open')
     el.menubar.classList.remove('extend')
+    el.mixerOpen.classList.toggle('display-none')
 
     el.editor.focus()
 
