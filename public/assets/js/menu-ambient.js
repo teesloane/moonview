@@ -1,7 +1,6 @@
 let el = require('./dom-elements')
 const help = require('./helpers')
 const tree = require('./tree')
-// const audioMenu = require('./audio-menu')
 
 function createAmbientMenu () {
   createButtons()
