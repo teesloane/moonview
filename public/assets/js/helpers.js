@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const sizeOf = require('image-size')
+const sizeOf = require('image-size') // used for easily calc. img width for bg display type.
 let tree = require('./tree')
 
 const helpers = {
@@ -61,7 +61,7 @@ const helpers = {
     document.body.style.backgroundRepeat = 'no-repeat'
 
     let tiled = sizeOf(backgroundImage)
-
+    console.log(tiled);
     if (tiled.width < 1000) {
       document.body.style.backgroundSize = 'auto'
       document.body.style.backgroundRepeat = 'repeat'
