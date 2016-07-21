@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const sizeOf = require('image-size')
+const sizeOf = require('image-size') // used for easily calc. img width for bg display type.
 let tree = require('./tree')
 
 const helpers = {
@@ -57,24 +57,25 @@ const helpers = {
 
   toggleBackground (backgroundImage) {
     // default background properties/
-    document.body.style.backgroundSize = 'cover'
-    document.body.style.backgroundRepeat = 'no-repeat'
-
     let tiled = sizeOf(backgroundImage)
-
-    if (tiled.width < 1000) {
-      document.body.style.backgroundSize = 'auto'
-      document.body.style.backgroundRepeat = 'repeat'
-    }
 
     // Change the image only when loaded.
     let img = new Image()
 
     img.onload = function () {
+      if (tiled.width < 1000) {
+        document.body.style.backgroundSize = 'auto'
+        document.body.style.backgroundRepeat = 'repeat'
+      } else {
+        document.body.style.backgroundSize = 'cover'
+        document.body.style.backgroundRepeat = 'no-repeat'
+      }
       document.body.style.backgroundImage = `url(${backgroundImage})`
     }
 
     img.src = backgroundImage
+    if (img.complete) img.onload()
+
   },
 
   toggleAudio (file) {

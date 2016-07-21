@@ -1,25 +1,25 @@
 let el = require('./dom-elements')
 const help = require('./helpers')
 const tree = require('./tree')
-// const audioMenu = require('./audio-menu')
 
 function createAmbientMenu () {
   createButtons()
   createListeners()
 
-  // click anywhere in the editor to disable an open menu
   el.editor.addEventListener('click', () => {
-    if (el.menubar.classList.contains('open')) { // if the ambient menu is open
-      el.menubar.classList.remove('open') // close it
-      el.openMenubar.classList.remove('display-none') // show the open menu button
-      el.mixerOpen.classList.remove('display-none') // show the mixer open btn
-      el.closeMenubar.classList.add('display-none') // hide the close menu btn.
-    } else if (el.mixer.classList.contains('open')) {
-      el.mixer.classList.remove('open') // hide mixer
-      el.openMenubar.classList.remove('display-none') // show the open menu button
-      el.mixerOpen.classList.remove('display-none') // show the open for mixer
-      el.mixerClose.classList.add('display-none') // hide the close
-    }
+    // close any open bottom level menus
+    el.menubar.classList.remove('open')
+    el.mixer.classList.remove('open')
+
+    // close the asset drawer if it's open
+    el.assetDrawer.classList.add('display-none')
+
+    // revert menu icons to what they should be
+    el.openMenubar.classList.remove('display-none') // show the open menu button
+    el.closeMenubar.classList.add('display-none') // hide the x for menu.
+
+    el.openMixer.classList.remove('display-none') // show the open for mixer
+    el.closeMixer.classList.add('display-none') // hide the close button
   })
 }
 
@@ -80,13 +80,13 @@ function createListeners () {
     el.menubar.classList.toggle('open')
     el.openMenubar.classList.toggle('display-none')
     el.closeMenubar.classList.toggle('display-none')
-    el.mixerOpen.classList.add('display-none')
+    el.openMixer.classList.add('display-none')
   })
 
   el.closeMenubar.addEventListener('click', () => {
     el.menubar.classList.toggle('open')
     el.menubar.classList.remove('extend')
-    el.mixerOpen.classList.remove('display-none')
+    el.openMixer.classList.remove('display-none')
 
     el.editor.focus()
 

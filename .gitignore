@@ -38,3 +38,5 @@ testfile.txt
 
 jsconfig.json
 media
+.vscode
+documentation

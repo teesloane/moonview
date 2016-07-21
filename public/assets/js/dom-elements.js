@@ -40,8 +40,8 @@ const el = {
   },
 
   // mixer Menu //
-  mixerOpen: document.getElementById('mixer-open'),
-  mixerClose: document.getElementById('mixer-close'),
+  openMixer: document.getElementById('mixer-open'),
+  closeMixer: document.getElementById('mixer-close'),
   mixer: document.getElementById('mixer')
 
 }
