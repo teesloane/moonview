@@ -456,3 +456,20 @@ button {
 
 #mixer input[type=range]:focus {
   outline: none; }
+
+.preferences {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  font-weight: thin;
+  font-size: 13px; }
+  .preferences .row {
+    min-height: 40px;
+    padding: 10px 0;
+    border-bottom: 1px solid #dedede; }
+    .preferences .row:hover {
+      background: #dfe8f4; }
+  .preferences .editor-width {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; }
