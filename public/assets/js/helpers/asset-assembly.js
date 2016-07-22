@@ -55,7 +55,6 @@ const helpers = {
   toggleFonts(font) {
     let editor = document.getElementById('editor')
     editor.style.fontFamily = font
-    console.log(font)
   },
 
   toggleBackground(backgroundImage) {
@@ -77,7 +76,6 @@ const helpers = {
 
       // Get avg brightness of image and change font color accordingly
       let brightness = monoThief(img)
-      console.log(brightness)
       if (brightness < 80) {
         el.editor.style.color = '#fff';
       } else {
