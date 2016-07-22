@@ -1,6 +1,6 @@
-let el = require('./dom-elements')
-const help = require('./helpers')
-const tree = require('./tree')
+let el = require('../helpers/dom-elements')
+const assemble = require('../helpers/asset-assembly')
+const tree = require('../helpers/tree')
 
 function createAmbientMenu () {
   createButtons()
@@ -25,11 +25,11 @@ function createAmbientMenu () {
 
 function createButtons () {
   // create audio buttons
-  help.walk(tree.audio, ['.wav', '.mp3'], (assetList, count) => {
-    help.createButtons(assetList, count, el.loopButtons, count + 1, 'loop', help.toggleAudio)
+  assemble.walk(tree.audio, ['.wav', '.mp3'], (assetList, count) => {
+    assemble.createButtons(assetList, count, el.loopButtons, count + 1, 'loop', assemble.toggleAudio)
   })
 
-  help.createCancelButton(el.loopCancel, 'loop', function () {
+  assemble.createCancelButton(el.loopCancel, 'loop', function () {
     if (tree.selectedAudio !== '') {
       tree.selectedAudio.pause()
     }
@@ -41,11 +41,11 @@ function createButtons () {
   })
 
   // create background buttons
-  help.walk(tree.bg, ['.jpeg', '.jpg', '.png'], (assetList, count) => {
-    help.createButtons(assetList, count, el.backgroundButtons, count + 1, 'bg', help.toggleBackground)
+  assemble.walk(tree.bg, ['.jpeg', '.jpg', '.png'], (assetList, count) => {
+    assemble.createButtons(assetList, count, el.backgroundButtons, count + 1, 'bg', assemble.toggleBackground)
   })
 
-  help.createCancelButton(el.backgroundCancel, 'background', function () {
+  assemble.createCancelButton(el.backgroundCancel, 'background', function () {
     document.body.style.background = tree.defaultBackground
 
     el.backgroundButtons.childNodes.forEach(function (child) {
@@ -54,16 +54,16 @@ function createButtons () {
   })
 
   // create font buttons
-  help.walk(tree.fonts, null, (assetList, count) => {
-    help.createButtons(assetList, count, el.fontButtons, count + 1, 'font', help.toggleFonts)
+  assemble.walk(tree.fonts, null, (assetList, count) => {
+    assemble.createButtons(assetList, count, el.fontButtons, count + 1, 'font', assemble.toggleFonts)
   })
 
   // Create field recording buttons:
-  help.walk(tree.fieldRecordings, ['.wav', '.mp3'], (assetList, count) => {
-    help.createButtons(assetList, count, el.fieldRecordingButtons, count + 1, 'fieldRecording', help.toggleFieldRecording)
+  assemble.walk(tree.fieldRecordings, ['.wav', '.mp3'], (assetList, count) => {
+    assemble.createButtons(assetList, count, el.fieldRecordingButtons, count + 1, 'fieldRecording', assemble.toggleFieldRecording)
   })
 
-  help.createCancelButton(el.fieldRecordingCancel, 'fieldRecording', function () {
+  assemble.createCancelButton(el.fieldRecordingCancel, 'fieldRecording', function () {
     if (tree.selectedFieldRecording !== '') {
       tree.selectedFieldRecording.pause()
     }

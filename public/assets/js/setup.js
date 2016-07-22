@@ -1,6 +1,6 @@
-const createAppMenu = require('./menu-app')
-const createAmbientMenu = require('./menu-ambient')
-const createMixer = require('./menu-mixer')
+const createAppMenu = require('./core/menu-app')
+const createAmbientMenu = require('./core/menu-ambient')
+const createMixer = require('./core/menu-mixer')
 
 const setup = function () {
   createAppMenu()

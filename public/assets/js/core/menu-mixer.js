@@ -1,4 +1,4 @@
-const el = require('./dom-elements')
+const el = require('../helpers/dom-elements')
 
 function createMixer () {
   bindListeners()
