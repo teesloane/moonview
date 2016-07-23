@@ -457,19 +457,41 @@ button {
 #mixer input[type=range]:focus {
   outline: none; }
 
+.header {
+  background: #464646;
+  color: #dfe8f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: 100;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12); }
+  .header h1 {
+    font-size: 14px; }
+
 .preferences {
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   font-weight: thin;
-  font-size: 13px; }
+  font-size: 13px;
+  justify-content: space-between; }
   .preferences .row {
-    min-height: 40px;
-    padding: 10px 0;
-    border-bottom: 1px solid #dedede; }
+    display: flex;
+    flex-grow: 1;
+    padding: 10px;
+    justify-content: space-between;
+    border-bottom: 1px solid #dedede;
+    align-items: center; }
     .preferences .row:hover {
       background: #dfe8f4; }
-  .preferences .editor-width {
-    display: flex;
-    justify-content: space-around;
-    align-items: center; }
+  .preferences .label {
+    color: #505050; }
+  .preferences .value {
+    width: 80px; }
+    .preferences .value input {
+      width: inherit; }

@@ -1,24 +1,46 @@
+.header {
+  background: rgb(70, 70, 70);
+  color: rgb(223, 232, 244);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: 100;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  h1 {
+    font-size: 14px;
+  }
+}
+
 .preferences {
-  // width: 90%;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  flex-grow:1;
   font-weight: thin;
   font-size: 13px;
-  // align-items: center;
-
+  justify-content: space-between;
   .row {
-    min-height: 40px;
-    padding: 10px 0;
+    display: flex;
+    flex-grow: 1;
+    padding: 10px;
+    justify-content: space-between;
     border-bottom: 1px solid rgb(222, 222, 222);
+    align-items: center;
     &:hover {
       background: rgb(223, 232, 244);
     }
   }
-
-  .editor-width {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  .label {
+    color: rgb(80, 80, 80);
+  }
+  .value {
+    width: 80px;
+    input {
+      width: inherit;
+    }
   }
 }
