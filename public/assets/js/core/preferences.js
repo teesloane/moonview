@@ -12,6 +12,8 @@ const preferences = {
   }
 }
 console.log(el.fontSize)
-el.fontSize.addEventListener('change', preferences.fontSize(el.fontSize.value))
+el.fontSize.addEventListener('change', () => {
+  preferences.fontSize(el.fontSize.value)
+})
 
 module.exports = preferences
