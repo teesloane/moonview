@@ -1,3 +1,5 @@
+const el = require('../helpers/dom-elements')
+console.log(el)
 const defaultSettings = {
   fontSize: 12
 }
@@ -36,7 +38,10 @@ let settings = {
 // All DOM related changes happen here. 
 function updateDependencies() {
   let userSettings = settings.getSettings()
-  console.log('update dependencies called, settings is: ', userSettings)
+  console.log('update dependencies called, settings is: ', userSettings, el)
+  let editor = document.getElementById('editor')
+  console.log(editor)
+  editor.style.fontSize = userSettings.fontSize
 }
 
 module.exports = settings
