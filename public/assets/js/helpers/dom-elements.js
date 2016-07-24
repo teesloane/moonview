@@ -42,8 +42,11 @@ const el = {
   // mixer Menu //
   openMixer: document.getElementById('mixer-open'),
   closeMixer: document.getElementById('mixer-close'),
-  mixer: document.getElementById('mixer')
+  mixer: document.getElementById('mixer'),
 
+  // Preferences Window //
+
+  fontSize : document.getElementById('pref-font-size')
 }
 
 module.exports = el

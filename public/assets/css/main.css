@@ -469,7 +469,8 @@ button {
   font-weight: 100;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12); }
   .header h1 {
-    font-size: 14px; }
+    font-size: 14px;
+    letter-spacing: 2px; }
 
 .preferences {
   width: 100%;
@@ -483,7 +484,7 @@ button {
   .preferences .row {
     display: flex;
     flex-grow: 1;
-    padding: 10px;
+    padding: 0px 20px;
     justify-content: space-between;
     border-bottom: 1px solid #dedede;
     align-items: center; }

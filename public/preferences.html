@@ -1,8 +1,11 @@
+<!DOCTYPE html>
+
 <head>
   <meta charset="UTF-8">
   <title>Preferences</title>
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/ionicons.css">
+
 </head>
 
 <body>
@@ -16,7 +19,7 @@
     <section class="row">
       <div class="label">Font Size</div>
       <div class="value">
-        <input type="number">
+        <input id="pref-font-size" value="12" min="6" max="72" type="number">
       </div>
     </section>
 
@@ -43,3 +46,6 @@
   <!-- Font Controls-->
 
 </body>
+  <script>require('./assets/js/core/preferences.js')</script>
+
+</html>
