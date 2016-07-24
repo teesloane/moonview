@@ -500,7 +500,8 @@ button {
       letter-spacing: 2px;
       padding-left: 20px; }
     .preferences .header span {
-      padding-right: 20px; }
+      padding-right: 20px;
+      cursor: pointer; }
   .preferences .settings {
     width: 100%;
     margin: 0 auto;

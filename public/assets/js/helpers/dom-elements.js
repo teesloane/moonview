@@ -46,7 +46,8 @@ const el = {
 
   // Preferences Window //
   preferences: document.getElementById('preferences'),
-  fontSize : document.getElementById('pref-font-size')
+  fontSize : document.getElementById('pref-font-size'),
+  closePreferences: document.getElementById('close-preferences')
 }
 
 module.exports = el

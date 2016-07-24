@@ -46,9 +46,14 @@ function updateDependencies() {
 
 
 // Preference Window Event Listeners (Change the Settings)
+el.closePreferences.addEventListener('click', () => {
+  el.preferences.classList.toggle('display-none')
+})
 
 el.fontSize.addEventListener('change', () => {
   settings.updateSettings('fontSize', el.fontSize.value)
 })
+
+
 
 module.exports = settings
