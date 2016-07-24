@@ -1,7 +1,8 @@
-const {remote} = require('electron')
+const {remote, ipcRenderer} = require('electron')
 const {Menu, MenuItem} = remote
 const file = require('./file-io')
-const pref = require('./preferences')
+// const pref = require('./preferences')
+
 
 const template = [
   {
@@ -67,7 +68,7 @@ const template = [
       {
         label: 'Preferences',
         accelerator: 'CmdOrCtrl+,',
-        click () { pref.open() }
+        click () { ipcRenderer.send('display-prefs') }
       }
     ]
   },

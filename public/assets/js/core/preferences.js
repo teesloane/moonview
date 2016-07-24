@@ -2,32 +2,16 @@ const BrowserWindow = require('electron').remote.BrowserWindow
 const path = require('path')
 const template = path.join(__dirname, '../../../preferences.html')
 const el = require('../helpers/dom-elements')
+const settings = require('./settings')
 
-let prefWindow = null
-
+console.log(el, settings)
 
 const preferences = {
-  // open the preferences window
-  open () {
-    if (prefWindow !== null) return
-
-    prefWindow = new BrowserWindow({
-      width: 300,
-      height: 300,
-      show: false,
-      resizable: false
-    })
-
-    prefWindow.once('ready-to-show', () => {
-      prefWindow.show()
-    })
-
-    prefWindow.on('closed', () => { prefWindow = null })
-
-    // prefWindow.setMenu(null)
-    
-    prefWindow.loadURL(`file://${template}`)
-  },
+  fontSize (value) {
+    console.log(value)
+  }
 }
+console.log(el.fontSize)
+el.fontSize.addEventListener('change', preferences.fontSize(el.fontSize.value))
 
 module.exports = preferences
