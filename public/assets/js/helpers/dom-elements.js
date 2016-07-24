@@ -45,7 +45,7 @@ const el = {
   mixer: document.getElementById('mixer'),
 
   // Preferences Window //
-
+  preferences: document.getElementById('preferences'),
   fontSize : document.getElementById('pref-font-size')
 }
 

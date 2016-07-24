@@ -1,47 +1,64 @@
-.header {
-  background: rgb(70, 70, 70);
-  color: rgb(223, 232, 244);
+#preferences {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80px;
-  width: 100%;
-  text-transform: uppercase;
-  font-weight: 100;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-  h1 {
-    font-size: 14px;
-    letter-spacing: 2px;
-  }
 }
 
 .preferences {
-  width: 100%;
-  margin: 0 auto;
+  width: 300px;
+  height: 200px;
+  background: white;
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  flex-grow:1;
-  font-weight: thin;
-  font-size: 13px;
-  justify-content: space-between;
-  .row {
+  .header {
+    background: rgb(70, 70, 70);
+    color: rgb(223, 232, 244);
     display: flex;
-    flex-grow: 1;
-    padding: 0px 20px;
     justify-content: space-between;
-    border-bottom: 1px solid rgb(222, 222, 222);
     align-items: center;
-    &:hover {
-      background: rgb(223, 232, 244);
+    min-height: 60px;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 100;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    h1 {
+      font-size: 14px;
+      letter-spacing: 2px;
+      padding-left: 20px;
+    }
+    span {
+      padding-right: 20px;
     }
   }
-  .label {
-    color: rgb(80, 80, 80);
-  }
-  .value {
-    width: 80px;
-    input {
-      width: inherit;
+  .settings {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    font-weight: thin;
+    font-size: 13px;
+    justify-content: space-between;
+    .row {
+      display: flex;
+      flex-grow: 1;
+      padding: 0px 20px;
+      justify-content: space-between;
+      border-bottom: 1px solid rgb(222, 222, 222);
+      align-items: center;
+      &:hover {
+        background: rgb(223, 232, 244);
+      }
+    }
+    .label {
+      color: rgb(80, 80, 80);
+    }
+    .value {
+      width: 80px;
+      input {
+        width: inherit;
+      }
     }
   }
 }

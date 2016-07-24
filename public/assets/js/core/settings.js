@@ -9,6 +9,7 @@ let settings = {
   setDefault() {
     if (!localStorage.userSettings) {
       localStorage.setItem('userSettings', JSON.stringify(defaultSettings))
+      updateDependencies()
       console.log('user defaults were set')
     } else {
       console.log('user settings already exist they are: ', JSON.parse(localStorage.getItem('userSettings')))
@@ -38,10 +39,16 @@ let settings = {
 // All DOM related changes happen here. 
 function updateDependencies() {
   let userSettings = settings.getSettings()
-  console.log('update dependencies called, settings is: ', userSettings, el)
-  let editor = document.getElementById('editor')
-  console.log(editor)
-  editor.style.fontSize = userSettings.fontSize
+  console.log('update dependencies called, settings is: ', userSettings )
+  el.editor.style.fontSize = parseInt(userSettings.fontSize)
+  console.log(el.editor)
 }
+
+
+// Preference Window Event Listeners (Change the Settings)
+
+el.fontSize.addEventListener('change', () => {
+  settings.updateSettings('fontSize', el.fontSize.value)
+})
 
 module.exports = settings

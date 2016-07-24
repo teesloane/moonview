@@ -31,26 +31,6 @@ function createWindow() {
   })
 }
 
-// open the preferences window on ipc message.
-ipcMain.on('display-prefs', () => {
-  if (prefWindow !== undefined) return
-  prefWindow = new BrowserWindow({
-    width: 300,
-    height: 300,
-    show: true,
-    resizable: false,
-    parent: mainWindow
-  })
-
-  prefWindow.loadURL(`file://${__dirname}/public/preferences.html`)
-
-  prefWindow.on('closed', () => {
-    prefWindow = undefined
-  })
-})
-
-
-
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

@@ -1,6 +1,7 @@
 const {remote, ipcRenderer} = require('electron')
 const {Menu, MenuItem} = remote
 const file = require('./file-io')
+const el = require('../helpers/dom-elements')
 // const pref = require('./preferences')
 
 
@@ -68,7 +69,7 @@ const template = [
       {
         label: 'Preferences',
         accelerator: 'CmdOrCtrl+,',
-        click () { ipcRenderer.send('display-prefs') }
+        click () { el.preferences.classList.toggle('display-none') }
       }
     ]
   },
