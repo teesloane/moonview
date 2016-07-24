@@ -11,9 +11,9 @@ let settings = {
       localStorage.setItem('userSettings', JSON.stringify(defaultSettings))
       updateDependencies()
       console.log('user defaults were set')
-    } else {
-      console.log('user settings already exist they are: ', JSON.parse(localStorage.getItem('userSettings')))
-    }
+    } 
+
+    updateDependencies()
   },
 
   // helper to get the settings as an object from local storage
@@ -22,6 +22,7 @@ let settings = {
   },
 
   updateSettings (attr, value) {
+    console.log('updated settings called')
     // convert ls to an obj
     let settings = this.getSettings()
 
@@ -39,17 +40,19 @@ let settings = {
 // All DOM related changes happen here. 
 function updateDependencies() {
   let userSettings = settings.getSettings()
-  console.log('update dependencies called, settings is: ', userSettings )
-  el.editor.style.fontSize = parseInt(userSettings.fontSize)
-  console.log(el.editor)
+  el.fontSize.value = userSettings.fontSize
+  el.editor.style.fontSize = userSettings.fontSize + "px"
 }
 
 
 // Preference Window Event Listeners (Change the Settings)
+
+// close the prefs modal
 el.closePreferences.addEventListener('click', () => {
   el.preferences.classList.toggle('display-none')
 })
 
+// change font size
 el.fontSize.addEventListener('change', () => {
   settings.updateSettings('fontSize', el.fontSize.value)
 })
