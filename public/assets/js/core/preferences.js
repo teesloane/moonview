@@ -5,6 +5,7 @@ const el = require('../helpers/dom-elements')
 
 let prefWindow = null
 
+
 const preferences = {
   // open the preferences window
   open () {
@@ -27,16 +28,6 @@ const preferences = {
     
     prefWindow.loadURL(`file://${template}`)
   },
-
-
-  fontSize () {
-    el.editor.style.fontSize = el.fontSize.value
-  }
 }
-
-// double listening for font changes.
-el.fontSize.addEventListener('change', preferences.fontSize)
-el.fontSize.addEventListener('blur', preferences.fontSize)
-
 
 module.exports = preferences
