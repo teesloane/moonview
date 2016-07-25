@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>MoonView</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/ionicons.css">
+</head>
+
+<body>
+
+  <main id="page">
+    <textarea autofocus id="editor" name="editor" rows="8" cols="40"></textarea>
+  </main>
+
+  <!-- Menu Toggles -->
+  <button id="menu-open"><i class="ion-android-menu _icon small gray"></i></button>
+  <button id="menu-close" class="display-none"><i class="ion-android-close _icon small white"></i></button>
+
+  <button id="mixer-open"><i class="ion-android-volume-down _icon small gray"></i></button>
+  <button id="mixer-close" class="display-none"><i class="ion-android-close _icon small gray"></i></button>
+
+  <!--Editor Menu -->
+  <aside id="editor-controls">
+    <!-- TODO: change the selector from id to a query for class -->
+
+    <!-- Second Drawer -->
+    <div id="asset-drawer" class="asset-drawer display-none">
+
+      <!-- Muzak -->
+      <div id="muzak-assets" class="asset-row display-none">
+        <div id="loop-buttons"></div>
+        <div id="loop-cancel"></div>
+      </div>
+
+      <!-- Wallpapers -->
+      <div id="wallpaper-assets" class="asset-row display-none">
+        <div id="background-buttons"></div>
+        <div id="background-cancel"></div>
+      </div>
+
+      <!-- Typeface -->
+      <div id="typeface-assets" class="asset-row display-none">
+        <div id="font-buttons"></div>
+        <div id="font-cancel"></div>
+      </div>
+
+      <!-- Field Recordings -->
+      <div id="fieldrecording-assets" class="asset-row display-none">
+        <div id="fieldrecording-buttons"></div>
+        <div id="fieldrecording-cancel"></div>
+      </div>
+    </div>
+
+    <!-- Menu Buttons -->
+    <div id="button-drawer" class="button-drawer">
+      <button class="button-drawer-style" id="open-muzak">muzak</button>
+      <button class="button-drawer-style" id="open-fieldrecording">sounds</button>
+      <button class="button-drawer-style" id="open-wallpaper">wallpaper</button>
+      <button class="button-drawer-style" id="open-typeface">type</button>
+    </div>
+
+  </aside>
+
+  <!-- Audio Menu -->
+  <aside id="mixer" class="button-drawer">
+    <div class="slider-container">
+      <span class="slider-text">Muzak</span>
+      <input id="muzak-slider" class="volume-slider" type="range" min="0" max="100" />
+    </div>
+
+    <div class="slider-container">
+      <span class="slider-text">Sounds</span>
+      <input id="fieldrecording-slider" class="volume-slider" type="range" min="0" max="100" />
+    </div>
+
+  </aside>
+
+
+  <aside id="preferences" class="modal display-none">
+
+
+    <div class="preferences">
+
+      <section class="header">
+        <h1>Preferences</h1>
+        <span id="close-preferences"><i class="ion-android-close _icon small gray"></i></span>
+      </section>
+
+      <section class="settings">
+        <!-- Font Size -->
+        <section class="row">
+          <div class="label">Font Size</div>
+          <div class="value">
+            <input id="pref-font-size" value="12" min="6" max="72" type="number">
+          </div>
+        </section>
+
+        <!-- Editor Width -->
+        <section class="row">
+          <div class="label">Editor Width</div>
+          <div class="value">
+            <input id="pref-editor-width" min="10" type="range">
+          </div>
+        </section>
+
+      </section>
+    </div>
+  </aside>
+
+</body>
+
+<script>
+  require('../renderer.js')
+  require('./assets/js/setup.js')
+</script>
+
+</html>
