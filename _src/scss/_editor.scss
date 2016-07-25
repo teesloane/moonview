@@ -17,4 +17,7 @@ textarea {
   @media(min-width: 1000px) {
     width: 50%;
   }
+
+  //TODO find a way to push the scrollbar to the right side of the editor.
+  margin: 5% auto;
 }

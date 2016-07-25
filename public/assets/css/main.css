@@ -320,7 +320,8 @@ textarea {
   resize: none;
   width: 70%;
   margin: 0 auto;
-  border: 0; }
+  border: 0;
+  margin: 5% auto; }
   @media (min-width: 1000px) {
     textarea {
       width: 50%; } }
