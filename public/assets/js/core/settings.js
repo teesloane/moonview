@@ -1,7 +1,8 @@
 const el = require('../helpers/dom-elements')
 console.log(el)
 const defaultSettings = {
-  fontSize: 12
+  fontSize: 12,
+  editorWidth: 70
 }
 
 let settings = {
@@ -22,7 +23,7 @@ let settings = {
   },
 
   updateSettings (attr, value) {
-    console.log('updated settings called')
+    console.log('update called on: attr:', attr, "and val: ", value)
     // convert ls to an obj
     let settings = this.getSettings()
 
@@ -37,11 +38,15 @@ let settings = {
   }
 }
 
-// All DOM related changes happen here. 
+// Update DOM things dependening on settings' value
 function updateDependencies() {
   let userSettings = settings.getSettings()
+
   el.fontSize.value = userSettings.fontSize
   el.editor.style.fontSize = userSettings.fontSize + "px"
+
+  el.editorWidth.value = userSettings.editorWidth
+  el.editor.style.width = userSettings.editorWidth + "%"
 }
 
 
@@ -55,6 +60,12 @@ el.closePreferences.addEventListener('click', () => {
 // change font size
 el.fontSize.addEventListener('change', () => {
   settings.updateSettings('fontSize', el.fontSize.value)
+})
+
+// change editor width
+
+el.editorWidth.addEventListener('change', () => {
+  settings.updateSettings('editorWidth', el.editorWidth.value)
 })
 
 
