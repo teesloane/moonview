@@ -1,6 +1,5 @@
 const fs = require('fs')
 const {dialog} = require('electron').remote
-const settings = require('./settings')
 
 let file = {
   currentFile: undefined ,

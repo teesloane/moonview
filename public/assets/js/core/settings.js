@@ -6,8 +6,6 @@ const defaultSettings = {
   autoSave: false
 }
 
-
-
 let settings = {
 
   setDefault() {
@@ -53,16 +51,8 @@ let settings = {
     el.editorWidth.value = userSettings.editorWidth
     el.editor.style.width = userSettings.editorWidth + "%"
 
-
-    //autosave logic:
-    // if a file hasn't been saved don't pester a person to save
-    // once a file has been saved for the first time, updateDependencies will be called and passed the new file.
-    // console.log('the current file is', theFile, 'auto save is set to ', userSettings.autoSave)
-    // ...
-    el.autoSave.checked = userSettings.autoSave
   }
 }
-
 
 // Preference Window Event Listeners (Change the Settings)
 
@@ -81,12 +71,5 @@ el.fontSize.addEventListener('change', () => {
 el.editorWidth.addEventListener('change', () => {
   settings.updateSettings('editorWidth', el.editorWidth.value)
 })
-
-//  enable auto save
-
-el.autoSave.addEventListener('change', () => {
-  settings.updateSettings('autoSave', el.autoSave.checked)
-})
-
 
 module.exports = settings
