@@ -289,6 +289,22 @@ body {
 .invisible {
   visibility: hidden; }
 
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */ }
+
+.modal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px; }
+
 #editor {
   display: flex;
   align-items: center;
@@ -305,7 +321,7 @@ textarea {
   width: 70%;
   margin: 0 auto;
   border: 0;
-  font-size: 14px; }
+  margin: 5% auto; }
   @media (min-width: 1000px) {
     textarea {
       width: 50%; } }
@@ -456,3 +472,58 @@ button {
 
 #mixer input[type=range]:focus {
   outline: none; }
+
+#preferences {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.preferences {
+  width: 300px;
+  height: 200px;
+  background: white;
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column; }
+  .preferences .header {
+    background: #464646;
+    color: #dfe8f4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 60px;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 100;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12); }
+    .preferences .header h1 {
+      font-size: 14px;
+      letter-spacing: 2px;
+      padding-left: 20px; }
+    .preferences .header span {
+      padding-right: 20px;
+      cursor: pointer; }
+  .preferences .settings {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    font-weight: thin;
+    font-size: 13px;
+    justify-content: space-between; }
+    .preferences .settings .row {
+      display: flex;
+      flex-grow: 1;
+      padding: 0px 20px;
+      justify-content: space-between;
+      border-bottom: 1px solid #dedede;
+      align-items: center; }
+      .preferences .settings .row:hover {
+        background: #dfe8f4; }
+    .preferences .settings .label {
+      color: #505050; }
+    .preferences .settings .value {
+      width: 80px; }
+      .preferences .settings .value input {
+        width: inherit; }

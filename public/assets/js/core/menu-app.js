@@ -1,6 +1,9 @@
-const {remote} = require('electron')
+const {remote, ipcRenderer} = require('electron')
 const {Menu, MenuItem} = remote
 const file = require('./file-io')
+const el = require('../helpers/dom-elements')
+// const pref = require('./preferences')
+
 
 const template = [
   {
@@ -62,6 +65,11 @@ const template = [
         label: 'Select All',
         accelerator: 'CmdOrCtrl+A',
         role: 'selectall'
+      },
+      {
+        label: 'Preferences',
+        accelerator: 'CmdOrCtrl+,',
+        click () { el.preferences.classList.toggle('display-none') }
       }
     ]
   },
