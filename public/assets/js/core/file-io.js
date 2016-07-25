@@ -1,16 +1,11 @@
-/**
-  - purpose: provide functions for standard file operations:
-    - open(), save(), new() etc.
-*/
-
 const fs = require('fs')
-const {
-  dialog
-} = require('electron').remote
+const {dialog} = require('electron').remote
+const settings = require('./settings')
 
-let currentFile
+let file = {
+  currentFile: undefined ,
 
-const file = {
+  //todo: if file is unsaved when trying to open, prompt first. 
   open () {
     dialog.showOpenDialog({
       // dialog options
@@ -28,8 +23,7 @@ const file = {
       fs.readFile(file, 'utf-8', function (err, data) {
         if (err) throw err
         document.getElementById('editor').value = data
-        currentFile = file
-        // TODO: alert that file was saved
+        file.currentFile = file
       })
     })
   },
@@ -49,7 +43,7 @@ const file = {
     function (fileOut) {
       if (fileOut === undefined) return
       fs.writeFile(fileOut, document.getElementById('editor').value, function (err) {
-        currentFile = fileOut
+        file.currentFile = fileOut
         if (err) throw err
       })
     })
@@ -57,12 +51,13 @@ const file = {
 
   save () {
     // if file hasn't been saved, run saveAs()
-    if (!currentFile) {
-      this.saveAs()
+    if (file.currentFile === undefined) {
+      file.saveAs()
     } else {
-      fs.writeFile(currentFile.toString(), document.getElementById('editor').value, function (err) {
+      fs.writeFile(file.currentFile.toString(), document.getElementById('editor').value, function (err) {
         if (err) throw err
       })
+      console.log('file saved')
     }
   },
 
@@ -70,7 +65,7 @@ const file = {
     let editor = document.getElementById('editor')
 
     // check for text in editor that is not from an opened file.
-    if (currentFile === undefined && editor.value !== '') {
+    if (file.currentFile === undefined && editor.value !== '') {
       dialog.showMessageBox({
         type: 'warning',
         buttons: ['Cancel', 'New File'],
@@ -79,13 +74,13 @@ const file = {
       }, function (rdata) {
         if (rdata === 1) {
           document.getElementById('editor').value = ''
-          currentFile = undefined
+          file.currentFile = undefined
         }
       })
     // check if the current file is defined and needs to be diffed from the HDD file.
-    } else if (currentFile !== undefined) {
+    } else if (file.currentFile !== undefined) {
     // If there is a current file, compare it with what's in the eidtor
-      fs.readFile(currentFile, 'utf-8', function (err, data) {
+      fs.readFile(file.currentFile, 'utf-8', function (err, data) {
         if (err) throw err
         if (editor.value !== data) {
           dialog.showMessageBox({
@@ -97,18 +92,18 @@ const file = {
             // if user selects "new file" as decided by returned array of choices.
             if (rdata === 1) {
               document.getElementById('editor').value = ''
-              currentFile = undefined
+              file.currentFile = undefined
             }
           })
         // if the diff between the editor / hdd instance are the same; create a new file with no prompt.
         } else {
           document.getElementById('editor').value = ''
-          currentFile = undefined
+          file.currentFile = undefined
         }
       })
     } else {
       document.getElementById('editor').value = ''
-      currentFile = undefined
+      file.currentFile = undefined
     }
   }
 
