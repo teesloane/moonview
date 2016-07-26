@@ -1,5 +1,4 @@
 const el = require('../helpers/dom-elements')
-const file = require('./file-io')
 const defaultSettings = {
   fontSize: 12,
   editorWidth: 70,
@@ -8,10 +7,10 @@ const defaultSettings = {
 
 let settings = {
 
-  setDefault() {
+  setDefault () {
     if (!localStorage.userSettings) {
       localStorage.setItem('userSettings', JSON.stringify(defaultSettings))
-      updateDependencies()
+      this.updateDependencies()
       console.log('user defaults were set')
     }
 
@@ -19,12 +18,12 @@ let settings = {
   },
 
   // helper to get the settings as an object from local storage
-  getSettings() {
+  getSettings () {
     return JSON.parse(localStorage.getItem('userSettings'))
   },
 
-  updateSettings(attr, value) {
-    console.log('update called on: attr:', attr, "and val: ", value)
+  updateSettings (attr, value) {
+    console.log('update called on: attr:', attr, 'and val: ', value)
       // convert ls to an obj
     let settings = this.getSettings()
 
@@ -41,16 +40,14 @@ let settings = {
   saveIt: undefined,
 
   // update dom settings based on changes to prefs window
-  updateDependencies() {
-
+  updateDependencies () {
     let userSettings = settings.getSettings()
 
     el.fontSize.value = userSettings.fontSize
-    el.editor.style.fontSize = userSettings.fontSize + "px"
+    el.editor.style.fontSize = userSettings.fontSize + 'px'
 
     el.editorWidth.value = userSettings.editorWidth
-    el.editor.style.width = userSettings.editorWidth + "%"
-
+    el.editor.style.width = userSettings.editorWidth + '%'
   }
 }
 

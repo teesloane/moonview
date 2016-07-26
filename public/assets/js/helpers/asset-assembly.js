@@ -5,13 +5,12 @@ const monoThief = require('./monochrome-thief')
 const el = require('./dom-elements')
 let tree = require('./tree')
 
-
 const helpers = {
   // gets a flat array of a dir; calls an action on each file.
-  walk(dir, fileTypes, action) {
+  walk (dir, fileTypes, action) {
     // if `action` a fn, make it so.
     if (typeof action !== 'function') {
-      action = function(error, file) {
+      action = function (error, file) {
         if (error) throw error
       }
     }
@@ -28,7 +27,7 @@ const helpers = {
         action(assetList, i)
       }
     } else {
-      fs.readdir(dir, function(err, list) {
+      fs.readdir(dir, function (err, list) {
         if (err) throw err
 
         // loop through each file, and check if extension name is of the right type.
@@ -52,19 +51,19 @@ const helpers = {
     }
   },
 
-  toggleFonts(font) {
+  toggleFonts (font) {
     let editor = document.getElementById('editor')
     editor.style.fontFamily = font
   },
 
-  toggleBackground(backgroundImage) {
+  toggleBackground (backgroundImage) {
     // default background properties/
     let tiled = sizeOf(backgroundImage)
 
     // Change the image only when loaded.
     let img = new Image()
 
-    img.onload = function() {
+    img.onload = function () {
       if (tiled.width < 1000) {
         document.body.style.backgroundSize = 'auto'
         document.body.style.backgroundRepeat = 'repeat'
@@ -77,18 +76,17 @@ const helpers = {
       // Get avg brightness of image and change font color accordingly
       let brightness = monoThief(img)
       if (brightness < 80) {
-        el.editor.style.color = '#fff';
+        el.editor.style.color = '#fff'
       } else {
-        el.editor.style.color = 'black';
+        el.editor.style.color = 'black'
       }
     }
 
     img.src = backgroundImage
     if (img.complete) img.onload()
-
   },
 
-  toggleAudio(file) {
+  toggleAudio (file) {
     let audio = new Audio(file)
 
     if (tree.selectedAudio.currentTime > 0) { // if file is playing
@@ -105,7 +103,7 @@ const helpers = {
     })
   },
 
-  toggleFieldRecording(file) {
+  toggleFieldRecording (file) {
     let audio = new Audio(file)
 
     if (tree.selectedFieldRecording.currentTime > 0) {
@@ -122,7 +120,7 @@ const helpers = {
     })
   },
 
-  createButtons(assetList, timesCalled, mount, text, type, action) {
+  createButtons (assetList, timesCalled, mount, text, type, action) {
     // callback block; runs for every file in `assetList`
     mount.innerHTML += `<button id="${type}-${text}" class="btn gourd"> ${text} </button>`
 
@@ -140,12 +138,12 @@ const helpers = {
 
       // add an event listener to each item in `list`
       for (let i = 0; i < arr.length; i++) {
-        (function(index) { // closure for unique event listeners.
+        (function (index) { // closure for unique event listeners.
           arr[index].addEventListener('click', () => {
             action(assetList[index])
 
             // add an indicator to show which button is selected
-            arr.forEach(function(button) {
+            arr.forEach(function (button) {
               if (button.classList.contains('on')) {
                 button.classList.remove('on')
               }
@@ -158,7 +156,7 @@ const helpers = {
     }
   },
 
-  createCancelButton(mount, type, action) {
+  createCancelButton (mount, type, action) {
     mount.innerHTML += `<button id="cancel-${type}" class="btn gourd cancel"><i class="ion-android-close _icon x-small"></button>`
     mount.addEventListener('click', action)
   }

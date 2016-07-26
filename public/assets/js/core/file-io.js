@@ -2,9 +2,9 @@ const fs = require('fs')
 const {dialog} = require('electron').remote
 
 let file = {
-  currentFile: undefined ,
+  currentFile: undefined,
 
-  //todo: if file is unsaved when trying to open, prompt first. 
+  // todo: if file is unsaved when trying to open, prompt first.
   open () {
     dialog.showOpenDialog({
       // dialog options

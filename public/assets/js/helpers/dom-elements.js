@@ -47,8 +47,8 @@ const el = {
   // Preferences Window //
   preferences: document.getElementById('preferences'),
   closePreferences: document.getElementById('close-preferences'),
-  
-  fontSize : document.getElementById('pref-font-size'),
+
+  fontSize: document.getElementById('pref-font-size'),
   editorWidth: document.getElementById('pref-editor-width'),
   autoSave: document.getElementById('pref-autosave')
 }
