@@ -1,4 +1,4 @@
-const {remote} = require('electron')
+const {remote, ipcRenderer} = require('electron')
 const {Menu} = remote
 const file = require('./file-io')
 const el = require('../helpers/dom-elements')
@@ -80,6 +80,13 @@ const template = [
         accelerator: 'CmdOrCtrl+R',
         click (item, focusedWindow) {
           if (focusedWindow) focusedWindow.reload()
+        }
+      },
+      {
+        label: 'Markdown Preview',
+        accelerator: 'CmdOrCtrl+P',
+        click (item, focusedWindow) {
+          ipcRenderer.send('show-preview')
         }
       },
       {
