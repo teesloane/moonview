@@ -51,7 +51,7 @@ let settings = {
   }
 }
 
-// Preference Window Event Listeners (Change the Settings)
+/** ### Preference Window Event Listeners (Change the Settings) ### **/
 
 // close the prefs modal
 el.closePreferences.addEventListener('click', () => {
@@ -64,7 +64,6 @@ el.fontSize.addEventListener('change', () => {
 })
 
 // change editor width
-
 el.editorWidth.addEventListener('change', () => {
   settings.updateSettings('editorWidth', el.editorWidth.value)
 })

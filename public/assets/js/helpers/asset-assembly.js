@@ -18,8 +18,9 @@ const helpers = {
     // create a list of the assets in the directory
     let assetList = []
 
-    /* Sometimes this helper fn will be used on an an array instead of a directory - just to follow the same patterns as how it's used elsewhere.
-    See tree.fonts */
+    /* Sometimes this helper fn will be used on an an array instead of a directory
+    just to follow the same patterns as how it's used elsewhere.
+    ex: this is run on tree.fonts to create the font buttons; the fonts aren't files. */
     if (dir.constructor === Array) {
       assetList = dir
         // run the callback (action) on each file.
@@ -38,12 +39,21 @@ const helpers = {
           })
         })
 
+        // set max on assetList to stop from borking ui
+        // (if people drop files into the folders.)
+        if (assetList.length > 7) {
+          console.log('assetList is too long cut it down')
+          assetList = assetList.slice(0, 7)
+          console.log('new assetlist is', assetList)
+        } 
+
         // loop over the assetList and turn the files into string'd paths.
         assetList = assetList.map((file) => {
           return dir + '/' + file
         })
 
         // run the callback (action) on each file.
+           // set max here so that people can't fill a folder with 233212 files and bork everything
         for (let i = 0; i < assetList.length; i++) {
           action(assetList, i)
         }
