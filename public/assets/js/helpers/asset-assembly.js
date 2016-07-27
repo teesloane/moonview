@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const fileUrl = require('file-url')
 const sizeOf = require('image-size') // used for easily calc. img width for bg display type.
 const monoThief = require('./monochrome-thief')
 const el = require('./dom-elements')
@@ -49,7 +50,7 @@ const helpers = {
 
         // loop over the assetList and turn the files into string'd paths.
         assetList = assetList.map((file) => {
-          return dir + '/' + file
+          return path.resolve(dir, file)
         })
 
         // run the callback (action) on each file.
@@ -81,7 +82,7 @@ const helpers = {
         document.body.style.backgroundSize = 'cover'
         document.body.style.backgroundRepeat = 'no-repeat'
       }
-      document.body.style.backgroundImage = `url(${backgroundImage})`
+      document.body.style.backgroundImage = `url(${fileUrl(backgroundImage)})`
 
       // Get avg brightness of image and change font color accordingly
       let brightness = monoThief(img)
