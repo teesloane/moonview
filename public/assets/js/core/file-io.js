@@ -2,9 +2,9 @@ const fs = require('fs')
 const {dialog} = require('electron').remote
 
 let file = {
-  currentFile: undefined ,
+  currentFile: undefined,
 
-  //todo: if file is unsaved when trying to open, prompt first. 
+  // todo: if file is unsaved when trying to open, prompt first.
   open () {
     dialog.showOpenDialog({
       // dialog options
@@ -12,17 +12,17 @@ let file = {
       buttonLabel: 'Open',
       filters: [{
         name: 'Text',
-        extensions: ['txt', 'md', 'rtf']
+        extensions: ['txt', 'md']
       } // restricted file extensions.
     ]},
 
     function (filesIn) {
       if (filesIn === undefined) return
-      let file = filesIn[0] // must be 1st element of array even though only one item is selected to be opened.
-      fs.readFile(file, 'utf-8', function (err, data) {
+      let fileIn = filesIn[0] // must be 1st element of array even though only one item is selected to be opened.
+      fs.readFile(fileIn, 'utf-8', function (err, data) {
         if (err) throw err
         document.getElementById('editor').value = data
-        file.currentFile = file
+        file.currentFile = fileIn
       })
     })
   },
@@ -35,7 +35,7 @@ let file = {
       buttonLabel: 'Save',
       filters: [{
         name: 'text',
-        extensions: ['txt']
+        extensions: ['txt', 'md']
       }]
     },
       // write the file, check for errors etc.
@@ -78,9 +78,13 @@ let file = {
       })
     // check if the current file is defined and needs to be diffed from the HDD file.
     } else if (file.currentFile !== undefined) {
-    // If there is a current file, compare it with what's in the eidtor
+    // If there is a current file, compare it with what's in the editor
       fs.readFile(file.currentFile, 'utf-8', function (err, data) {
-        if (err) throw err
+        // TODO: Account for a file possibly being deleted while it's open
+        // Maybe set currentFile to undefined and recursively call this function?
+        if (err) {
+          throw err
+        } 
         if (editor.value !== data) {
           dialog.showMessageBox({
             type: 'warning',

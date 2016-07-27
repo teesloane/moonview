@@ -1,9 +1,8 @@
-const {remote, ipcRenderer} = require('electron')
-const {Menu, MenuItem} = remote
+const {remote} = require('electron')
+const {Menu} = remote
 const file = require('./file-io')
 const el = require('../helpers/dom-elements')
 // const pref = require('./preferences')
-
 
 const template = [
   {
@@ -161,7 +160,7 @@ if (process.platform === 'darwin') {
         label: 'Quitter',
         accelerator: 'Command+Q',
         click () {
-          require('electron').remote.app.quit();
+          require('electron').remote.app.quit()
         }
       }
     ]
