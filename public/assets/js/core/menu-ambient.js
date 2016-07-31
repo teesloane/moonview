@@ -6,6 +6,7 @@ function createAmbientMenu () {
   createButtons()
   createListeners()
 
+  // Dom manipulation to happen when the editor is focused on & menus are open
   el.editor.addEventListener('click', () => {
     // close any open bottom level menus
     el.menubar.classList.remove('open')
@@ -75,6 +76,7 @@ function createButtons () {
   })
 }
 
+// Listeners specific to the ambient menu
 function createListeners () {
   el.openMenubar.addEventListener('click', () => {
     el.menubar.classList.toggle('open')
@@ -84,6 +86,7 @@ function createListeners () {
   })
 
   el.closeMenubar.addEventListener('click', () => {
+    swapButtons(el.allMenuButtons, 'null')
     el.menubar.classList.toggle('open')
     el.menubar.classList.remove('extend')
     el.openMixer.classList.remove('display-none')
@@ -135,6 +138,7 @@ function swapAssets (buttonRow, exception) {
   })
 }
 
+// highlights the currently selected button.
 function swapButtons (buttonRow, exception) {
   // buttonRow.forEach((button) => { button.classList.remove('on') })
   buttonRow.forEach((button) => {
