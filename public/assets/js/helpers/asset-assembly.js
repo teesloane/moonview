@@ -1,3 +1,8 @@
+/* This file works closely with menu-ambient: it provides the logic necessary to
+walk directories, create buttons based on lists (from a dir),  add event listeners
+(with their own respective action) as callbacks, and Interact with the buttons. Ex:
+You can toggleAudio() to turn a file on or off. This file originated as a "helpers" file. */
+
 const fs = require('fs')
 const path = require('path')
 const fileUrl = require('file-url')
@@ -46,7 +51,7 @@ const helpers = {
           console.log('assetList is too long cut it down')
           assetList = assetList.slice(0, 7)
           console.log('new assetlist is', assetList)
-        } 
+        }
 
         // loop over the assetList and turn the files into string'd paths.
         assetList = assetList.map((file) => {

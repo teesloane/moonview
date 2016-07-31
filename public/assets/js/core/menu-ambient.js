@@ -1,3 +1,8 @@
+/* Assembles the menu for accessing ambient assets. Example:
+Allows a user to open the "muzak" menu, and select a track.
+The logic of the file is split between the creation of the
+buttons and dom manipulation with vanilla js */
+
 let el = require('../helpers/dom-elements')
 const assemble = require('../helpers/asset-assembly')
 const tree = require('../helpers/tree')
