@@ -22,8 +22,8 @@ const el = {
   openMuzak: document.getElementById('open-muzak'),
   muzakAssets: document.getElementById('muzak-assets'),
 
-  openWallpaper: document.getElementById('open-wallpaper'),
-  wallpaperAssets: document.getElementById('wallpaper-assets'),
+  openBackdrop: document.getElementById('open-backdrop'),
+  backdropAssets: document.getElementById('backdrop-assets'),
 
   openTypeface: document.getElementById('open-typeface'),
   typefaceAssets: document.getElementById('typeface-assets'),
@@ -32,11 +32,11 @@ const el = {
   fieldRecordingAssets: document.getElementById('fieldrecording-assets'),
 
   get allAssetButtons () {
-    return [this.muzakAssets, this.wallpaperAssets, this.typefaceAssets, this.fieldRecordingAssets]
+    return [this.muzakAssets, this.backdropAssets, this.typefaceAssets, this.fieldRecordingAssets]
   },
 
   get allMenuButtons () {
-    return [this.openMuzak, this.openWallpaper, this.openTypeface, this.openFieldRecording]
+    return [this.openMuzak, this.openBackdrop, this.openTypeface, this.openFieldRecording]
   },
 
   // mixer Menu //
