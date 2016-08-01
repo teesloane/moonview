@@ -5,6 +5,8 @@ buttons and dom manipulation with vanilla js */
 
 let el = require('../helpers/dom-elements')
 const assemble = require('../helpers/asset-assembly')
+const audio = require('./interaction/audio')
+const background = require('./interaction/background')
 const tree = require('../helpers/tree')
 
 function createAmbientMenu () {
@@ -32,7 +34,7 @@ function createAmbientMenu () {
 function createButtons () {
   // create audio buttons
   assemble.walk(tree.audio, ['.wav', '.mp3'], (assetList, count) => {
-    assemble.createButtons(assetList, count, el.loopButtons, count + 1, 'loop', assemble.toggleAudio)
+    assemble.createButtons(assetList, count, el.loopButtons, count + 1, 'loop', audio.toggleAudio)
   })
 
   assemble.createCancelButton(el.loopCancel, 'loop', function () {
@@ -48,7 +50,7 @@ function createButtons () {
 
   // create background buttons
   assemble.walk(tree.bg, ['.jpeg', '.jpg', '.png'], (assetList, count) => {
-    assemble.createButtons(assetList, count, el.backgroundButtons, count + 1, 'bg', assemble.toggleBackground)
+    assemble.createButtons(assetList, count, el.backgroundButtons, count + 1, 'bg', background.toggle)
   })
 
   assemble.createCancelButton(el.backgroundCancel, 'background', function () {
@@ -66,7 +68,7 @@ function createButtons () {
 
   // Create field recording buttons:
   assemble.walk(tree.fieldRecordings, ['.wav', '.mp3'], (assetList, count) => {
-    assemble.createButtons(assetList, count, el.fieldRecordingButtons, count + 1, 'fieldRecording', assemble.toggleFieldRecording)
+    assemble.createButtons(assetList, count, el.fieldRecordingButtons, count + 1, 'fieldRecording', audio.toggleFieldRecording)
   })
 
   assemble.createCancelButton(el.fieldRecordingCancel, 'fieldRecording', function () {
@@ -115,9 +117,9 @@ function createListeners () {
     swapAssets(el.allAssetButtons, el.muzakAssets)
   })
 
-  el.openWallpaper.addEventListener('click', () => {
-    swapButtons(el.allMenuButtons, el.openWallpaper)
-    swapAssets(el.allAssetButtons, el.wallpaperAssets)
+  el.openBackdrop.addEventListener('click', () => {
+    swapButtons(el.allMenuButtons, el.openBackdrop)
+    swapAssets(el.allAssetButtons, el.backdropAssets)
   })
 
   el.openTypeface.addEventListener('click', () => {

@@ -1,20 +1,20 @@
 /* This file works closely with menu-ambient: it provides the logic necessary to
-walk directories, create buttons based on lists (from a dir),  add event listeners
-(with their own respective action) as callbacks, and Interact with the buttons. Ex:
-You can toggleAudio() to turn a file on or off. This file originated as a "helpers" file. */
+walk directories, create buttons based on lists (from a dir), and add event listeners
+(with their own respective action) as callbacks */
 
 const fs = require('fs')
 const path = require('path')
-const fileUrl = require('file-url')
-const sizeOf = require('image-size') // used for easily calc. img width for bg display type.
-const monoThief = require('./monochrome-thief')
-const el = require('./dom-elements')
-let tree = require('./tree')
 
 const helpers = {
-  // gets a flat array of a dir; calls an action on each file.
+
+  /* Walk is used for interacting with a directory.
+    Parameters:
+      Dir: The directory to walk. Usu. a string of the path, edge case: array (assembling Fonts.)
+      fileTypes: the files that will be accepted, and the paths of which will be put into an array
+      Action: Function to invoke on each file in the directory.
+  */
   walk (dir, fileTypes, action) {
-    // if `action` a fn, make it so.
+    // check to see if action if not a function; if so, make it one (that throws an error)
     if (typeof action !== 'function') {
       action = function (error, file) {
         if (error) throw error
@@ -24,7 +24,7 @@ const helpers = {
     // create a list of the assets in the directory
     let assetList = []
 
-    /* Sometimes this helper fn will be used on an an array instead of a directory
+    /* Sometimes this fn will be used on an an array instead of a directory
     just to follow the same patterns as how it's used elsewhere.
     ex: this is run on tree.fonts to create the font buttons; the fonts aren't files. */
     if (dir.constructor === Array) {
@@ -37,8 +37,7 @@ const helpers = {
       fs.readdir(dir, function (err, list) {
         if (err) throw err
 
-        // loop through each file, and check if extension name is of the right type.
-        // push these to a new array.
+        // loop through files; if .ext name is is correct "type" -> push to array.
         list.forEach((file) => {
           fileTypes.forEach((type) => {
             if (path.extname(file) === type) assetList.push(file)
@@ -48,9 +47,8 @@ const helpers = {
         // set max on assetList to stop from borking ui
         // (if people drop files into the folders.)
         if (assetList.length > 7) {
-          console.log('assetList is too long cut it down')
+          console.log('There are too many files in the ambiance folder! Just showing the first 7.')
           assetList = assetList.slice(0, 7)
-          console.log('new assetlist is', assetList)
         }
 
         // loop over the assetList and turn the files into string'd paths.
@@ -59,7 +57,6 @@ const helpers = {
         })
 
         // run the callback (action) on each file.
-           // set max here so that people can't fill a folder with 233212 files and bork everything
         for (let i = 0; i < assetList.length; i++) {
           action(assetList, i)
         }
@@ -72,72 +69,20 @@ const helpers = {
     editor.style.fontFamily = font
   },
 
-  toggleBackground (backgroundImage) {
-    // default background properties/
-    let tiled = sizeOf(backgroundImage)
+  /* createButtons is the CB ("action") used on walk()/
+    Purpose:      Creates buttons users can interact with (playing an audio file, changing a background)
+    Logic:        Uses a closure to apply unique eventListeners to respective buttons.
 
-    // Change the image only when loaded.
-    let img = new Image()
-
-    img.onload = function () {
-      if (tiled.width < 1000) {
-        document.body.style.backgroundSize = 'auto'
-        document.body.style.backgroundRepeat = 'repeat'
-      } else {
-        document.body.style.backgroundSize = 'cover'
-        document.body.style.backgroundRepeat = 'no-repeat'
-      }
-      document.body.style.backgroundImage = `url(${fileUrl(backgroundImage)})`
-
-      // Get avg brightness of image and change font color accordingly
-      let brightness = monoThief(img)
-      if (brightness < 80) {
-        el.editor.style.color = '#fff'
-      } else {
-        el.editor.style.color = 'black'
-      }
-    }
-
-    img.src = backgroundImage
-    if (img.complete) img.onload()
-  },
-
-  toggleAudio (file) {
-    let audio = new Audio(file)
-
-    if (tree.selectedAudio.currentTime > 0) { // if file is playing
-      tree.selectedAudio.pause() // pause the file.
-    }
-
-    tree.selectedAudio = audio // asign new file
-    tree.selectedAudio.volume = 0.7
-    tree.selectedAudio.play() // play new file.
-
-    let audioVolume = document.getElementById('muzak-slider')
-    audioVolume.addEventListener('change', () => {
-      tree.selectedAudio.volume = audioVolume.value / 100
-    })
-  },
-
-  toggleFieldRecording (file) {
-    let audio = new Audio(file)
-
-    if (tree.selectedFieldRecording.currentTime > 0) {
-      tree.selectedFieldRecording.pause()
-    }
-
-    tree.selectedFieldRecording = audio
-    tree.selectedFieldRecording.loop = true
-    tree.selectedFieldRecording.play()
-
-    let fieldVolume = document.getElementById('fieldrecording-slider')
-    fieldVolume.addEventListener('change', () => {
-      tree.selectedFieldRecording.volume = fieldVolume.value / 100
-    })
-  },
-
+    Parameters:
+      assetList:    Array     Paths to files that will be acted on. (ex: Trigger an audio file)
+      timesCalled:  Int:      Prevents fn from proceeding until all the buttons have been created.
+      mount:        String:   Where to mount the buttin in the DOM.
+      text:         String:   What text to put in the button.
+      type:         String:   Provides a unique id to each button.
+      action:       Function: What to do when the button is pressed.
+  */
   createButtons (assetList, timesCalled, mount, text, type, action) {
-    // callback block; runs for every file in `assetList`
+    // create the button.
     mount.innerHTML += `<button id="${type}-${text}" class="btn gourd"> ${text} </button>`
 
     // once all buttons are made, create an array of them.
@@ -146,11 +91,7 @@ const helpers = {
       let assetArray = []
 
       // strip non-essential childNodes (ie. non button elements).
-      arr.forEach((el) => {
-        if (el.nodeName === 'BUTTON') {
-          assetArray.push(el)
-        }
-      })
+      arr.forEach((el) => { if (el.nodeName === 'BUTTON') assetArray.push(el) })
 
       // add an event listener to each item in `list`
       for (let i = 0; i < arr.length; i++) {
@@ -158,12 +99,9 @@ const helpers = {
           arr[index].addEventListener('click', () => {
             action(assetList[index])
 
-            // add an indicator to show which button is selected
-            arr.forEach(function (button) {
-              if (button.classList.contains('on')) {
-                button.classList.remove('on')
-              }
-
+            // Turn off any button that is 'on', turn 'on' the btn clicked.
+            arr.forEach((button) => {
+              if (button.classList.contains('on')) button.classList.remove('on')
               arr[index].classList.add('on')
             })
           })
