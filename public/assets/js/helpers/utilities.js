@@ -1,5 +1,5 @@
-/* This file works closely with menu-ambient: it provides the logic necessary to
-walk directories, create buttons based on lists (from a dir), and add event listeners
+/* This file works closely with menu-ambient: it get an array from a directory,
+creates buttons based on lists (from a dir), and add event listeners
 (with their own respective action) as callbacks */
 
 const fs = require('fs')
@@ -30,24 +30,19 @@ const utilities = {
     return filteredTypes
   },
 
-  toggleFonts(font) {
-    let editor = document.getElementById('editor')
-    editor.style.fontFamily = font
-  },
-
-  /* createButtons is the CB ("action") used on walk()/
+  /* createButtons is called for each item in a list of assets.
     Purpose:      Creates buttons users can interact with (playing an audio file, changing a background)
     Logic:        Uses a closure to apply unique eventListeners to respective buttons.
 
     Parameters:
       assetList:    Array     Paths to files that will be acted on. (ex: Trigger an audio file)
       timesCalled:  Int:      Prevents fn from proceeding until all the buttons have been created.
-      mount:        String:   Where to mount the buttin in the DOM.
-      text:         String:   What text to put in the button.
+      mount:        String:   Where to mount the button in the DOM.
+      text:         String:   What text to put in the button. (currently a # from "i" from parental for-loop scope.)
       type:         String:   Provides a unique id to each button.
       action:       Function: What to do when the button is pressed.
   */
-  createButtons(assetList, timesCalled, mount, text, type, action) {
+  createButtons (assetList, timesCalled, mount, text, type, action) {
     // create the button.
     mount.innerHTML += `<button id="${type}-${text}" class="btn gourd"> ${text} </button>`
 
@@ -63,7 +58,7 @@ const utilities = {
 
       // add an event listener to each item in `list`
       for (let i = 0; i < arr.length; i++) {
-        (function(index) { // closure for unique event listeners.
+        (function (index) { // closure for unique event listeners.
           arr[index].addEventListener('click', () => {
             action(assetList[index])
 
@@ -78,7 +73,7 @@ const utilities = {
     }
   },
 
-  createCancelButton(mount, type, action) {
+  createCancelButton (mount, type, action) {
     mount.innerHTML += `<button id="cancel-${type}" class="btn gourd cancel"><i class="ion-android-close _icon x-small"></button>`
     mount.addEventListener('click', action)
   }

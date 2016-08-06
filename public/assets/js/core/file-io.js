@@ -82,9 +82,7 @@ let file = {
       fs.readFile(file.currentFile, 'utf-8', function (err, data) {
         // TODO: Account for a file possibly being deleted while it's open
         // Maybe set currentFile to undefined and recursively call this function?
-        if (err) {
-          throw err
-        } 
+        if (err) { throw err }
         if (editor.value !== data) {
           dialog.showMessageBox({
             type: 'warning',

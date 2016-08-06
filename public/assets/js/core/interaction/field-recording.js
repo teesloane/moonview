@@ -1,31 +1,13 @@
-/* This file builds out invocable logic for all audio related interaction.
-Examples: Start / Pause an audio file. Change volume of an audio file. etc. */
+/* This file builds out invocable logic for all field recording related interaction.
+Examples: Start / Pause a field recording. */
 
 const tree = require('../../helpers/tree')
 const help = require('../../helpers/utilities')
 const el = require('../../helpers/dom-elements')
 
-let audio = {
+let fieldRecording = {
 
-  // toggle an audio file
-  toggleAudio (file) {
-    let audio = new Audio(file)
-
-    if (tree.selectedAudio.currentTime > 0) { // if file is playing
-      tree.selectedAudio.pause() // pause the file.
-    }
-
-    tree.selectedAudio = audio // asign new file
-    tree.selectedAudio.volume = 0.7
-    tree.selectedAudio.play() // play new file.
-
-    let audioVolume = document.getElementById('muzak-slider')
-    audioVolume.addEventListener('change', () => {
-      tree.selectedAudio.volume = audioVolume.value / 100
-    })
-  },
-
-  toggleFieldRecording (file) {
+  toggle (file) {
     let audio = new Audio(file)
 
     if (tree.selectedFieldRecording.currentTime > 0) {
@@ -46,6 +28,7 @@ let audio = {
     if (tree.selectedAudio !== '') {
       tree.selectedAudio.pause()
     }
+
     tree.selectedAudio = ''
 
     el.loopButtons.childNodes.forEach(function (child) {
@@ -55,19 +38,19 @@ let audio = {
 
   createButtons () {
     // get audio files and filter by .extension
-    let audioFiles = help.getDirList(tree.audio)
+    let audioFiles = help.getDirList(tree.fieldRecordings)
     audioFiles = help.filterFileTypes(audioFiles, ['.mp3'])
 
     // TODO: Cap max amount of audio files
 
     // create buttons forEach file.
     for (let i = 0; i < audioFiles.length; i++) {
-      help.createButtons(audioFiles, i, el.loopButtons, i + 1, 'loop', this.toggleAudio)
+      help.createButtons(audioFiles, i, el.fieldRecordingButtons, i + 1, 'loop', this.toggle)
     }
 
     // create a cancel button to stop audio
-    help.createCancelButton(el.loopCancel, 'loop', this.stopAudio)
+    help.createCancelButton(el.fieldRecordingCancel, 'fieldRecording', this.stopAudio)
   }
 }
 
-module.exports = audio
+module.exports = fieldRecording
