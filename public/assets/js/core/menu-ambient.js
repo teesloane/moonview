@@ -1,90 +1,26 @@
-/* Assembles the menu for accessing ambient assets. Example:
-Allows a user to open the "muzak" menu, and select a track.
-The logic of the file is split between the creation of the
-buttons and dom manipulation with vanilla js */
+/* Assembles the menu for accessing ambient assets and interacting with:
+Imports interactions files (audio, font etc) for creating the buttons. This file also
+sets up all the necessary event listeners for interacting with the above buttons */
 
 let el = require('../helpers/dom-elements')
-const assemble = require('../helpers/asset-assembly')
 const audio = require('./interaction/audio')
-const background = require('./interaction/background')
-const tree = require('../helpers/tree')
+const backDrop = require('./interaction/back-drop')
+const font = require('./interaction/font')
+const fieldRecording = require('./interaction/field-recording.js')
 
 function createAmbientMenu () {
-  createButtons()
-  createListeners()
+  // create buttons for each interactive ambient asset
+  audio.createButtons()
+  backDrop.createButtons()
+  font.createButtons()
+  fieldRecording.createButtons()
 
-  // Dom manipulation to happen when the editor is focused on & menus are open
-  el.editor.addEventListener('click', () => {
-    // close any open bottom level menus
-    el.menubar.classList.remove('open')
-    el.mixer.classList.remove('open')
-
-    // close the asset drawer if it's open
-    el.assetDrawer.classList.add('display-none')
-
-    // revert menu icons to what they should be
-    el.openMenubar.classList.remove('display-none') // show the open menu button
-    el.closeMenubar.classList.add('display-none') // hide the x for menu.
-
-    el.openMixer.classList.remove('display-none') // show the open for mixer
-    el.closeMixer.classList.add('display-none') // hide the close button
-  })
-}
-
-function createButtons () {
-  // create audio buttons
-  assemble.walk(tree.audio, ['.wav', '.mp3'], (assetList, count) => {
-    assemble.createButtons(assetList, count, el.loopButtons, count + 1, 'loop', audio.toggleAudio)
-  })
-
-  assemble.createCancelButton(el.loopCancel, 'loop', function () {
-    if (tree.selectedAudio !== '') {
-      tree.selectedAudio.pause()
-    }
-    tree.selectedAudio = ''
-
-    el.loopButtons.childNodes.forEach(function (child) {
-      child.classList.remove('on')
-    })
-  })
-
-  // create background buttons
-  assemble.walk(tree.bg, ['.jpeg', '.jpg', '.png'], (assetList, count) => {
-    assemble.createButtons(assetList, count, el.backgroundButtons, count + 1, 'bg', background.toggle)
-  })
-
-  assemble.createCancelButton(el.backgroundCancel, 'background', function () {
-    document.body.style.background = tree.defaultBackground
-
-    el.backgroundButtons.childNodes.forEach(function (child) {
-      child.classList.remove('on')
-    })
-  })
-
-  // create font buttons
-  assemble.walk(tree.fonts, null, (assetList, count) => {
-    assemble.createButtons(assetList, count, el.fontButtons, count + 1, 'font', assemble.toggleFonts)
-  })
-
-  // Create field recording buttons:
-  assemble.walk(tree.fieldRecordings, ['.wav', '.mp3'], (assetList, count) => {
-    assemble.createButtons(assetList, count, el.fieldRecordingButtons, count + 1, 'fieldRecording', audio.toggleFieldRecording)
-  })
-
-  assemble.createCancelButton(el.fieldRecordingCancel, 'fieldRecording', function () {
-    if (tree.selectedFieldRecording !== '') {
-      tree.selectedFieldRecording.pause()
-    }
-    tree.selectedFieldRecording = ''
-
-    el.fieldRecordingButtons.childNodes.forEach(function (child) {
-      child.classList.remove('on')
-    })
-  })
+  mainMenuListeners()
+  mixerMenuListeners()
 }
 
 // Listeners specific to the ambient menu
-function createListeners () {
+function mainMenuListeners () {
   el.openMenubar.addEventListener('click', () => {
     el.menubar.classList.toggle('open')
     el.openMenubar.classList.toggle('display-none')
@@ -131,8 +67,47 @@ function createListeners () {
     swapButtons(el.allMenuButtons, el.openFieldRecording)
     swapAssets(el.allAssetButtons, el.fieldRecordingAssets)
   })
+
+  // Dom manipulation to happen when the editor is focused on & menus are open
+  el.editor.addEventListener('click', () => {
+    // close any open bottom level menus
+    el.menubar.classList.remove('open')
+    el.mixer.classList.remove('open')
+
+    // close the asset drawer if it's open
+    el.assetDrawer.classList.add('display-none')
+
+    // revert menu icons to what they should be
+    el.openMenubar.classList.remove('display-none') // show the open menu button
+    el.closeMenubar.classList.add('display-none') // hide the x for menu.
+
+    el.openMixer.classList.remove('display-none') // show the open for mixer
+    el.closeMixer.classList.add('display-none') // hide the close button
+  })
 }
 
+// listners specific to the audio mixer menu
+function mixerMenuListeners () {
+  // open the menu + hide the other menu
+  el.openMixer.addEventListener('click', () => {
+    el.mixer.classList.toggle('open')
+    el.closeMixer.classList.toggle('display-none')
+    el.openMixer.classList.toggle('display-none')
+
+    el.openMenubar.classList.toggle('display-none')
+  })
+
+  el.closeMixer.addEventListener('click', () => {
+    el.mixer.classList.toggle('open')
+    el.closeMixer.classList.toggle('display-none')
+    el.openMixer.classList.toggle('display-none')
+
+    el.openMenubar.classList.toggle('display-none')
+  })
+}
+
+// for swapping which row of media assets are displayed
+// (show the music buttons, img buttons etc)
 function swapAssets (buttonRow, exception) {
   el.assetDrawer.classList.remove('display-none')
   el.menubar.classList.add('extend')
@@ -147,7 +122,6 @@ function swapAssets (buttonRow, exception) {
 
 // highlights the currently selected button.
 function swapButtons (buttonRow, exception) {
-  // buttonRow.forEach((button) => { button.classList.remove('on') })
   buttonRow.forEach((button) => {
     if (button === exception) {
       button.classList.add('on')
