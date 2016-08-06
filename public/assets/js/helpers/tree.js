@@ -7,6 +7,7 @@ const tree = {
   bg: path.join(__dirname, _private, '/ambiance/images'),
   fieldRecordings: path.join(__dirname, _private, '/ambiance/fieldrecordings'),
   fonts: ['arial', 'courier', 'cursive'],
+  stems: path.join(__dirname, _private, 'ambiance/stems'),
   selectedAudio: '',
   selectedFieldRecording: '',
   defaultBackground: '#f0f0f0',

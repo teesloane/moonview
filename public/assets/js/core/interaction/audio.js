@@ -1,6 +1,8 @@
 /* This file builds out invocable logic for all audio related interaction.
 Examples: Start / Pause an audio file. Change volume of an audio file. etc. */
 const tree = require('../../helpers/tree')
+const help = require('../../helpers/utilities')
+const el = require('../../helpers/dom-elements')
 
 let audio = {
 
@@ -37,6 +39,31 @@ let audio = {
     fieldVolume.addEventListener('change', () => {
       tree.selectedFieldRecording.volume = fieldVolume.value / 100
     })
+  },
+
+  stopAudio () {
+    if (tree.selectedAudio !== '') {
+      tree.selectedAudio.pause()
+    }
+    tree.selectedAudio = ''
+
+    el.loopButtons.childNodes.forEach(function (child) {
+      child.classList.remove('on')
+    })
+  },
+
+  createButtons () {
+    // get audio files and filter by .extension
+    let audioFiles = help.getDirList(tree.audio)
+    audioFiles = help.filterFileTypes(audioFiles, ['.mp3'])
+
+    // create buttons forEach file.
+    for (let i = 0; i < audioFiles.length; i++) {
+      help.createButtons(audioFiles, i, el.loopButtons, i + 1, 'loop', this.toggleAudio)
+    }
+
+    // create a cancel button to stop audio
+    help.createCancelButton(el.loopCancel, 'loop', this.stopAudio)
   }
 }
 

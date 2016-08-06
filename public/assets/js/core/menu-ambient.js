@@ -4,9 +4,9 @@ The logic of the file is split between the creation of the
 buttons and dom manipulation with vanilla js */
 
 let el = require('../helpers/dom-elements')
-const assemble = require('../helpers/asset-assembly')
+const assemble = require('../helpers/utilities')
 const audio = require('./interaction/audio')
-const background = require('./interaction/background')
+const backDrop = require('./interaction/back-drop')
 const tree = require('../helpers/tree')
 
 function createAmbientMenu () {
@@ -32,55 +32,32 @@ function createAmbientMenu () {
 }
 
 function createButtons () {
-  // create audio buttons
-  assemble.walk(tree.audio, ['.wav', '.mp3'], (assetList, count) => {
-    assemble.createButtons(assetList, count, el.loopButtons, count + 1, 'loop', audio.toggleAudio)
-  })
 
-  assemble.createCancelButton(el.loopCancel, 'loop', function () {
-    if (tree.selectedAudio !== '') {
-      tree.selectedAudio.pause()
-    }
-    tree.selectedAudio = ''
+  audio.createButtons()
 
-    el.loopButtons.childNodes.forEach(function (child) {
-      child.classList.remove('on')
-    })
-  })
+  backDrop.createButtons()
 
-  // create background buttons
-  assemble.walk(tree.bg, ['.jpeg', '.jpg', '.png'], (assetList, count) => {
-    assemble.createButtons(assetList, count, el.backgroundButtons, count + 1, 'bg', background.toggle)
-  })
 
-  assemble.createCancelButton(el.backgroundCancel, 'background', function () {
-    document.body.style.background = tree.defaultBackground
+  // // create font buttons
+  // assemble.walk(tree.fonts, null, (assetList, count) => {
+  //   assemble.createButtons(assetList, count, el.fontButtons, count + 1, 'font', assemble.toggleFonts)
+  // })
 
-    el.backgroundButtons.childNodes.forEach(function (child) {
-      child.classList.remove('on')
-    })
-  })
+  // // Create field recording buttons:
+  // assemble.walk(tree.fieldRecordings, ['.wav', '.mp3'], (assetList, count) => {
+  //   assemble.createButtons(assetList, count, el.fieldRecordingButtons, count + 1, 'fieldRecording', audio.toggleFieldRecording)
+  // })
 
-  // create font buttons
-  assemble.walk(tree.fonts, null, (assetList, count) => {
-    assemble.createButtons(assetList, count, el.fontButtons, count + 1, 'font', assemble.toggleFonts)
-  })
+  // assemble.createCancelButton(el.fieldRecordingCancel, 'fieldRecording', function () {
+  //   if (tree.selectedFieldRecording !== '') {
+  //     tree.selectedFieldRecording.pause()
+  //   }
+  //   tree.selectedFieldRecording = ''
 
-  // Create field recording buttons:
-  assemble.walk(tree.fieldRecordings, ['.wav', '.mp3'], (assetList, count) => {
-    assemble.createButtons(assetList, count, el.fieldRecordingButtons, count + 1, 'fieldRecording', audio.toggleFieldRecording)
-  })
-
-  assemble.createCancelButton(el.fieldRecordingCancel, 'fieldRecording', function () {
-    if (tree.selectedFieldRecording !== '') {
-      tree.selectedFieldRecording.pause()
-    }
-    tree.selectedFieldRecording = ''
-
-    el.fieldRecordingButtons.childNodes.forEach(function (child) {
-      child.classList.remove('on')
-    })
-  })
+  //   el.fieldRecordingButtons.childNodes.forEach(function (child) {
+  //     child.classList.remove('on')
+  //   })
+  // })
 }
 
 // Listeners specific to the ambient menu
