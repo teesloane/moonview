@@ -33,20 +33,24 @@ let audio = {
     audioFiles.forEach((file, idx, arr) => { arr[idx] = new Audio(file) })
 
     // randomly toggle the audio files when metadata loads
-    // refactor to a for loop that staircases audio stems (UP TO A MAX)
     audioFiles[0].addEventListener('loadedmetadata', () => {
-      let tk1 = audioFiles[0]
-      let tk2 = audioFiles[1]
-      let queSecond = Math.random() * (tk1.duration)
-      console.log(queSecond)
+      // play the first audio file from the start
+      for (let i = 0; i < audioFiles.length; i++) {
+        if (i === 0) {
+          audioFiles[0].play()
+        } else {
+          // CLOSURE ALERT! Play the next file at that next time
+          (function (idx) {
+            let queNext = Math.random() * (audioFiles[i - 1].duration) / 2
+            console.log('next track will start in', queNext)
 
-      tk1.play()
+            setTimeout(function () {
+              audioFiles[i].play()
+            }, queNext * 1000)
+          })(i)
+        }
+      }
 
-      // queue next track after timeout
-      setTimeout(function () {
-        tk2.play()
-        console.log('time has passed')
-      }, queSecond * 1000)
     })
 
 
