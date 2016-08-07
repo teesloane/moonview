@@ -37,22 +37,29 @@ let audio = {
       // play the first audio file from the start
       for (let i = 0; i < audioFiles.length; i++) {
         if (i === 0) {
+          audioFiles[0].loop = true
           audioFiles[0].play()
         } else {
-          // CLOSURE ALERT! Play the next file at that next time
-          (function (idx) {
-            let queNext = Math.random() * (audioFiles[i - 1].duration) / 2
-            console.log('next track will start in', queNext)
+          // make sure metadata (duration) is loaded before proceding.
+          audioFiles[i].addEventListener('loadedmetadata', () => {
+            var queNext = Math.random() * (audioFiles[i - 1].duration)
 
-            setTimeout(function () {
-              audioFiles[i].play()
-            }, queNext * 1000)
-          })(i)
+            // CLOSURE ALERT! Play the next file at that next time
+            ~(function (idx, delay) {
+              // console.log(delay)
+              delay += queNext
+              console.log('track:', idx, 'will play in:', delay)
+
+              setTimeout(function () {
+                audioFiles[idx].loop = true
+                audioFiles[idx].play()
+              }, delay * 500)
+            })(i, queNext)
+          })
+
         }
       }
-
     })
-
 
     // connect to the slider
     // connect the cancel button to these audio files.
@@ -72,6 +79,7 @@ let audio = {
   createButtons () {
     // get the directory of "tracks"
     let stems = help.getDirList(tree.stems)
+    //TODO: checking against non-dirs (EVIL DS STORES)
 
     // assemble buttons for each folder full of stems.
     for (let i = 0; i < stems.length; i++) {
