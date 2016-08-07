@@ -4,6 +4,7 @@ Examples: Start / Pause an audio file. Change volume of an audio file. etc. */
 const tree = require('../../helpers/tree')
 const help = require('../../helpers/utilities')
 const el = require('../../helpers/dom-elements')
+const fs = require('fs')
 
 let audio = {
 
@@ -82,12 +83,17 @@ let audio = {
   },
 
   createButtons () {
-    // get the directory of "tracks"
+    let limit = 5
+    // get the directory of "tracks", filter out non dirs, limit # of buttons can be made.
     let stems = help.getDirList(tree.stems)
 
-    // TODO: checking against non-dirs (EVIL DS STORES)
+    stems = stems.filter((dir) => {
+      return fs.lstatSync(dir).isDirectory()
+    })
 
-    // TODO: Cap max amount of audio files
+    if (stems.length > limit) {
+      stems = stems.slice(limit)
+    }
 
     // create button for each folder full of stems.
     for (let i = 0; i < stems.length; i++) {
