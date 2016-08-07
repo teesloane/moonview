@@ -25,21 +25,21 @@ let audio = {
     })
   },
 
-  toggleFieldRecording (file) {
-    let audio = new Audio(file)
+  toggleSet (stemsFolder) {
+    console.log(stemsFolder)
 
-    if (tree.selectedFieldRecording.currentTime > 0) {
-      tree.selectedFieldRecording.pause()
-    }
+    // get audio files and filter by .extension
+    let audioFiles = help.getDirList(stemsFolder)
+    audioFiles = help.filterFileTypes(audioFiles, ['.mp3', '.wav'])
 
-    tree.selectedFieldRecording = audio
-    tree.selectedFieldRecording.loop = true
-    tree.selectedFieldRecording.play()
+    // find a way to randomly toggle the audio files.
+      // randomly select the first stem to play
+      // generate a number between firstStem.currentTime and the end of the file
+        // when firstStem.currentTime reaches rndInt - play the next stem
+        // repeat for all other stems.
+    // connect to the slider
 
-    let fieldVolume = document.getElementById('fieldrecording-slider')
-    fieldVolume.addEventListener('change', () => {
-      tree.selectedFieldRecording.volume = fieldVolume.value / 100
-    })
+    // connect the cancel button to these audio files.
   },
 
   stopAudio () {
@@ -54,19 +54,27 @@ let audio = {
   },
 
   createButtons () {
+    // get the directory of "tracks"
+    let stems = help.getDirList(tree.stems)
+
+    // assemble buttons for each folder full of stems.
+    for (let i = 0; i < stems.length; i++) {
+      help.createButtons(stems, i, el.loopButtons, i + 1, 'loop', this.toggleSet)
+    }
+
     // get audio files and filter by .extension
-    let audioFiles = help.getDirList(tree.audio)
-    audioFiles = help.filterFileTypes(audioFiles, ['.mp3'])
+    // let audioFiles = help.getDirList(tree.audio)
+    // audioFiles = help.filterFileTypes(audioFiles, ['.mp3'])
 
     // TODO: Cap max amount of audio files
 
-    // create buttons forEach file.
-    for (let i = 0; i < audioFiles.length; i++) {
-      help.createButtons(audioFiles, i, el.loopButtons, i + 1, 'loop', this.toggleAudio)
-    }
-
-    // create a cancel button to stop audio
-    help.createCancelButton(el.loopCancel, 'loop', this.stopAudio)
+    // // create buttons forEach file.
+    // for (let i = 0; i < audioFiles.length; i++) {
+    //   help.createButtons(audioFiles, i, el.loopButtons, i + 1, 'loop', this.toggleAudio)
+    // }
+    //
+    // // create a cancel button to stop audio
+    // help.createCancelButton(el.loopCancel, 'loop', this.stopAudio)
   }
 }
 
