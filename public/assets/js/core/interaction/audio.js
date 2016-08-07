@@ -26,17 +26,39 @@ let audio = {
   },
 
   toggleSet (stemsFolder) {
-    console.log(stemsFolder)
-
     // get audio files and filter by .extension
     let audioFiles = help.getDirList(stemsFolder)
     audioFiles = help.filterFileTypes(audioFiles, ['.mp3', '.wav'])
+    // randomly toggle the audio files.
 
-    // find a way to randomly toggle the audio files.
-      // randomly select the first stem to play
-      // generate a number between firstStem.currentTime and the end of the file
-        // when firstStem.currentTime reaches rndInt - play the next stem
-        // repeat for all other stems.
+    // randomly select the first stem to play and remove from the array so not chosen again
+    let firstTrack = audioFiles[Math.floor(Math.random() * audioFiles.length)]
+    audioFiles.splice(audioFiles.indexOf(firstTrack), 1)
+
+    let firstTrackAudio = new Audio(firstTrack)
+
+    //  Once audio file metadata is loaded, then execute media ops.
+    firstTrackAudio.addEventListener('loadedmetadata', function () {
+      // get duration
+      let dur = firstTrackAudio.duration
+      let queSecond = Math.random() * (dur - 0)
+
+      firstTrackAudio.play()
+
+      // when the base audio passes the rnd Quesecond..que up the next track
+      if (firstTrackAudio.currentTime > queSecond) {
+        let secondTrack = audioFiles[]
+
+      }
+    })
+
+    // play the base layer.
+    // rndBaseStemAudio.play()
+    // console.log(rndBaseStemAudio.currentTime)
+
+    // generate a number between firstStem.currentTime and the end of the file
+      // when firstStem.currentTime reaches rndInt - play the next stem
+      // repeat for all other stems.
     // connect to the slider
 
     // connect the cancel button to these audio files.
