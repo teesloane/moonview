@@ -40,3 +40,5 @@ jsconfig.json
 media
 .vscode
 documentation
+
+.DS_STORE

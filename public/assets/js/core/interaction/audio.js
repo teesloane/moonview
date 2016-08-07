@@ -7,31 +7,11 @@ const el = require('../../helpers/dom-elements')
 
 let audio = {
 
-  // toggle an audio file
-  toggleAudio (file) {
-    let audio = new Audio(file)
-
-    if (tree.selectedAudio.currentTime > 0) { // if file is playing
-      tree.selectedAudio.pause() // pause the file.
-    }
-
-    tree.selectedAudio = audio // asign new file
-    tree.selectedAudio.volume = 0.7
-    tree.selectedAudio.play() // play new file.
-
-    let audioVolume = document.getElementById('muzak-slider')
-    audioVolume.addEventListener('change', () => {
-      tree.selectedAudio.volume = audioVolume.value / 100
-    })
-  },
-
   /* Plz refactor me: sometimes not all audio files are queued up. Closure issues? */
   toggleSet (stemsFolder) {
     // if audio is playing already, stop it and start the new set.
     if (tree.selectedStems.constructor === Array) {
-      console.log("it's an array")
       tree.selectedStems.forEach((stem) => {
-        // TODO: check if of type Audio Object
         stem.pause()
       })
     }
@@ -40,13 +20,14 @@ let audio = {
     let audioFiles = help.getDirList(stemsFolder)
     audioFiles = help.filterFileTypes(audioFiles, ['.mp3', '.wav'])
     audioFiles = help.shuffle(audioFiles)
+
+    // reassign (overwrite) each element to a new instance of the Audio class.
     audioFiles.forEach((file, idx, arr) => { arr[idx] = new Audio(file) })
 
     // assign to the tree so that the files can be stopped via stopAudio()
     tree.selectedStems = audioFiles
-    console.log(tree.selectedStems)
 
-    // randomly toggle the audio files when metadata loads
+    // randomly toggle the audio files when metadata loads; now operating on tree arr
     tree.selectedStems[0].addEventListener('loadedmetadata', () => {
       for (let i = 0; i < tree.selectedStems.length; i++) {
         // on first loop iteration, just play the first audio file in the array.
@@ -54,14 +35,14 @@ let audio = {
           tree.selectedStems[0].loop = true
           tree.selectedStems[0].play()
 
-        // on every suceeding loop, que up the next track somewhere within the
-        // duration of the first track.
+        /* on every suceeding loop, que the next stem, BUT play it at a random
+        time during the playing of the first loop -> [i - 1] */
         } else {
-          // make sure metadata (duration) is loaded before proceding.
+          // make sure metadata (file duration) is loaded before proceding.
           tree.selectedStems[i].addEventListener('loadedmetadata', () => {
             var queNext = Math.random() * (tree.selectedStems[i - 1].duration)
 
-            // CLOSURE ALERT! Play the next file at the next unique queNext time.
+            // Closure: Play the next file at the next unique queNext time.
             ~(function (idx, delay) {
               delay += queNext // sum equals delay so that it staircases new audio.
               console.log('track:', idx, 'will play in:', delay)
@@ -76,7 +57,14 @@ let audio = {
       }
     })
 
-    // connect to the slider
+    // connect to the volume slider
+    let audioVolume = document.getElementById('muzak-slider')
+    audioVolume.addEventListener('change', () => {
+      // change volume of each stem together.
+      tree.selectedStems.forEach((stem) => {
+        stem.volume = audioVolume.value / 100
+      })
+    })
   },
 
   stopAudio () {
