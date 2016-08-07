@@ -25,51 +25,68 @@ let audio = {
     })
   },
 
+  /* Plz refactor me: sometimes not all audio files are queued up. Closure issues? */
   toggleSet (stemsFolder) {
+    // if audio is playing already, stop it and start the new set.
+    if (tree.selectedStems.constructor === Array) {
+      console.log("it's an array")
+      tree.selectedStems.forEach((stem) => {
+        // TODO: check if of type Audio Object
+        stem.pause()
+      })
+    }
+
     // get audio files, filter by .ext, shuffle the array, convert to audio obj's
     let audioFiles = help.getDirList(stemsFolder)
     audioFiles = help.filterFileTypes(audioFiles, ['.mp3', '.wav'])
     audioFiles = help.shuffle(audioFiles)
     audioFiles.forEach((file, idx, arr) => { arr[idx] = new Audio(file) })
 
+    // assign to the tree so that the files can be stopped via stopAudio()
+    tree.selectedStems = audioFiles
+    console.log(tree.selectedStems)
+
     // randomly toggle the audio files when metadata loads
-    audioFiles[0].addEventListener('loadedmetadata', () => {
-      // play the first audio file from the start
-      for (let i = 0; i < audioFiles.length; i++) {
+    tree.selectedStems[0].addEventListener('loadedmetadata', () => {
+      for (let i = 0; i < tree.selectedStems.length; i++) {
+        // on first loop iteration, just play the first audio file in the array.
         if (i === 0) {
-          audioFiles[0].loop = true
-          audioFiles[0].play()
+          tree.selectedStems[0].loop = true
+          tree.selectedStems[0].play()
+
+        // on every suceeding loop, que up the next track somewhere within the
+        // duration of the first track.
         } else {
           // make sure metadata (duration) is loaded before proceding.
-          audioFiles[i].addEventListener('loadedmetadata', () => {
-            var queNext = Math.random() * (audioFiles[i - 1].duration)
+          tree.selectedStems[i].addEventListener('loadedmetadata', () => {
+            var queNext = Math.random() * (tree.selectedStems[i - 1].duration)
 
-            // CLOSURE ALERT! Play the next file at that next time
+            // CLOSURE ALERT! Play the next file at the next unique queNext time.
             ~(function (idx, delay) {
-              // console.log(delay)
-              delay += queNext
+              delay += queNext // sum equals delay so that it staircases new audio.
               console.log('track:', idx, 'will play in:', delay)
 
               setTimeout(function () {
-                audioFiles[idx].loop = true
-                audioFiles[idx].play()
-              }, delay * 500)
+                tree.selectedStems[idx].loop = true
+                tree.selectedStems[idx].play()
+              }, delay * 1000) // change 1000 to speed up / slow down when next track plays
             })(i, queNext)
           })
-
         }
       }
     })
 
     // connect to the slider
-    // connect the cancel button to these audio files.
   },
 
   stopAudio () {
-    if (tree.selectedAudio !== '') {
-      tree.selectedAudio.pause()
+    if (tree.selectedStems !== '') {
+      tree.selectedStems.forEach((stem) => {
+        stem.pause()
+      })
     }
-    tree.selectedAudio = ''
+
+    tree.selectedStems = ''
 
     el.loopButtons.childNodes.forEach(function (child) {
       child.classList.remove('on')
@@ -79,26 +96,18 @@ let audio = {
   createButtons () {
     // get the directory of "tracks"
     let stems = help.getDirList(tree.stems)
-    //TODO: checking against non-dirs (EVIL DS STORES)
 
-    // assemble buttons for each folder full of stems.
+    // TODO: checking against non-dirs (EVIL DS STORES)
+
+    // TODO: Cap max amount of audio files
+
+    // create button for each folder full of stems.
     for (let i = 0; i < stems.length; i++) {
       help.createButtons(stems, i, el.loopButtons, i + 1, 'loop', this.toggleSet)
     }
 
-    // get audio files and filter by .extension
-    // let audioFiles = help.getDirList(tree.audio)
-    // audioFiles = help.filterFileTypes(audioFiles, ['.mp3'])
-
-    // TODO: Cap max amount of audio files
-
-    // // create buttons forEach file.
-    // for (let i = 0; i < audioFiles.length; i++) {
-    //   help.createButtons(audioFiles, i, el.loopButtons, i + 1, 'loop', this.toggleAudio)
-    // }
-    //
-    // // create a cancel button to stop audio
-    // help.createCancelButton(el.loopCancel, 'loop', this.stopAudio)
+    // create a cancel button to stop audio
+    help.createCancelButton(el.loopCancel, 'loop', this.stopAudio)
   }
 }
 
