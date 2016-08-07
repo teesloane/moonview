@@ -26,41 +26,31 @@ let audio = {
   },
 
   toggleSet (stemsFolder) {
-    // get audio files and filter by .extension
+    // get audio files, filter by .ext, shuffle the array, convert to audio obj's
     let audioFiles = help.getDirList(stemsFolder)
     audioFiles = help.filterFileTypes(audioFiles, ['.mp3', '.wav'])
-    // randomly toggle the audio files.
+    audioFiles = help.shuffle(audioFiles)
+    audioFiles.forEach((file, idx, arr) => { arr[idx] = new Audio(file) })
 
-    // randomly select the first stem to play and remove from the array so not chosen again
-    let firstTrack = audioFiles[Math.floor(Math.random() * audioFiles.length)]
-    audioFiles.splice(audioFiles.indexOf(firstTrack), 1)
+    // randomly toggle the audio files when metadata loads
+    // refactor to a for loop that staircases audio stems (UP TO A MAX)
+    audioFiles[0].addEventListener('loadedmetadata', () => {
+      let tk1 = audioFiles[0]
+      let tk2 = audioFiles[1]
+      let queSecond = Math.random() * (tk1.duration)
+      console.log(queSecond)
 
-    let firstTrackAudio = new Audio(firstTrack)
+      tk1.play()
 
-    //  Once audio file metadata is loaded, then execute media ops.
-    firstTrackAudio.addEventListener('loadedmetadata', function () {
-      // get duration
-      let dur = firstTrackAudio.duration
-      let queSecond = Math.random() * (dur - 0)
-
-      firstTrackAudio.play()
-
-      // when the base audio passes the rnd Quesecond..que up the next track
-      if (firstTrackAudio.currentTime > queSecond) {
-        let secondTrack = audioFiles[]
-
-      }
+      // queue next track after timeout
+      setTimeout(function () {
+        tk2.play()
+        console.log('time has passed')
+      }, queSecond * 1000)
     })
 
-    // play the base layer.
-    // rndBaseStemAudio.play()
-    // console.log(rndBaseStemAudio.currentTime)
 
-    // generate a number between firstStem.currentTime and the end of the file
-      // when firstStem.currentTime reaches rndInt - play the next stem
-      // repeat for all other stems.
     // connect to the slider
-
     // connect the cancel button to these audio files.
   },
 
