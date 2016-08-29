@@ -10,6 +10,7 @@ const tree = {
   stems: path.join(__dirname, _private, 'ambiance/stems'),
   selectedAudio: '',
   selectedFieldRecording: '',
+  selectedStems: '',
   defaultBackground: '#f0f0f0',
   selectedBackground: ''
 }
