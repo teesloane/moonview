@@ -25,11 +25,11 @@ let fieldRecording = {
   },
 
   stopAudio () {
-    if (tree.selectedAudio !== '') {
-      tree.selectedAudio.pause()
+    if (tree.selectedFieldRecording !== '') {
+      tree.selectedFieldRecording.pause()
     }
 
-    tree.selectedAudio = ''
+    tree.selectedFieldRecording = ''
 
     el.loopButtons.childNodes.forEach(function (child) {
       child.classList.remove('on')
