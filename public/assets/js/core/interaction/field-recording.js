@@ -41,8 +41,6 @@ let fieldRecording = {
     let audioFiles = help.getDirList(tree.fieldRecordings)
     audioFiles = help.filterFileTypes(audioFiles, ['.mp3'])
 
-    // TODO: Cap max amount of audio files
-
     // create buttons forEach file.
     for (let i = 0; i < audioFiles.length; i++) {
       help.createButtons(audioFiles, i, el.fieldRecordingButtons, i + 1, 'loop', this.toggle)

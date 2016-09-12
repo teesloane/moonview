@@ -28,7 +28,6 @@ let file = {
   },
 
   saveAs () {
-    console.log('save as')
     // open the dialog box
     dialog.showSaveDialog({
       title: 'Save your document',
@@ -56,7 +55,6 @@ let file = {
       fs.writeFile(file.currentFile.toString(), document.getElementById('editor').value, function (err) {
         if (err) throw err
       })
-      console.log('file saved')
     }
   },
 

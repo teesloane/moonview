@@ -11,7 +11,6 @@ let settings = {
     if (!localStorage.userSettings) {
       localStorage.setItem('userSettings', JSON.stringify(defaultSettings))
       this.updateDependencies()
-      console.log('user defaults were set')
     }
 
     this.updateDependencies()
@@ -23,7 +22,6 @@ let settings = {
   },
 
   updateSettings (attr, value) {
-    console.log('update called on: attr:', attr, 'and val: ', value)
       // convert ls to an obj
     let settings = this.getSettings()
 

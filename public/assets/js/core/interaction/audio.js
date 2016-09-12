@@ -46,7 +46,6 @@ let audio = {
             // Closure: Play the next file at the next unique queNext time.
             ~(function (idx, delay) {
               delay += queNext // sum equals delay so that it staircases new audio.
-              console.log('track:', idx, 'will play in:', delay)
 
               setTimeout(function () {
                 tree.selectedStems[idx].loop = true
