@@ -76,13 +76,6 @@ const template = [
     label: 'View',
     submenu: [
       {
-        label: 'Reload',
-        accelerator: 'CmdOrCtrl+R',
-        click (item, focusedWindow) {
-          if (focusedWindow) focusedWindow.reload()
-        }
-      },
-      {
         label: 'Markdown Preview',
         accelerator: 'CmdOrCtrl+P',
         click (item, focusedWindow) {
@@ -96,15 +89,7 @@ const template = [
           if (focusedWindow) focusedWindow.setFullScreen(!focusedWindow.isFullScreen())
         }
       },
-      {
-        label: 'Toggle Developer Tools',
-        accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-        click (item, focusedWindow) {
-          if (focusedWindow) {
-            focusedWindow.webContents.toggleDevTools()
-          }
-        }
-      }
+      
     ]
   },
   {

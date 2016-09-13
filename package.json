@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "description": "A minimal writing application",
   "main": "main.js",
+  "appname": "MoonView",
+  "app-version": "0.0.1",
   "scripts": {
     "start": "electron main.js"
   },
