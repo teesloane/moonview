@@ -2,7 +2,6 @@ const {remote, ipcRenderer} = require('electron')
 const {Menu} = remote
 const file = require('./file-io')
 const el = require('../helpers/dom-elements')
-// const pref = require('./preferences')
 
 const template = [
   {
@@ -149,10 +148,12 @@ if (process.platform === 'darwin') {
         type: 'separator'
       },
       {
-        label: 'Quitter',
+        label: 'Quit',
         accelerator: 'Command+Q',
         click () {
-          require('electron').remote.app.quit()
+          file.checkBeforeQuit(); 
+          // require('electron').remote.app.quit()
+          ipcRenderer.send('quitter');
         }
       }
     ]

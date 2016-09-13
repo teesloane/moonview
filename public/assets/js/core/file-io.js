@@ -1,4 +1,5 @@
 const fs = require('fs')
+const {remote, ipcRenderer} = require('electron')
 const {dialog} = require('electron').remote
 
 let file = {
@@ -58,6 +59,25 @@ let file = {
     }
   },
 
+  checkBeforeQuit() {
+    if (file.currentFile === undefined && editor.value !== '') {
+      dialog.showMessageBox({
+        type: 'warning',
+        buttons: ['Quit', 'Save'],
+        title: 'Unsaved Work',
+        message: 'You have unsaved work. Do something about it?'
+      }, function (rdata) {
+        if(rdata === 1) {
+          file.save()
+        } else {
+            console.log('no save fucker');
+           ipcRenderer.send('quitter');
+        }
+      })
+    }
+
+  },
+
   newFile () {
     let editor = document.getElementById('editor')
 
@@ -67,7 +87,7 @@ let file = {
         type: 'warning',
         buttons: ['Cancel', 'New File'],
         title: 'Unsaved Text',
-        message: 'You still have some unsaved work kickin\' around. You sure you want to make a new file?'
+        message: 'You have unsaved work.'
       }, function (rdata) {
         if (rdata === 1) {
           document.getElementById('editor').value = ''
@@ -79,7 +99,6 @@ let file = {
     // If there is a current file, compare it with what's in the editor
       fs.readFile(file.currentFile, 'utf-8', function (err, data) {
         // TODO: Account for a file possibly being deleted while it's open
-        // Maybe set currentFile to undefined and recursively call this function?
         if (err) { throw err }
         if (editor.value !== data) {
           dialog.showMessageBox({
