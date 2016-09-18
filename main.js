@@ -91,6 +91,5 @@ ipcMain.on('get-content', function (e) {
 })
 
 ipcMain.on('quitter', function(e) {
-  console.log('message received');
   app.quit();
 })

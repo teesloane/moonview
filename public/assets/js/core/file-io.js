@@ -70,7 +70,6 @@ let file = {
         if(rdata === 1) {
           file.save()
         } else {
-            console.log('no save fucker');
            ipcRenderer.send('quitter');
         }
       })
