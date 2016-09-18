@@ -23,6 +23,7 @@ function createWindow () {
   mainWindow.loadURL(`file://${__dirname}/public/index.html`)
   
   mainWindow.webContents.openDevTools()
+
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows
@@ -91,5 +92,6 @@ ipcMain.on('get-content', function (e) {
 })
 
 ipcMain.on('quitter', function(e) {
+  mainWindow.close();
   app.quit();
 })

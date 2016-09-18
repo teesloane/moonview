@@ -151,7 +151,7 @@ if (process.platform === 'darwin') {
         label: 'Quit',
         accelerator: 'Command+Q',
         click () {
-          file.checkBeforeQuit(); 
+
           // require('electron').remote.app.quit()
           ipcRenderer.send('quitter');
         }

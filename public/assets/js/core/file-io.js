@@ -5,9 +5,13 @@ const {dialog} = require('electron').remote
 let file = {
   currentFile: undefined,
 
-  // todo: if file is unsaved when trying to open, prompt first.
   open () {
-    dialog.showOpenDialog({
+
+    if (this.fileUnsaved() || this.fileHasChanged() ) {
+      this.fileWarning("You have unsaved work. Save it?", 'Cancel', 'Open', function(){
+        // noop function - nothing happens on 'cancel'.
+      }, function() {
+ dialog.showOpenDialog({
       // dialog options
       title: 'Open a document',
       buttonLabel: 'Open',
@@ -26,6 +30,13 @@ let file = {
         file.currentFile = fileIn
       })
     })
+      })
+
+
+    }
+
+
+   
   },
 
   saveAs () {
@@ -59,71 +70,47 @@ let file = {
     }
   },
 
-  checkBeforeQuit() {
-    if (file.currentFile === undefined && editor.value !== '') {
-      dialog.showMessageBox({
-        type: 'warning',
-        buttons: ['Quit', 'Save'],
-        title: 'Unsaved Work',
-        message: 'You have unsaved work. Do something about it?'
-      }, function (rdata) {
-        if(rdata === 1) {
-          file.save()
-        } else {
-           ipcRenderer.send('quitter');
-        }
+  newFile () {
+    if (this.fileUnsaved() || this.fileHasChanged() ) {
+      this.fileWarning("You have an unsaved file. Save it?", 'Cancel', 'New File', function(){
+        // noop function - nothing happens on 'cancel'.
+      }, function() {
+        // reset the editor for a "new file"
+        document.getElementById('editor').value = ''
+        file.currentFile = undefined;
       })
     }
-
   },
 
-  newFile () {
+  // HELPERS FOR CHECKING FOR UNSAVED FILES //
+  fileWarning (Message, OptionA, OptionB, ActionA, ActionB) {
+    dialog.showMessageBox({
+      type: 'warning',
+      buttons: [OptionA, OptionB], // string
+      title: 'Unsaved Work',
+      message: Message,
+    }, function (rdata) {
+      if(rdata === 0) { ActionA(); } else { ActionB(); }
+    })
+  },
+
+  fileHasChanged () {
     let editor = document.getElementById('editor')
 
-    // check for text in editor that is not from an opened file.
-    if (file.currentFile === undefined && editor.value !== '') {
-      dialog.showMessageBox({
-        type: 'warning',
-        buttons: ['Cancel', 'New File'],
-        title: 'Unsaved Text',
-        message: 'You have unsaved work.'
-      }, function (rdata) {
-        if (rdata === 1) {
-          document.getElementById('editor').value = ''
-          file.currentFile = undefined
-        }
+    if(file.currentFile !== undefined) {
+      fs.readFile(file.currentFile, 'utf-8', function(err, data) {
+        if (err) throw err
+        if (editor.value !== data) return true
       })
-    // check if the current file is defined and needs to be diffed from the HDD file.
-    } else if (file.currentFile !== undefined) {
-    // If there is a current file, compare it with what's in the editor
-      fs.readFile(file.currentFile, 'utf-8', function (err, data) {
-        // TODO: Account for a file possibly being deleted while it's open
-        if (err) { throw err }
-        if (editor.value !== data) {
-          dialog.showMessageBox({
-            type: 'warning',
-            buttons: ['Cancel', 'New File'],
-            title: 'Unsaved Text',
-            message: 'You still have some unsaved work kickin\' around. You sure you want to make a new file?'
-          }, function (rdata) {
-            // if user selects "new file" as decided by returned array of choices.
-            if (rdata === 1) {
-              document.getElementById('editor').value = ''
-              file.currentFile = undefined
-            }
-          })
-        // if the diff between the editor / hdd instance are the same; create a new file with no prompt.
-        } else {
-          document.getElementById('editor').value = ''
-          file.currentFile = undefined
-        }
-      })
-    } else {
-      document.getElementById('editor').value = ''
-      file.currentFile = undefined
     }
-  }
+  },
 
+  fileUnsaved () {
+    let editor = document.getElementById('editor')
+    if (file.currentFile === undefined && editor.value !== '') {
+      return true
+    }
+  },
 }
 
 module.exports = file
