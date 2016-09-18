@@ -1,27 +1,19 @@
 const fs = require('fs')
-const {remote, ipcRenderer} = require('electron')
-const {dialog} = require('electron').remote
+const { remote, ipcRenderer } = require('electron')
+const { dialog } = require('electron').remote
 
 let file = {
   currentFile: undefined,
 
-  open () {
-
-    if (this.fileUnsaved() || this.fileHasChanged() ) {
-      this.fileWarning("You have unsaved work. Save it?", 'Cancel', 'Open', function(){
-        // noop function - nothing happens on 'cancel'.
-      }, function() {
- dialog.showOpenDialog({
-      // dialog options
+  open() {
+    dialog.showOpenDialog({
       title: 'Open a document',
       buttonLabel: 'Open',
       filters: [{
         name: 'Text',
         extensions: ['txt', 'md']
-      } // restricted file extensions.
-    ]},
-
-    function (filesIn) {
+      }]
+    }, function (filesIn) {
       if (filesIn === undefined) return
       let fileIn = filesIn[0] // must be 1st element of array even though only one item is selected to be opened.
       fs.readFile(fileIn, 'utf-8', function (err, data) {
@@ -30,17 +22,9 @@ let file = {
         file.currentFile = fileIn
       })
     })
-      })
-
-
-    }
-
-
-   
   },
 
-  saveAs () {
-    // open the dialog box
+  saveAs() {
     dialog.showSaveDialog({
       title: 'Save your document',
       buttonLabel: 'Save',
@@ -50,16 +34,16 @@ let file = {
       }]
     },
       // write the file, check for errors etc.
-    function (fileOut) {
-      if (fileOut === undefined) return
-      fs.writeFile(fileOut, document.getElementById('editor').value, function (err) {
-        file.currentFile = fileOut
-        if (err) throw err
+      function (fileOut) {
+        if (fileOut === undefined) return
+        fs.writeFile(fileOut, document.getElementById('editor').value, function (err) {
+          file.currentFile = fileOut
+          if (err) throw err
+        })
       })
-    })
   },
 
-  save () {
+  save() {
     // if file hasn't been saved, run saveAs()
     if (file.currentFile === undefined) {
       file.saveAs()
@@ -70,42 +54,49 @@ let file = {
     }
   },
 
-  newFile () {
-    if (this.fileUnsaved() || this.fileHasChanged() ) {
-      this.fileWarning("You have an unsaved file. Save it?", 'Cancel', 'New File', function(){
+  newFile() {
+    if (this.fileUnsaved() || this.fileHasChanged()) {
+      this.fileWarning("You have an unsaved file. Save it?", 'Cancel', 'New File', function () {
         // noop function - nothing happens on 'cancel'.
-      }, function() {
+      }, function () {
         // reset the editor for a "new file"
         document.getElementById('editor').value = ''
         file.currentFile = undefined;
       })
+    } else {
+      document.getElementById('editor').value = ''
+      file.currentFile = undefined;
     }
   },
 
   // HELPERS FOR CHECKING FOR UNSAVED FILES //
-  fileWarning (Message, OptionA, OptionB, ActionA, ActionB) {
+  fileWarning(Message, OptionA, OptionB, ActionA, ActionB) {
     dialog.showMessageBox({
       type: 'warning',
       buttons: [OptionA, OptionB], // string
       title: 'Unsaved Work',
       message: Message,
     }, function (rdata) {
-      if(rdata === 0) { ActionA(); } else { ActionB(); }
+      if (rdata === 0) {
+        ActionA();
+      } else {
+        ActionB();
+      }
     })
   },
 
-  fileHasChanged () {
+  fileHasChanged() {
     let editor = document.getElementById('editor')
 
-    if(file.currentFile !== undefined) {
-      fs.readFile(file.currentFile, 'utf-8', function(err, data) {
+    if (file.currentFile !== undefined) {
+      fs.readFile(file.currentFile, 'utf-8', function (err, data) {
         if (err) throw err
         if (editor.value !== data) return true
       })
     }
   },
 
-  fileUnsaved () {
+  fileUnsaved() {
     let editor = document.getElementById('editor')
     if (file.currentFile === undefined && editor.value !== '') {
       return true
