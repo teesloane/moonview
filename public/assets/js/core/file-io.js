@@ -32,15 +32,13 @@ let file = {
         name: 'text',
         extensions: ['txt', 'md']
       }]
-    },
-      // write the file, check for errors etc.
-      function (fileOut) {
-        if (fileOut === undefined) return
-        fs.writeFile(fileOut, document.getElementById('editor').value, function (err) {
-          file.currentFile = fileOut
-          if (err) throw err
-        })
+    }, function (fileOut) {
+      if (fileOut === undefined) return
+      fs.writeFile(fileOut, document.getElementById('editor').value, function (err) {
+        file.currentFile = fileOut
+        if (err) throw err
       })
+    })
   },
 
   save() {
@@ -55,6 +53,7 @@ let file = {
   },
 
   newFile() {
+
     if (this.fileUnsaved() || this.fileHasChanged()) {
       this.fileWarning("You have an unsaved file. Save it?", 'Cancel', 'New File', function () {
         // noop function - nothing happens on 'cancel'.

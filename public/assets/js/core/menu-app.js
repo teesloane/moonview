@@ -103,6 +103,10 @@ const template = [
       {
         label: 'Close',
         accelerator: 'CmdOrCtrl+W',
+        click () {
+          file.save()
+          ipcRenderer.send('quitter')
+        },
         role: 'close'
       }
     ]
@@ -151,9 +155,8 @@ if (process.platform === 'darwin') {
         label: 'Quit',
         accelerator: 'Command+Q',
         click () {
-
-          // require('electron').remote.app.quit()
-          ipcRenderer.send('quitter');
+          file.save()
+          ipcRenderer.send('quitter')
         }
       }
     ]
