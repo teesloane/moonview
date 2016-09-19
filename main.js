@@ -58,7 +58,10 @@ app.on('window-all-closed', function () {
   // }
 })
 
-
+app.on('before-quit', () => {
+  mainWindow.removeAllListeners('close')
+  mainWindow.close();
+})
 
 app.on('activate', function () {
   // mac dock click to reopen a window instance.
@@ -94,6 +97,8 @@ ipcMain.on('get-content', function (e) {
 })
 
 ipcMain.on('quitter', function(e) {
-  mainWindow.close();
-  app.quit();
+  console.log('message to quit received');
+  // mainWindow.removeAllListeners('close')
+  // mainWindow.close();
+  app.quit()
 })

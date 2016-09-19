@@ -82,6 +82,7 @@ let file = {
       if (rdata === 0) {
         ActionA();
       } else {
+        console.log('action b trying to be called');
         ActionB();
       }
     })
@@ -109,6 +110,29 @@ let file = {
       return true
     }
   },
+
+  windowCloseCheck() {
+    window.beforeunload = function(e) {    
+    e.returnValue = false;
+    if(file.isUnsaved() || file.hasChanged()) {
+      // prompt - save or just quit?
+      file.fileWarning('You have unsaved work.', 'Save', 'Quit', function(){
+        // OPTION A - save
+        file.save();
+      }, function() {
+        // OPTION B: Quit.
+        // window.destroy()
+        ipcRenderer.send('quitter')
+      })
+    } 
+      
+    else {
+      // file is saved and no new work has been done:
+      ipcRenderer.send('quitter')
+    }
+
+    }
+  }
 }
 
 module.exports = file
