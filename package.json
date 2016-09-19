@@ -6,7 +6,8 @@
   "appname": "MoonView",
   "app-version": "0.0.1",
   "scripts": {
-    "start": "electron main.js"
+    "start": "electron main.js",
+    "build-mac": "electron-packager . Moonview --platform=darwin --arch=x64 --icon='./_src/build-assets/mac-icon.icns' --out=dist --ignore='^/dist$'"
   },
   "repository": {
     "type": "git",

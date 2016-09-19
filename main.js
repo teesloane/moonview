@@ -1,5 +1,6 @@
 const electron = require('electron')
 const { ipcMain } = require('electron')
+const nativeImage = require('electron').nativeImage
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 let mainWindow
@@ -16,8 +17,10 @@ function createWindow () {
     autoHideMenuBar: true,
     width: 800,
     height: 600,
-    minWidth: 600
+    minWidth: 600,
+    icon: nativeImage.createFromPath(__dirname + '/_src/build-assets/linux-icon.png')
   })
+
 
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${__dirname}/public/index.html`)
@@ -26,9 +29,6 @@ function createWindow () {
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
     mainWindow = null
   })
 }
@@ -57,6 +57,8 @@ app.on('window-all-closed', function () {
     app.quit()
   // }
 })
+
+
 
 app.on('activate', function () {
   // mac dock click to reopen a window instance.

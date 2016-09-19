@@ -24,7 +24,7 @@ let file = {
     })
   },
 
-  saveAs() {
+  saveAs(callback) {
     dialog.showSaveDialog({
       title: 'Save your document',
       buttonLabel: 'Save',
@@ -39,6 +39,7 @@ let file = {
         if (err) throw err
       })
     })
+
   },
 
   save() {
@@ -54,7 +55,7 @@ let file = {
 
   newFile() {
 
-    if (this.fileUnsaved() || this.fileHasChanged()) {
+    if (this.isUnsaved() || this.hasChanged()) {
       this.fileWarning("You have an unsaved file. Save it?", 'Cancel', 'New File', function () {
         // noop function - nothing happens on 'cancel'.
       }, function () {
@@ -68,7 +69,9 @@ let file = {
     }
   },
 
-  // HELPERS FOR CHECKING FOR UNSAVED FILES //
+  
+  // ====================================================== //
+  // HELPERS FOR CHECKING FOR UNSAVED FILES, warnings, etc. //
   fileWarning(Message, OptionA, OptionB, ActionA, ActionB) {
     dialog.showMessageBox({
       type: 'warning',
@@ -84,7 +87,7 @@ let file = {
     })
   },
 
-  fileHasChanged() {
+  hasChanged() {
     let editor = document.getElementById('editor')
 
     if (file.currentFile !== undefined) {
@@ -95,7 +98,12 @@ let file = {
     }
   },
 
-  fileUnsaved() {
+  editorIsEmpty() {
+    let editor = document.getElementById('editor')
+    if (editor.value == '') return true;
+  },
+
+  isUnsaved() {
     let editor = document.getElementById('editor')
     if (file.currentFile === undefined && editor.value !== '') {
       return true
