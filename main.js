@@ -7,7 +7,7 @@ let mainWindow
 let prefWindow
 let previewWindow
 
-const moonview = {
+let moonview = {
   content: ''
 }
 
@@ -58,11 +58,6 @@ app.on('window-all-closed', function () {
   // }
 })
 
-app.on('before-quit', () => {
-  mainWindow.removeAllListeners('close')
-  mainWindow.close();
-})
-
 app.on('activate', function () {
   // mac dock click to reopen a window instance.
   if (mainWindow === null) {
@@ -98,7 +93,5 @@ ipcMain.on('get-content', function (e) {
 
 ipcMain.on('quitter', function(e) {
   console.log('message to quit received');
-  // mainWindow.removeAllListeners('close')
-  // mainWindow.close();
   app.quit()
 })

@@ -9,10 +9,7 @@ let file = {
     dialog.showOpenDialog({
       title: 'Open a document',
       buttonLabel: 'Open',
-      filters: [{
-        name: 'Text',
-        extensions: ['txt', 'md']
-      }]
+      filters: [{ name: 'Text', extensions: ['txt', 'md']}]
     }, function (filesIn) {
       if (filesIn === undefined) return
       let fileIn = filesIn[0] // must be 1st element of array even though only one item is selected to be opened.
@@ -28,10 +25,7 @@ let file = {
     dialog.showSaveDialog({
       title: 'Save your document',
       buttonLabel: 'Save',
-      filters: [{
-        name: 'text',
-        extensions: ['txt', 'md']
-      }]
+      filters: [{name: 'text', extensions: ['txt', 'md']}]
     }, function (fileOut) {
       if (fileOut === undefined) return
       fs.writeFile(fileOut, document.getElementById('editor').value, function (err) {
@@ -78,14 +72,7 @@ let file = {
       buttons: [OptionA, OptionB], // string
       title: 'Unsaved Work',
       message: Message,
-    }, function (rdata) {
-      if (rdata === 0) {
-        ActionA();
-      } else {
-        console.log('action b trying to be called');
-        ActionB();
-      }
-    })
+    }, function (rdata) { if (rdata === 0) { ActionA() } else { ActionB() }})
   },
 
   hasChanged() {
@@ -112,16 +99,16 @@ let file = {
   },
 
   windowCloseCheck() {
-    window.beforeunload = function(e) {    
-    e.returnValue = false;
-    if(file.isUnsaved() || file.hasChanged()) {
+    window.onbeforeunload = function(e) {
+      e.returnValue = false;
+    // window.alert('try to close me');    
+    if(file.isUnsaved() || file.hasChanged() || file.editorIsEmpty()) {
       // prompt - save or just quit?
-      file.fileWarning('You have unsaved work.', 'Save', 'Quit', function(){
+      file.fileWarning('You have unsaveeed work.', 'Save', 'Quit', function(){
         // OPTION A - save
         file.save();
       }, function() {
         // OPTION B: Quit.
-        // window.destroy()
         ipcRenderer.send('quitter')
       })
     } 
