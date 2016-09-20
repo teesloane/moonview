@@ -1,30 +1,31 @@
 # moonview
 
-## What is Moonview?
+## What is moonview?
 
-Moonview allows you to write text files inside an ambient bubble. Pick from a collection of medias and create your own writing environment: Moonview comes packaged with a handful of fonts, backdrops, field recordings, and audio stems.
+moonview allows you to write text files inside an ambient bubble. Pick from a collection of medias and create your own writing environment: moonview comes packaged with a handful of fonts, backdrops, field recordings, and audio stems.
 
-## Can I customize Moonview Further?
+![](https://cloud.githubusercontent.com/assets/12987958/18655246/2dfe1214-7eb5-11e6-8e08-9897fdfb1207.gif)
 
-If you are technically inclined you can customize Moonview however you like. First note that the App is entirely open source, so you can fork the repo and make changes as you like.
+## Can I customize moonview Further?
 
-If you would like to replace the media assets that come with Moonview, you can do that with a bit of folder digging.
+If you are technically inclined you can customize moonview however you like. First note that the App is entirely open source, so you can fork the repo and make changes as you like.
 
-**How Audio Files work**
+If you would like to replace the media assets that come with moonview, you can do that with a bit of folder digging.
 
-Moonview gets a bit creative with working with playing audio files. For some, you may be disappointed to find that you cannot simply drop an audio file into a folder and have it available to your in Moonview.
+** How Audio Files work **
+moonview gets a bit creative with working with playing audio files. For some, you may be disappointed to find that you cannot simply drop an audio file into a folder and have it available to your in moonview.
 
 **A brief Preface to customizing ambient media assets**
 
-Moonview works with _folders_ of audio files. Think of each folder as a "song", and the contents of that folder as the different sounds you hear in the song. For example, `Song 1` Might have a `Bass.mp3`, `Synth.mp3` and `Chamber choir.mp3` stem file inside it. Moonview uses folders in this way to randomly play back the audio stems in a way so that each time you listen to one of the "songs" it will never be the same as before.
+moonview works with _folders_ of audio files. Think of each folder as a "song", and the contents of that folder as the different sounds you hear in the song. For example, `Song 1` Might have a `Bass.mp3`, `Synth.mp3` and `Chamber choir.mp3` stem file inside it. moonview uses folders in this way to randomly play back the audio stems in a way so that each time you listen to one of the "songs" it will never be the same as before.
 
 Note: If you do want to use your own audio stems, seamless audio loops will make for a more pleasant audio experience (unless you don't mind obvious audio looping).
 
 ## Can I contribute?
 
-Yes. Moonview uses Standard Js for linting standards.
+Yes. moonview uses Standard Js for linting standards.
 
-Moonview is intentionally written with Just JavaScript; so any PR's to add Javascript front end frameworks will likely be turned down.
+moonview is intentionally written with Just JavaScript (and Electron); so any PR's to add Javascript front end frameworks will likely be turned down.
 
 ## Build Instructions
 
