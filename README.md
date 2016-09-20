@@ -6,6 +6,11 @@ moonview allows you to write text files inside an ambient bubble. Pick from a co
 
 ![](https://cloud.githubusercontent.com/assets/12987958/18655246/2dfe1214-7eb5-11e6-8e08-9897fdfb1207.gif)
 
+## Download / Install
+
+You can head over to the `releases` tab to get the latest version of moonview.
+Currently Mac builds are being supported, and soon Linux and Windows will follow. If you just can't wait, check out the build instructions below. Currently, `electron-packager` is used for bundling the app, and a linux / windows build script has not been written (hint pull requests hint).
+
 ## Can I customize moonview Further?
 
 If you are technically inclined you can customize moonview however you like. First note that the App is entirely open source, so you can fork the repo and make changes as you like.
