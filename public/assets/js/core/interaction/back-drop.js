@@ -39,6 +39,7 @@ let backDrop = {
 
   setDefaultBackDrop () {
     document.body.style.background = tree.defaultBackground
+    el.editor.style.color = 'black'
 
     el.backgroundButtons.childNodes.forEach(function (child) {
       child.classList.remove('on')
