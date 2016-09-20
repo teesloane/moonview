@@ -18,6 +18,7 @@ If you are technically inclined you can customize moonview however you like. Fir
 If you would like to replace the media assets that come with moonview, you can do that with a bit of folder digging.
 
 **How Audio Files work**
+
 moonview gets a bit creative with working with playing audio files. For some, you may be disappointed to find that you cannot simply drop an audio file into a folder and have it available to your in moonview.
 
 **A brief Preface to customizing ambient media assets**
