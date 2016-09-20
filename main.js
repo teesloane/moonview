@@ -3,13 +3,14 @@ const { ipcMain } = require('electron')
 const nativeImage = require('electron').nativeImage
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
+
+let moonview = { content: '' }
+
 let mainWindow
 let prefWindow
 let previewWindow
 
-let moonview = {
-  content: ''
-}
+/* ========== Main MoonView Logic ========== */
 
 function createWindow () {
   // Create the browser window.
@@ -21,18 +22,12 @@ function createWindow () {
     icon: nativeImage.createFromPath(__dirname + '/_src/build-assets/linux-icon.png')
   })
 
-
-  // and load the index.html of the app.
   mainWindow.loadURL(`file://${__dirname}/public/index.html`)
-  
-  mainWindow.webContents.openDevTools()
-
-  // Emitted when the window is closed.
-  mainWindow.on('closed', function () {
-    mainWindow = null
-  })
+  mainWindow.on('closed', function () { mainWindow = null })
+  // mainWindow.webContents.openDevTools() // enable dev tools
 }
-// create window for markdown preview
+
+/* ========== Markdown Window Logic ========== */
 function createPreviewWindow () {
   const mainBounds = mainWindow.getBounds()
   previewWindow = new BrowserWindow({
@@ -42,32 +37,14 @@ function createPreviewWindow () {
     y: mainBounds.y + 200
   })
   previewWindow.loadURL(`file://${__dirname}/public/preview.html`)
-
-  // remove reference to the window object when the window is closed
-  previewWindow.on('closed', function (e) {
-    previewWindow = null
-  })
+  previewWindow.on('closed', (e) => { previewWindow = null})
 }
-
-app.on('ready', createWindow)
-
-// Quit when all windows are closed. (not mac)
-app.on('window-all-closed', function () {
-  // if (process.platform !== 'darwin') {
-    app.quit()
-  // }
-})
-
-app.on('activate', function () {
-  // mac dock click to reopen a window instance.
-  if (mainWindow === null) {
-    createWindow()
-  }
-})
 
 function updatePreview () {
   previewWindow.webContents.send('update-preview', moonview.content)
 }
+
+/* == IPC / Event Listeners for MarkDown Window Logic == */
 
 // set content on update-preview event
 ipcMain.on('update-content', function (e, content) {
@@ -91,7 +68,12 @@ ipcMain.on('get-content', function (e) {
   updatePreview()
 })
 
-ipcMain.on('quitter', function(e) {
-  console.log('message to quit received');
+/* ========== App Event Listeners ========== */
+app.on('ready', createWindow)
+app.on('window-all-closed', () => { app.quit() })
+app.on('activate', () => { if (mainWindow === null) createWindow()}) 
+
+ipcMain.on('quitter', (e) => {
+  mainWindow.destroy(); // necessary to bypass the repeat-quit-check in the render process.
   app.quit()
 })

@@ -1,15 +1,15 @@
 const fs = require('fs')
-const { remote, ipcRenderer } = require('electron')
+const { ipcRenderer } = require('electron')
 const { dialog } = require('electron').remote
 
 let file = {
   currentFile: undefined,
 
-  open() {
+  open () {
     dialog.showOpenDialog({
       title: 'Open a document',
       buttonLabel: 'Open',
-      filters: [{ name: 'Text', extensions: ['txt', 'md']}]
+      filters: [{name: 'Text', extensions: ['txt', 'md']}]
     }, function (filesIn) {
       if (filesIn === undefined) return
       let fileIn = filesIn[0] // must be 1st element of array even though only one item is selected to be opened.
@@ -21,7 +21,7 @@ let file = {
     })
   },
 
-  saveAs(callback) {
+  saveAs (callback) {
     dialog.showSaveDialog({
       title: 'Save your document',
       buttonLabel: 'Save',
@@ -33,10 +33,9 @@ let file = {
         if (err) throw err
       })
     })
-
   },
 
-  save() {
+  save () {
     // if file hasn't been saved, run saveAs()
     if (file.currentFile === undefined) {
       file.saveAs()
@@ -47,35 +46,38 @@ let file = {
     }
   },
 
-  newFile() {
-
+  newFile () {
     if (this.isUnsaved() || this.hasChanged()) {
-      this.fileWarning("You have an unsaved file. Save it?", 'Cancel', 'New File', function () {
+      this.fileWarning('You have an unsaved file. Save it?', 'Cancel', 'New File', function () {
         // noop function - nothing happens on 'cancel'.
       }, function () {
         // reset the editor for a "new file"
         document.getElementById('editor').value = ''
-        file.currentFile = undefined;
+        file.currentFile = undefined
       })
     } else {
       document.getElementById('editor').value = ''
-      file.currentFile = undefined;
+      file.currentFile = undefined
     }
   },
 
-  
   // ====================================================== //
   // HELPERS FOR CHECKING FOR UNSAVED FILES, warnings, etc. //
-  fileWarning(Message, OptionA, OptionB, ActionA, ActionB) {
+  fileWarning (Message, OptionA, OptionB, ActionA, ActionB) {
     dialog.showMessageBox({
       type: 'warning',
       buttons: [OptionA, OptionB], // string
       title: 'Unsaved Work',
-      message: Message,
-    }, function (rdata) { if (rdata === 0) { ActionA() } else { ActionB() }})
+      message: Message
+    }, function (rdata) {
+      console.log(rdata)
+      if (rdata === 0) {
+        ActionA()
+      } else if (rdata === 1) { ActionB() }
+    })
   },
 
-  hasChanged() {
+  hasChanged () {
     let editor = document.getElementById('editor')
 
     if (file.currentFile !== undefined) {
@@ -86,38 +88,35 @@ let file = {
     }
   },
 
-  editorIsEmpty() {
+  editorIsEmpty () {
     let editor = document.getElementById('editor')
-    if (editor.value == '') return true;
+    if (editor.value === '') return true
   },
 
-  isUnsaved() {
+  isUnsaved () {
     let editor = document.getElementById('editor')
     if (file.currentFile === undefined && editor.value !== '') {
       return true
     }
   },
 
-  windowCloseCheck() {
-    window.onbeforeunload = function(e) {
-      e.returnValue = false;
-    // window.alert('try to close me');    
-    if(file.isUnsaved() || file.hasChanged() || file.editorIsEmpty()) {
+  windowCloseCheck () {
+    window.onbeforeunload = function (e) {
+      e.returnValue = false
+    // window.alert('try to close me');
+      if (file.isUnsaved() || file.hasChanged()) {
       // prompt - save or just quit?
-      file.fileWarning('You have unsaveeed work.', 'Save', 'Quit', function(){
+        file.fileWarning('You have unsaveeed work.', 'Save', 'Quit', function () {
         // OPTION A - save
-        file.save();
-      }, function() {
+          file.save()
+        }, function () {
         // OPTION B: Quit.
+          ipcRenderer.send('quitter')
+        })
+      } else {
+        // file is saved and no new work has been done:
         ipcRenderer.send('quitter')
-      })
-    } 
-      
-    else {
-      // file is saved and no new work has been done:
-      ipcRenderer.send('quitter')
-    }
-
+      }
     }
   }
 }

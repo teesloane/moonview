@@ -10,8 +10,8 @@ const setup = function () {
   createAmbientMenu()
   markdownUpdate()
 
+  // listen for app close // if things are unsaved run a prompt
   file.windowCloseCheck()
-  // listen for app close // if things are unsaved run a prompt 
 }
 
 setup()

@@ -87,8 +87,8 @@ const template = [
         click (item, focusedWindow) {
           if (focusedWindow) focusedWindow.setFullScreen(!focusedWindow.isFullScreen())
         }
-      },
-      
+      }
+
     ]
   },
   {
@@ -151,12 +151,12 @@ if (process.platform === 'darwin') {
         label: 'Quit',
         accelerator: 'Command+Q',
         click () {
-          if(file.isUnsaved() || file.hasChanged()) {
+          if (file.isUnsaved() || file.hasChanged()) {
             // prompt - save or just quit?
-            file.fileWarning('You have unsaved work.', 'Save', 'Quit', function(){
+            file.fileWarning('You have unsaved work.', 'Save', 'Quit', function () {
               // OPTION A - save
-              file.save();
-            }, function() {
+              file.save()
+            }, function () {
               // OPTION B: Quit.
               ipcRenderer.send('quitter')
             })
