@@ -39,7 +39,6 @@ let settings = {
   // update dom settings based on changes to prefs window
   updateDependencies () {
     let userSettings = settings.getSettings()
-    console.log(userSettings)
 
     el.fontSize.value = userSettings.fontSize
     el.editor.style.fontSize = userSettings.fontSize + 'px'

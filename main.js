@@ -24,7 +24,7 @@ function createWindow () {
 
   mainWindow.loadURL(`file://${__dirname}/public/index.html`)
   mainWindow.on('closed', function () { mainWindow = null })
-  mainWindow.webContents.openDevTools() // enable dev tools
+  // mainWindow.webContents.openDevTools() // enable dev tools
 }
 
 /* ========== Markdown Window Logic ========== */
