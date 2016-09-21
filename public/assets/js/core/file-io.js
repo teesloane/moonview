@@ -70,7 +70,6 @@ let file = {
       title: 'Unsaved Work',
       message: Message
     }, function (rdata) {
-      console.log(rdata)
       if (rdata === 0) {
         ActionA()
       } else if (rdata === 1) { ActionB() }

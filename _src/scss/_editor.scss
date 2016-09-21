@@ -3,7 +3,7 @@
   background: rgba(255, 255, 255, 0.0);
   display: flex;
   letter-spacing: 1px;
-  padding: 6% 5% 0;
+  padding: 6% 5% 2%;
 }
 textarea {
   border: 0;
@@ -13,11 +13,5 @@ textarea {
   outline: none;
   padding: 0;
   resize: none;
-  width: 70%; // TODO: programmatically change this
-  @media(min-width: 1000px) {
-    width: 50%;
-  }
-
-  //TODO find a way to push the scrollbar to the right side of the editor.
-  margin: 5% auto;
+  margin: 6% auto;
 }
