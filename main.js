@@ -24,7 +24,7 @@ function createWindow () {
 
   mainWindow.loadURL(`file://${__dirname}/public/index.html`)
   mainWindow.on('closed', function () { mainWindow = null })
-  // mainWindow.webContents.openDevTools() // enable dev tools
+  mainWindow.webContents.openDevTools() // enable dev tools
 }
 
 /* ========== Markdown Window Logic ========== */
@@ -71,7 +71,7 @@ ipcMain.on('get-content', function (e) {
 /* ========== App Event Listeners ========== */
 app.on('ready', createWindow)
 app.on('window-all-closed', () => { app.quit() })
-app.on('activate', () => { if (mainWindow === null) createWindow()}) 
+app.on('activate', () => { if (mainWindow === null) createWindow()})
 
 ipcMain.on('quitter', (e) => {
   mainWindow.destroy(); // necessary to bypass the repeat-quit-check in the render process.

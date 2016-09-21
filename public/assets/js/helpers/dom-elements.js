@@ -50,6 +50,7 @@ const el = {
 
   fontSize: document.getElementById('pref-font-size'),
   editorWidth: document.getElementById('pref-editor-width'),
+  editorWidthVal: document.getElementById('pref-editor-width-val'),
   autoSave: document.getElementById('pref-autosave')
 }
 

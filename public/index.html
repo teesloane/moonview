@@ -23,7 +23,6 @@
 
   <!--Editor Menu -->
   <aside id="editor-controls">
-    <!-- TODO: change the selector from id to a query for class -->
 
     <!-- Second Drawer -->
     <div id="asset-drawer" class="asset-drawer display-none">
@@ -99,9 +98,9 @@
 
         <!-- Editor Width -->
         <section class="row">
-          <div class="label">Editor Width</div>
+          <div class="label">Editor Width</div><span id="pref-editor-width-val"></span>
           <div class="value">
-            <input id="pref-editor-width" min="10" type="range">
+            <input id="pref-editor-width" min="320" max="1024" type="range">
           </div>
         </section>
 

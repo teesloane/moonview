@@ -1,8 +1,7 @@
 const el = require('../helpers/dom-elements')
 const defaultSettings = {
-  fontSize: 12,
-  editorWidth: 70,
-  autoSave: false
+  fontSize: 13,
+  editorWidth: 540
 }
 
 let settings = {
@@ -40,12 +39,16 @@ let settings = {
   // update dom settings based on changes to prefs window
   updateDependencies () {
     let userSettings = settings.getSettings()
+    console.log(userSettings)
 
     el.fontSize.value = userSettings.fontSize
     el.editor.style.fontSize = userSettings.fontSize + 'px'
 
     el.editorWidth.value = userSettings.editorWidth
-    el.editor.style.width = userSettings.editorWidth + '%'
+    el.editor.style.width = userSettings.editorWidth + 'px'
+
+    // show the editor width value next to the text
+    el.editorWidthVal.textContent = userSettings.editorWidth + 'px';
   }
 }
 
