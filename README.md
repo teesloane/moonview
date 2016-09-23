@@ -4,7 +4,7 @@
 
 moonview allows you to write text files inside an ambient bubble. Pick from a collection of medias and create your own writing environment: moonview comes packaged with a handful of fonts, backdrops, field recordings, and audio stems.
 
-![](https://cloud.githubusercontent.com/assets/12987958/18655246/2dfe1214-7eb5-11e6-8e08-9897fdfb1207.gif)
+![](https://cloud.githubusercontent.com/assets/12987958/18794585/275b5bd4-818e-11e6-8b57-e95eeeb43059.png)
 
 ## Download / Install
 
