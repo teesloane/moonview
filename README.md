@@ -19,7 +19,7 @@ If you would like to replace the media assets that come with moonview, you can d
 
 **How Audio Files work**
 
-moonview gets a bit creative with working with playing audio files. For some, you may be disappointed to find that you cannot simply drop an audio file into a folder and have it available to your in moonview.
+moonview gets a bit creative with working with playing audio files. For some, you may be disappointed to find that you cannot simply drop an audio file into a folder and have it available in moonview.
 
 **A brief Preface to customizing ambient media assets**
 
