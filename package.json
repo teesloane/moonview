@@ -23,6 +23,7 @@
   "homepage": "https://github.com/teesloane/moonview/blob/master/README.md",
   "devDependencies": {
     "babel-eslint": "^6.0.4",
+    "electron-packager": "^10.1.0",
     "electron-prebuilt": "^1.2.0",
     "eslint": "^2.11.0",
     "eslint-config-standard": "^5.3.1",
